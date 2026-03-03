@@ -6,29 +6,29 @@
  */
 
 import { motion } from "framer-motion";
-import { Monitor, Palette, Send } from "lucide-react";
+import { Upload, LayoutGrid, Link } from "lucide-react";
 
 const STEPS = [
   {
     number: "1",
-    icon: Monitor,
-    title: "Plug In",
+    icon: Upload,
+    title: "Upload",
     description:
-      "Connect the Citadel Player to any HDMI display and power it on. It auto-connects to your dashboard in seconds — no IT team required.",
+      "Add your images, videos, and Canva designs directly to your media library. Everything in one place, ready to use.",
   },
   {
     number: "2",
-    icon: Palette,
-    title: "Design",
+    icon: LayoutGrid,
+    title: "Organize",
     description:
-      "Connect Canva or upload your own media. Drag and drop images, videos, live feeds, and widgets — no design skills needed.",
+      "Build playlists, set schedules, and arrange your content with drag and drop. No design skills required.",
   },
   {
     number: "3",
-    icon: Send,
-    title: "Publish",
+    icon: Link,
+    title: "Pair",
     description:
-      "Push content to one screen or one thousand with a single click. Schedule, update, and monitor everything in real time.",
+      "Connect the Citadel Player to any HDMI display and pair it to your dashboard in seconds — no IT team required.",
   },
 ];
 
@@ -44,7 +44,7 @@ const item = {
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section id="how-it-works" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -84,7 +84,7 @@ export default function HowItWorks() {
           {/* Connector line (desktop only) */}
           <div
             aria-hidden="true"
-            className="hidden md:block absolute top-9 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)]
+            className="hidden md:block absolute top-[252px] left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)]
                        h-px bg-gradient-to-r from-blue-200 via-sky-200 to-blue-200"
           />
 
@@ -94,6 +94,12 @@ export default function HowItWorks() {
               variants={item}
               className="relative flex flex-col items-center text-center"
             >
+              {/* Image placeholder */}
+              <div className="w-full rounded-2xl bg-slate-100 border-2 border-dashed border-slate-200
+                              h-48 mb-6 flex items-center justify-center">
+                <span className="text-slate-400 text-sm font-medium">Step {number} image</span>
+              </div>
+
               {/* Step circle */}
               <div className="relative mb-6">
                 <div className="w-[72px] h-[72px] rounded-full bg-white border-2 border-blue-200

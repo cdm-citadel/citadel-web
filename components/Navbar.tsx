@@ -7,6 +7,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Monitor, Menu, X, ChevronDown, ExternalLink,
@@ -66,6 +67,10 @@ const RESOURCES_NAV = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isActive = (href: string) => pathname === href;
+  const isActivePrefix = (prefix: string) => pathname.startsWith(prefix);
+
   const [scrolled,             setScrolled]             = useState(false);
   const [mobileOpen,           setMobileOpen]           = useState(false);
   const [industriesOpen,       setIndustriesOpen]       = useState(false);
@@ -117,7 +122,11 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -130,8 +139,11 @@ export default function Navbar() {
                 onMouseLeave={closeIndustries}
               >
                 <button
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-600
-                             hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150
+                    ${isActivePrefix("/industries")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   aria-haspopup="true"
                   aria-expanded={industriesOpen}
                 >
@@ -186,7 +198,11 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -199,8 +215,11 @@ export default function Navbar() {
                 onMouseLeave={closeResources}
               >
                 <button
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-600
-                             hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150
+                    ${isActive("/book-a-demo")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   aria-haspopup="true"
                   aria-expanded={resourcesOpen}
                 >
@@ -268,7 +287,11 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -327,7 +350,11 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                  className={`px-4 py-3 text-sm font-medium rounded-xl transition-colors
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -337,8 +364,11 @@ export default function Navbar() {
               <div>
                 <button
                   onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium
-                             text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                  className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-colors
+                    ${isActivePrefix("/industries")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   Industries
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
@@ -385,7 +415,11 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                  className={`px-4 py-3 text-sm font-medium rounded-xl transition-colors
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -395,8 +429,11 @@ export default function Navbar() {
               <div>
                 <button
                   onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium
-                             text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                  className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-colors
+                    ${isActive("/book-a-demo")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   Resources
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileResourcesOpen ? "rotate-180" : ""}`} />
@@ -454,7 +491,11 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                  className={`px-4 py-3 text-sm font-medium rounded-xl transition-colors
+                    ${isActive(link.href)
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
                   {link.label}
                 </Link>

@@ -19,13 +19,15 @@ import Testimonials  from "@/components/Testimonials";
 import Apps          from "@/components/Apps";
 import Pricing       from "@/components/Pricing";
 import Faq           from "@/components/Faq";
-import FinalCTA      from "@/components/FinalCTA";
-import Footer        from "@/components/Footer";
+import FinalCTA          from "@/components/FinalCTA";
+import Footer            from "@/components/Footer";
+import HomeSectionNav    from "@/components/HomeSectionNav";
 
 export default function HomePage() {
   return (
     <>
       <Navbar />
+      <HomeSectionNav />
       <main id="main-content">
         <Hero />
         <TrustedBy />

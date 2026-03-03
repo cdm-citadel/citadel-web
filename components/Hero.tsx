@@ -146,7 +146,7 @@ function DashboardMockup() {
 /* ── Main component ──────────────────────────────────────────────── */
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-16">
 
       {/* Background gradient mesh */}
       <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
