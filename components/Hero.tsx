@@ -7,7 +7,7 @@
 
 import { motion } from "framer-motion";
 import {
-  ArrowRight, Play, Monitor, BarChart3, Layers,
+  ArrowRight, Play, Monitor, BarChart3,
   Clock, CheckCircle2, Wifi,
 } from "lucide-react";
 
@@ -26,7 +26,7 @@ function DashboardMockup() {
   const stats = [
     { icon: Monitor,  label: "Active Screens", value: "12",    bg: "bg-blue-50",    fg: "text-blue-600"    },
     { icon: BarChart3, label: "Plays Today",   value: "1,429", bg: "bg-sky-50",     fg: "text-sky-600"     },
-    { icon: Layers,   label: "Templates",      value: "48",    bg: "bg-emerald-50", fg: "text-emerald-600" },
+    { icon: Clock,    label: "Avg. Setup",      value: "< 5m",  bg: "bg-emerald-50", fg: "text-emerald-600" },
   ];
 
   return (

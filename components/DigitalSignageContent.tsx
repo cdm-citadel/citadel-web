@@ -18,7 +18,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, ChevronDown, Play,
-  Monitor, BarChart2, Layers, Clock, Tag, Zap,
+  Monitor, BarChart2, Layers, Clock, Zap,
   Globe, Lock, Users, Calendar, Wifi, Cloud,
   RefreshCcw, Tv, Layout, ShieldCheck,
   Sparkles, MousePointer2, Puzzle, Bell,
@@ -363,7 +363,7 @@ function Hero() {
 const STATS = [
   { value: "99.9%",  label: "Platform uptime SLA" },
   { value: "< 5 min", label: "Average setup time" },
-  { value: "1,000+", label: "Ready-made templates" },
+  { value: "6", label: "Built-in apps included" },
   { value: "3,000+", label: "Screens managed" },
 ];
 
@@ -468,7 +468,7 @@ const FEATURE_SECTIONS = [
     bullets: [
       "Connect your Canva account in seconds",
       "Push any Canva design live to your screens",
-      "1,000+ ready-made templates across every industry",
+      "Access thousands of Canva templates for any industry",
       "Portrait and landscape layouts supported",
     ],
     icon: Layout,
@@ -596,7 +596,7 @@ const CAPABILITIES = [
   { icon: BarChart2,   title: "Analytics & Reports",  desc: "Track screen uptime, content plays, and engagement metrics." },
   { icon: Lock,        title: "Kiosk Mode",           desc: "Lock screens to a single app or webpage — perfect for lobbies." },
   { icon: Bell,        title: "Emergency Alerts",     desc: "Override every screen instantly with a full-screen alert." },
-  { icon: Tag,         title: "1,000+ Templates",     desc: "Industry-specific templates ready to customise and publish." },
+  { icon: Layers,      title: "Canva Integration",     desc: "Design in Canva and publish to any screen in one click — no exporting or uploading." },
   { icon: Monitor,     title: "Hardware Agnostic",    desc: "Works with any commercial display — no proprietary hardware needed." },
   { icon: Sparkles,    title: "Remote Management",    desc: "Reboot, update, or check any screen from anywhere in the world." },
 ];
@@ -676,7 +676,7 @@ function IndustriesSection() {
           </h2>
           <p className="text-lg text-slate-500 max-w-xl mx-auto">
             Citadel powers screens across every major industry. Explore tailored
-            solutions and industry-specific templates.
+            solutions tailored to your industry.
           </p>
         </motion.div>
 

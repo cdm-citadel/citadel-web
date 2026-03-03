@@ -11,7 +11,7 @@ const STATS = [
   { value: "3,000+", label: "Screens Managed" },
   { value: "< 5 min", label: "Average Setup Time" },
   { value: "99.9%",   label: "Platform Uptime" },
-  { value: "1,000+",  label: "Ready-Made Templates" },
+  { value: "6",       label: "Built-In Apps Included" },
 ];
 
 export default function StatsBar() {

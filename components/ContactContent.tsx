@@ -84,7 +84,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is there a free trial available?",
-    a: "Yes — Citadel offers a 14-day free trial with no credit card required. You get full access to all Business plan features including up to 3 connected screens, the template library, and scheduling. No commitment needed.",
+    a: "Yes — Citadel offers a 14-day free trial with no credit card required. You get full access to all Business plan features including up to 3 connected screens, Canva integration, and scheduling. No commitment needed.",
   },
   {
     q: "Can I book a product demo before signing up?",

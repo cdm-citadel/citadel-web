@@ -222,7 +222,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       stats: [
         { value: "18%", label: "Avg. promoted item revenue increase" },
         { value: "4 min", label: "To update all 40+ locations" },
-        { value: "500+", label: "Ready-made retail templates" },
+        { value: "60 sec", label: "Multi-location update speed" },
       ],
       mockScreen: {
         header: "Today's Promotions",
@@ -277,9 +277,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         icon: "Layers",
-        title: "Template Library",
+        title: "Canva Design Integration",
         description:
-          "Choose from 500+ retail-focused templates or bring in your own Canva designs for consistent, branded in-store displays.",
+          "Design stunning retail displays in Canva and push them live to every store in one click — brand-consistent content across all locations, always.",
       },
       {
         icon: "BarChart2",
@@ -312,7 +312,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         q: "Can I use my own brand designs?",
-        a: "Yes. You can upload your own graphics, use our Canva integration, or start from one of 500+ retail templates. Full brand control is always yours.",
+        a: "Yes. You can upload your own graphics or connect your Canva account to design with thousands of Canva templates. Full brand control is always yours.",
       },
       {
         q: "What apps and tools can I connect to Citadel?",
@@ -414,9 +414,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         icon: "Layers",
-        title: "Beautiful Food Templates",
+        title: "Beautiful Menu Design",
         description:
-          "Choose from hundreds of restaurant-specific templates designed to make your food photography and specials look irresistible.",
+          "Design eye-catching food photography and menu specials in Canva, then push them live to your screens in one click — no design skills needed.",
       },
       {
         icon: "Globe",
@@ -453,7 +453,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         q: "Do I need design experience to make great-looking menus?",
-        a: "Not at all. Citadel includes hundreds of restaurant-specific templates. You just swap in your items and photos — no design skills needed.",
+        a: "Not at all. Connect your Canva account to design with thousands of templates, or simply upload your own images and text — no design experience required.",
       },
       {
         q: "Can I use my existing screens?",
@@ -633,7 +633,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       stats: [
         { value: "30%", label: "Avg. class booking lift" },
         { value: "Auto", label: "Class schedule updates" },
-        { value: "100+", label: "Fitness-specific templates" },
+        { value: "1-click", label: "Canva content publishing" },
       ],
       mockScreen: {
         header: "Today's Classes",
@@ -682,9 +682,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         icon: "Film",
-        title: "Branded Content Library",
+        title: "Branded Content Creation",
         description:
-          "Access 100+ gym and wellness templates, plus a royalty-free media library with fitness imagery to elevate your floor content.",
+          "Design motivational content and branded displays in Canva, then push them live to your screens — keep your floor content fresh without hiring a designer.",
       },
       {
         icon: "Zap",

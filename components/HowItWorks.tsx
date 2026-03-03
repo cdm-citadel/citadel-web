@@ -21,7 +21,7 @@ const STEPS = [
     icon: Palette,
     title: "Design",
     description:
-      "Pick a template or connect Canva. Drag and drop images, videos, live feeds, and widgets — no design skills needed.",
+      "Connect Canva or upload your own media. Drag and drop images, videos, live feeds, and widgets — no design skills needed.",
   },
   {
     number: "3",

@@ -54,7 +54,7 @@ const PLANS: Plan[] = [
       "1 license per screen — add as many as you need",
       "Up to 3 team member accounts",
       "Unlimited storage",
-      "Canva integration + 1,000+ templates",
+      "Canva integration for branded content",
       "Advanced scheduling & day-parting",
       "Remote screen management",
       "Proof of play reporting",

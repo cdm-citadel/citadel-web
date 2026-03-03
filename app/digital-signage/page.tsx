@@ -11,12 +11,12 @@ import DigitalSignageContent from "@/components/DigitalSignageContent";
 export const metadata: Metadata = {
   title: "Digital Signage Software – Citadel | Manage Every Screen, Effortlessly",
   description:
-    "Citadel digital signage software lets you create, schedule, and publish content to any screen from one cloud dashboard. 140+ integrations, 1,000+ templates, 99.9% uptime.",
+    "Citadel digital signage software lets you create, schedule, and publish content to any screen from one cloud dashboard. Canva integration, real-time scheduling, 99.9% uptime.",
   alternates: { canonical: "/digital-signage" },
   openGraph: {
     title: "Digital Signage Software – Citadel",
     description:
-      "Manage every screen from one cloud dashboard. 140+ integrations, drag-and-drop editor, real-time scheduling.",
+      "Manage every screen from one cloud dashboard. Canva integration, drag-and-drop editor, real-time scheduling.",
     type: "website",
   },
 };

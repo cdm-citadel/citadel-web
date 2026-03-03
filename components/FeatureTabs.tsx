@@ -20,9 +20,9 @@ const TABS = [
     icon: MousePointerClick,
     label: "Drag & Drop Creation",
     headline: "Design stunning content in minutes.",
-    body: "Access hundreds of free templates, images, and videos right inside the platform. Connect your Canva account for seamless brand-consistent designs — no design team required.",
+    body: "Connect your Canva account for seamless brand-consistent designs — no design team required. Upload your own images and videos or use the built-in royalty-free media library.",
     bullets: [
-      { icon: ImagePlay,   text: "500+ ready-made templates" },
+      { icon: ImagePlay,   text: "Canva integration for branded designs" },
       { icon: Wand2,       text: "Native Canva integration" },
       { icon: Globe2,      text: "Royalty-free media library" },
     ],
