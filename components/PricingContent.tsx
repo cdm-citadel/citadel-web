@@ -87,18 +87,6 @@ const PLANS: Plan[] = [
 /* ── Feature comparison ─────────────────────────────────────────── */
 const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
-    category: "Content Creation",
-    icon: Monitor,
-    rows: [
-      { label: "Template library",          business: "1,000+",     enterprise: "1,000+" },
-      { label: "Drag & drop editor",        business: true,         enterprise: true },
-      { label: "Canva integration",         business: true,         enterprise: true },
-      { label: "Royalty-free media library",business: true,         enterprise: true },
-      { label: "Custom branding",           business: true,         enterprise: true },
-      { label: "White-label dashboard",     business: false,        enterprise: true },
-    ],
-  },
-  {
     category: "Scheduling",
     icon: Calendar,
     rows: [
