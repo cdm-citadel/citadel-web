@@ -25,9 +25,10 @@ const PRINCIPLES = [
     icon: BookOpen,
     accent: "from-blue-500 to-sky-400",
     iconBg: "bg-blue-600",
+    glow: "rgba(59,130,246,0.28)",
     label: "01",
     title: "Educate Clients",
-    image: "", // e.g. "/in-practice/educate.webp"
+    image: "/in-practice/educate-clients.webp",
     description:
       "Keep customers informed at every touchpoint. Display product guides, service explanations, and helpful content exactly where decisions are made — turning passive waiting into active understanding.",
   },
@@ -35,6 +36,7 @@ const PRINCIPLES = [
     icon: Zap,
     accent: "from-violet-500 to-purple-400",
     iconBg: "bg-violet-600",
+    glow: "rgba(139,92,246,0.28)",
     label: "02",
     title: "Engage Customers",
     image: "", // e.g. "/in-practice/engage.webp"
@@ -45,6 +47,7 @@ const PRINCIPLES = [
     icon: Star,
     accent: "from-amber-500 to-orange-400",
     iconBg: "bg-amber-500",
+    glow: "rgba(245,158,11,0.28)",
     label: "03",
     title: "Elevate Your Brand",
     image: "", // e.g. "/in-practice/elevate.webp"
@@ -55,8 +58,26 @@ const PRINCIPLES = [
 
 export default function SignageInPractice() {
   return (
-    <section id="in-practice" className="py-24 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="in-practice" className="relative py-24 bg-slate-900 overflow-hidden">
+
+      {/* Dot-grid background */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      {/* Central radial glow */}
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-[700px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <motion.div
@@ -81,16 +102,17 @@ export default function SignageInPractice() {
 
         {/* Principle cards */}
         <div className="grid sm:grid-cols-3 gap-6">
-          {PRINCIPLES.map(({ icon: Icon, accent, iconBg, label, title, image, description }, i) => (
+          {PRINCIPLES.map(({ icon: Icon, accent, iconBg, glow, label, title, image, description }, i) => (
             <motion.div
               key={title}
               variants={fadeUp} initial="hidden" whileInView="show" custom={i * 0.12}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl overflow-hidden
-                         hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white rounded-2xl
+                         hover:-translate-y-1 transition-all duration-300"
+              style={{ boxShadow: `0 0 40px 0 ${glow}` }}
             >
               {/* Card image area */}
-              <div className={`relative h-52 overflow-hidden ${image ? "" : `bg-gradient-to-br ${accent}`}`}>
+              <div className={`relative h-52 overflow-hidden rounded-t-2xl ${image ? "" : `bg-gradient-to-br ${accent}`}`}>
                 {image ? (
                   <img
                     src={image}
@@ -125,6 +147,14 @@ export default function SignageInPractice() {
                   ${image ? "text-white drop-shadow-md" : "text-white/60"}`}>
                   {label}
                 </span>
+              </div>
+
+              {/* Floating icon badge – straddles bottom of card */}
+              <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 z-10">
+                <div className={`w-16 h-16 rounded-2xl ${iconBg}
+                                 flex items-center justify-center shadow-lg`}>
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
               </div>
 
               {/* Content */}

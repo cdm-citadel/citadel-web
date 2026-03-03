@@ -98,11 +98,8 @@ function DeviceShowcase() {
 
   return (
     <div className="relative w-full max-w-[560px] mx-auto select-none">
-      {/* ── Levitating monitor ── */}
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      >
+      {/* ── Monitor ── */}
+      <div>
         {/* Monitor bezel */}
         <div className="relative bg-[#1a1a1a] rounded-[24px] p-3 pb-5 shadow-2xl">
           {/* Screen */}
@@ -216,18 +213,16 @@ function DeviceShowcase() {
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* ── Floating app dock ── */}
+      {/* ── App dock ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="mt-8 flex justify-center"
       >
-        <motion.div
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        <div
           className="inline-flex items-center gap-3 px-5 py-3
                      bg-white/70 backdrop-blur-xl border border-white/40
                      rounded-2xl shadow-lg"
@@ -265,7 +260,7 @@ function DeviceShowcase() {
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </motion.div>
     </div>
   );
