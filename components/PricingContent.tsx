@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2, Minus, ArrowRight, Zap, Building2,
   Lock, ShieldCheck, Globe, ChevronDown, Monitor,
-  Calendar, Wifi, BarChart2, Cpu, MessageSquare, Users,
+  Calendar, Wifi, BarChart2, Cpu, MessageSquare,
 } from "lucide-react";
 
 /* ── Types ──────────────────────────────────────────────────────── */
@@ -73,11 +73,10 @@ const PLANS: Plan[] = [
     highlights: [
       "Everything in Business",
       "Live screen monitoring",
-      "CitadelAds monetization",
       "White-label dashboard",
       "Dedicated account manager",
       "SLA-backed uptime guarantee",
-      "API & SSO / SAML access",
+      "API access",
       "Priority phone support",
     ],
     cta: "Get Started",
@@ -118,7 +117,6 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
       { label: "Proof of play reports",     business: true,         enterprise: true },
       { label: "Device health monitoring",  business: true,         enterprise: true },
       { label: "Advanced analytics",        business: false,        enterprise: true },
-      { label: "Revenue reporting (Ads)",   business: false,        enterprise: true },
     ],
   },
   {
@@ -128,7 +126,6 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
       { label: "Apps included",             business: true,         enterprise: true },
       { label: "Webhooks",                  business: true,         enterprise: true },
       { label: "API access",                business: false,        enterprise: true },
-      { label: "SSO / SAML",               business: false,        enterprise: true },
     ],
   },
   {
@@ -149,17 +146,7 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
       { label: "SOC 2 compliant",           business: true,         enterprise: true },
       { label: "GDPR compliant",            business: true,         enterprise: true },
       { label: "Data encryption at rest",   business: true,         enterprise: true },
-      { label: "SSO / SAML auth",          business: false,        enterprise: true },
       { label: "Audit logs",               business: false,        enterprise: true },
-    ],
-  },
-  {
-    category: "Monetization",
-    icon: Users,
-    rows: [
-      { label: "CitadelAds network",        business: false,        enterprise: true },
-      { label: "CPM / CPC billing",        business: false,        enterprise: true },
-      { label: "Revenue analytics",         business: false,        enterprise: true },
     ],
   },
 ];
