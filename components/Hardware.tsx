@@ -7,8 +7,8 @@
 
 import { motion } from "framer-motion";
 import {
-  Cpu, CheckCircle2, Zap, ShieldCheck,
-  Wifi, Tv2, Package, ArrowRight,
+  CheckCircle2, Zap, ShieldCheck,
+  Wifi, Tv2, Cpu, Package, ArrowRight,
 } from "lucide-react";
 
 const fadeUp = {
@@ -112,6 +112,14 @@ export default function Hardware() {
               <ShieldCheck className="w-3.5 h-3.5 text-green-500" />
               12-month hardware warranty included with every unit
             </p>
+
+            {/* Powered by Android */}
+            <p className="flex items-center gap-1.5 text-xs text-slate-400 mt-2">
+              <svg className="w-3.5 h-3.5 text-[#3ddc84]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z" />
+              </svg>
+              Powered by Android
+            </p>
           </motion.div>
 
           {/* ── Right: device visual ── */}
@@ -128,45 +136,50 @@ export default function Hardware() {
 
             {/* Device card */}
             <div className="relative bg-gradient-to-br from-blue-600 to-blue-800
-                            rounded-3xl p-10 shadow-2xl shadow-blue-300/40 w-full max-w-sm mx-auto">
+                            rounded-3xl overflow-hidden shadow-2xl shadow-blue-300/40 w-full max-w-sm mx-auto">
 
-              {/* Decorative circles */}
-              <div aria-hidden="true" className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full
-                              -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-              <div aria-hidden="true" className="absolute bottom-0 left-0 w-36 h-36 bg-black/10 rounded-full
-                              translate-y-1/2 -translate-x-1/4 pointer-events-none" />
-
-              {/* Device icon */}
-              <div className="relative z-10 w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-sm
-                              flex items-center justify-center mx-auto mb-6
-                              border border-white/30 shadow-xl">
-                <Cpu className="w-10 h-10 text-white" strokeWidth={1.5} />
+              {/* Device image */}
+              <div className="flex items-center justify-center p-6 pb-0">
+                <img
+                  src="/hardware/citadel-player.webp"
+                  alt="Citadel Player"
+                  className="w-40 object-contain rounded-2xl border-2 border-blue-400/30 bg-white p-3"
+                />
               </div>
 
-              {/* Name & price */}
-              <div className="relative z-10 text-center mb-6">
-                <p className="text-white font-extrabold text-xl mb-1">Citadel Player</p>
-                <p className="text-blue-200 text-sm">Compact media player for digital signage</p>
-                <p className="text-3xl font-extrabold text-white mt-3">$60</p>
-                <p className="text-blue-300 text-xs mt-0.5">one-time purchase</p>
-              </div>
+              {/* Card content */}
+              <div className="relative p-8">
+                {/* Decorative circles */}
+                <div aria-hidden="true" className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full
+                                -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+                <div aria-hidden="true" className="absolute bottom-0 left-0 w-36 h-36 bg-black/10 rounded-full
+                                translate-y-1/2 -translate-x-1/4 pointer-events-none" />
 
-              {/* Mini spec pills */}
-              <div className="relative z-10 flex flex-wrap justify-center gap-2">
-                {["4K Ready", "Wi-Fi", "Ethernet", "Pre-formatted"].map((tag) => (
-                  <span key={tag}
-                    className="px-3 py-1 rounded-full bg-white/15 border border-white/20
-                               text-white text-xs font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                {/* Name & price */}
+                <div className="relative z-10 text-center mb-6">
+                  <p className="text-white font-extrabold text-xl mb-1">Citadel Player</p>
+                  <p className="text-blue-200 text-sm">Compact media player for digital signage</p>
+                  <p className="text-3xl font-extrabold text-white mt-3">$60</p>
+                  <p className="text-blue-300 text-xs mt-0.5">one-time purchase</p>
+                </div>
 
-              {/* Status indicator */}
-              <div className="relative z-10 flex items-center justify-center gap-2 mt-6
-                              bg-white/10 rounded-2xl py-2.5 px-4 border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-green-400" />
-                <span className="text-white text-xs font-semibold">In stock — ships within 2 business days</span>
+                {/* Mini spec pills */}
+                <div className="relative z-10 flex flex-wrap justify-center gap-2">
+                  {["4K Ready", "Wi-Fi", "Ethernet", "Pre-formatted"].map((tag) => (
+                    <span key={tag}
+                      className="px-3 py-1 rounded-full bg-white/15 border border-white/20
+                                 text-white text-xs font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Status indicator */}
+                <div className="relative z-10 flex items-center justify-center gap-2 mt-6
+                                bg-white/10 rounded-2xl py-2.5 px-4 border border-white/20">
+                  <CheckCircle2 className="w-4 h-4 text-green-400" />
+                  <span className="text-white text-xs font-semibold">In stock — ships within 2 business days</span>
+                </div>
               </div>
             </div>
           </motion.div>
