@@ -67,6 +67,8 @@ export default function IndustryHero({ data }: { data: IndustryData }) {
             <div className="flex flex-wrap gap-3 mb-8">
               <a
                 href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-indigo-600
                            text-white font-bold text-sm hover:bg-indigo-700 hover:scale-105
                            active:scale-95 transition-all shadow-lg shadow-indigo-200"

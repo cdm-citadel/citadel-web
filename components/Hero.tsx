@@ -199,6 +199,8 @@ export default function Hero() {
             >
               <a
                 href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
                            bg-blue-600 text-white font-semibold text-sm
                            hover:bg-blue-700 hover:scale-105 active:scale-95

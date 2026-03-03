@@ -279,12 +279,16 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-3">
               <a
                 href="https://app.citadeldigitalsignage.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors px-3 py-2"
               >
                 Log In
               </a>
               <a
                 href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-blue-600 text-white text-sm font-semibold
                            hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all duration-150 shadow-sm shadow-blue-200"
               >
@@ -457,10 +461,10 @@ export default function Navbar() {
               ))}
 
               <div className="border-t border-slate-100 mt-3 pt-3 flex flex-col gap-2">
-                <a href="https://app.citadeldigitalsignage.com/login" className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-xl hover:bg-slate-50 transition-colors">
+                <a href="https://app.citadeldigitalsignage.com/login" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-xl hover:bg-slate-50 transition-colors">
                   Log In
                 </a>
-                <a href="https://app.citadeldigitalsignage.com/tenant-register" className="px-4 py-3 text-sm font-semibold text-white bg-blue-600 rounded-xl text-center hover:bg-blue-700 transition-colors">
+                <a href="https://app.citadeldigitalsignage.com/tenant-register" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-sm font-semibold text-white bg-blue-600 rounded-xl text-center hover:bg-blue-700 transition-colors">
                   Try Today
                 </a>
               </div>

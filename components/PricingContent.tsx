@@ -347,6 +347,8 @@ export default function PricingContent() {
 
                   <a
                     href="https://app.citadeldigitalsignage.com/tenant-register"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
                                 font-semibold text-sm hover:scale-105 active:scale-95 transition-all duration-150 ${
                       featured
@@ -460,6 +462,8 @@ export default function PricingContent() {
             </div>
             <a
               href="https://app.citadeldigitalsignage.com/tenant-register"
+              target="_blank"
+              rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white
                          text-sm font-semibold hover:bg-blue-700 hover:scale-105 active:scale-95
                          transition-all duration-150 whitespace-nowrap"
@@ -541,6 +545,8 @@ export default function PricingContent() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://app.citadeldigitalsignage.com/tenant-register"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-blue-600 text-white
                          font-semibold hover:bg-blue-700 hover:scale-105 active:scale-95
                          transition-all duration-150 shadow-lg shadow-blue-200"

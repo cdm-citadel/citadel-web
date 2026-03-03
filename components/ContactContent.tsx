@@ -47,6 +47,7 @@ const CONTACT_METHODS = [
     cardBg: "bg-emerald-50 border-emerald-100",
     textColor: "text-emerald-700",
     href: "https://support.citadeldigitalsignage.com/support/home",
+    external: true,
   },
   {
     icon: Calendar,
@@ -152,10 +153,11 @@ function Hero() {
 
         {/* Contact method cards */}
         <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href }, i) => (
+          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href, external }, i) => (
             <motion.a
               key={title}
               href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               variants={fadeUp} initial="hidden" animate="show" custom={0.25 + i * 0.08}
               className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border ${cardBg}
                           hover:shadow-lg hover:-translate-y-1 transition-all duration-200 text-center`}

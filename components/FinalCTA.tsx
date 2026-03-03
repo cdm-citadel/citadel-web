@@ -45,6 +45,8 @@ export default function FinalCTA() {
 
             <div className="flex flex-wrap justify-center gap-4">
               <a href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-blue-700
                            font-bold text-base hover:bg-blue-50 hover:scale-105 active:scale-95
                            transition-all duration-150 shadow-xl shadow-blue-900/20">

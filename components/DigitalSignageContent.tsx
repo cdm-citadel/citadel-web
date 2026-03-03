@@ -86,6 +86,8 @@ function Hero() {
             >
               <a
                 href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
                            bg-blue-600 text-white font-semibold text-sm
                            hover:bg-blue-700 hover:scale-105 active:scale-95
@@ -837,6 +839,8 @@ function CtaSection() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="https://app.citadeldigitalsignage.com/tenant-register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-blue-700
                            font-bold text-base hover:bg-blue-50 hover:scale-105 active:scale-95
                            transition-all duration-150 shadow-xl shadow-blue-900/20">
