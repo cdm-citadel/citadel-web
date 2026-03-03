@@ -148,9 +148,9 @@ export default function Footer() {
             © {new Date().getFullYear()} Citadel Digital Signage. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs">
-            <a href="#" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-300 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-slate-300 transition-colors">Cookie Policy</a>
+            <a href="https://app.getterms.io/view/GocYO/privacy/en-us" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
+            <Link href="/terms-of-service" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+            <a href="https://gettermscdn.com/view/GocYO/cookies/en-us" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Cookie Policy</a>
           </div>
         </div>
 
