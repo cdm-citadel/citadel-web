@@ -462,14 +462,14 @@ function CorePillars() {
 const FEATURE_SECTIONS = [
   {
     eyebrow: "Content Creation",
-    title: "A drag-and-drop editor built for non-designers",
+    title: "Design in Canva. Go live in one click.",
     description:
-      "Build stunning slides without touching a line of code. The Citadel Designer gives you a pixel-perfect canvas with layers, text effects, image cropping, brand kits, and a live preview — so what you build is exactly what your screens show.",
+      "Citadel connects directly to Canva — the world's most popular design tool. Create stunning slides, menus, promotions, and announcements in Canva, then push them live to any screen instantly. No exporting, no uploading, no hassle.",
     bullets: [
-      "1,000+ free templates across every industry",
-      "Brand kit: lock your fonts, colours & logo",
-      "Portrait and landscape layouts",
-      "Real-time preview across screen sizes",
+      "Connect your Canva account in seconds",
+      "Push any Canva design live to your screens",
+      "1,000+ ready-made templates across every industry",
+      "Portrait and landscape layouts supported",
     ],
     icon: Layout,
     color: "bg-blue-600",
