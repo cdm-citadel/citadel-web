@@ -23,7 +23,7 @@ import {
   RefreshCcw, Tv, Layout, ShieldCheck,
   Sparkles, MousePointer2, Puzzle, Bell,
   Stethoscope, ShoppingBag, UtensilsCrossed,
-  Building2, Dumbbell, Bus, Plus, Info,
+  Building2, Dumbbell, Bus, GraduationCap, Factory, Landmark, Plus, Info,
 } from "lucide-react";
 
 /* ─── Animation helpers ─────────────────────────────────────────── */
@@ -654,6 +654,9 @@ const INDUSTRY_LINKS = [
   { slug: "corporate",     name: "Corporate",      icon: Building2,       color: "bg-indigo-50 text-indigo-600 border-indigo-100" },
   { slug: "gyms-spas",     name: "Gyms & Spas",    icon: Dumbbell,        color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
   { slug: "transportation",name: "Transportation", icon: Bus,             color: "bg-violet-50 text-violet-600 border-violet-100" },
+  { slug: "education",     name: "Education",      icon: GraduationCap,   color: "bg-sky-50 text-sky-600 border-sky-100" },
+  { slug: "manufacturing", name: "Manufacturing",  icon: Factory,         color: "bg-amber-50 text-amber-600 border-amber-100" },
+  { slug: "finance",       name: "Finance",        icon: Landmark,        color: "bg-teal-50 text-teal-600 border-teal-100" },
 ];
 
 function IndustriesSection() {
@@ -680,7 +683,7 @@ function IndustriesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-9 gap-3">
           {INDUSTRY_LINKS.map(({ slug, name, icon: Icon, color }, i) => (
             <motion.div
               key={slug}

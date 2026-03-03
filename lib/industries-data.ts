@@ -1,6 +1,6 @@
 /**
  * industries-data.ts
- * Source-of-truth data for all 6 industry landing pages.
+ * Source-of-truth data for all 9 industry landing pages.
  * Imported by app/industries/[slug]/page.tsx (server) and industry sub-components (client, type-only).
  */
 
@@ -53,6 +53,9 @@ export const INDUSTRY_SLUGS = [
   "corporate",
   "gyms-spas",
   "transportation",
+  "education",
+  "manufacturing",
+  "finance",
 ] as const;
 
 export const INDUSTRIES_DATA: Record<string, IndustryData> = {
@@ -876,5 +879,416 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     relatedSlugs: ["corporate", "healthcare"],
+  },
+
+  education: {
+    slug: "education",
+    name: "Education",
+    nameLong: "educational institutions",
+    lucideIcon: "GraduationCap",
+    metaTitle: "Digital Signage for Education | Citadel",
+    metaDescription:
+      "Streamline campus communications, display class schedules, and engage students with Citadel digital signage for universities, colleges, and K-12 schools.",
+    keywords: [
+      "education digital signage",
+      "school digital signage",
+      "university campus screens",
+      "campus announcement displays",
+      "K-12 digital signage software",
+    ],
+    accent: {
+      badge: "bg-sky-100 text-sky-700",
+      bg: "bg-sky-50",
+      text: "text-sky-600",
+      border: "border-sky-200",
+      iconBg: "bg-sky-600",
+    },
+    hero: {
+      eyebrow: "Education Digital Signage",
+      headline: "Keep every student, staff member, and visitor informed.",
+      sub: "Citadel helps schools and universities replace outdated bulletin boards with dynamic screens — broadcasting announcements, schedules, and events across every building from one central dashboard.",
+      stats: [
+        { value: "35%", label: "Avg. reduction in missed announcements" },
+        { value: "< 5 min", label: "Setup time per screen" },
+        { value: "Auto", label: "Schedule-based content switching" },
+      ],
+      mockScreen: {
+        header: "Campus Announcements",
+        badge: "Live",
+        items: [
+          { label: "Next Event", value: "Orientation – 2pm Today", accent: true },
+          { label: "Library Hours", value: "Open until 10pm" },
+          { label: "Dining Hall Special", value: "Taco Tuesday" },
+          { label: "Weather", value: "Sunny, 72°F" },
+        ],
+      },
+    },
+    customerTypes: ["Universities", "Community Colleges", "K-12 Schools", "Trade Schools", "School Districts"],
+    useCases: [
+      {
+        icon: "Megaphone",
+        title: "Campus-Wide Announcements",
+        description:
+          "Display urgent announcements, event reminders, and administrative messages across every building and campus location simultaneously — no emails required.",
+      },
+      {
+        icon: "Calendar",
+        title: "Class & Event Schedules",
+        description:
+          "Show real-time class schedules, room assignments, and event listings pulled from Google Drive — always accurate, always up to date.",
+      },
+      {
+        icon: "Users",
+        title: "Student Engagement",
+        description:
+          "Promote student clubs, sports results, achievement boards, and upcoming social events to build campus community and school pride.",
+      },
+      {
+        icon: "Map",
+        title: "Campus Wayfinding",
+        description:
+          "Help new students, parents, and visitors navigate your campus with clear directional screens, building maps, and room finders.",
+      },
+    ],
+    features: [
+      {
+        icon: "Globe",
+        title: "Multi-Building Management",
+        description:
+          "Manage content across every building, department, and campus from one centralized dashboard — one login, full control.",
+      },
+      {
+        icon: "Calendar",
+        title: "Automated Content Scheduling",
+        description:
+          "Schedule content by time of day or date — morning class info transitions automatically to afternoon event reminders and evening dining hours.",
+      },
+      {
+        icon: "Layers",
+        title: "Canva Design Integration",
+        description:
+          "Design branded school content in Canva and push it live to every screen on campus in one click — no design team required.",
+      },
+      {
+        icon: "BarChart2",
+        title: "Content Analytics",
+        description:
+          "Track which screens are live and performing, and measure content engagement to continuously improve what you show and when.",
+      },
+    ],
+    integrations: [
+      { name: "Canva" },
+      { name: "YouTube" },
+      { name: "Google Drive" },
+      { name: "Google Reviews" },
+      { name: "News Ticker" },
+      { name: "Live Weather" },
+    ],
+    testimonial: {
+      quote:
+        "Citadel replaced a patchwork of printed flyers and outdated bulletin boards across our three campuses. Announcements that used to take days to distribute now go live in seconds — and students actually see them.",
+      name: "Rebecca Flores",
+      role: "Director of Communications",
+      company: "Westbrook Community College",
+      initials: "RF",
+      avatarBg: "bg-sky-500",
+    },
+    faq: [
+      {
+        q: "Can I manage screens across multiple buildings or campuses?",
+        a: "Yes. Citadel lets you manage every screen across every building and campus from a single dashboard. Push to all, or customize content per location or department.",
+      },
+      {
+        q: "Can I schedule content to change throughout the day?",
+        a: "Absolutely. Citadel's scheduling tools let you set exact times for content to switch — morning announcements, lunch specials, afternoon event reminders, and evening notifications all run automatically.",
+      },
+      {
+        q: "Do I need technical skills to set it up?",
+        a: "Not at all. Each Citadel Player takes under 5 minutes to set up. Plug it in, connect to Wi-Fi, and your screens are live. Our onboarding team is available to help every step of the way.",
+      },
+      {
+        q: "What types of content can I display?",
+        a: "Anything your team creates in Canva, plus live YouTube streams, Google Drive presentations, News Ticker feeds, Live Weather, and Google Reviews — all included at no extra charge.",
+      },
+      {
+        q: "Can department heads update their own screens independently?",
+        a: "Yes. Citadel's role-based permissions let you grant specific team members access to update only their screens — so each department can manage their own content within set boundaries.",
+      },
+    ],
+    relatedSlugs: ["corporate", "healthcare"],
+  },
+
+  manufacturing: {
+    slug: "manufacturing",
+    name: "Manufacturing",
+    nameLong: "manufacturing facilities",
+    lucideIcon: "Factory",
+    metaTitle: "Digital Signage for Manufacturing | Citadel",
+    metaDescription:
+      "Display real-time production KPIs, safety information, and shift communications across your factory floor with Citadel digital signage for manufacturing facilities.",
+    keywords: [
+      "manufacturing digital signage",
+      "factory floor screens",
+      "production KPI displays",
+      "industrial signage software",
+      "warehouse digital signage",
+    ],
+    accent: {
+      badge: "bg-amber-100 text-amber-700",
+      bg: "bg-amber-50",
+      text: "text-amber-600",
+      border: "border-amber-200",
+      iconBg: "bg-amber-600",
+    },
+    hero: {
+      eyebrow: "Manufacturing Digital Signage",
+      headline: "Keep your floor informed, aligned, and performing.",
+      sub: "Citadel helps manufacturing facilities display real-time production KPIs, safety information, and shift communications across every floor and zone — managed from one central dashboard.",
+      stats: [
+        { value: "Real-time", label: "KPI and production data display" },
+        { value: "< 5 min", label: "Screen setup time" },
+        { value: "99.9%", label: "Platform uptime" },
+      ],
+      mockScreen: {
+        header: "Production Floor Dashboard",
+        badge: "Live",
+        items: [
+          { label: "Shift Output", value: "1,240 units (↑8%)", accent: true },
+          { label: "Quality Pass Rate", value: "98.6%" },
+          { label: "Safety Alerts", value: "None Active" },
+          { label: "Shift End", value: "6:00 PM" },
+        ],
+      },
+    },
+    customerTypes: ["Assembly Plants", "Distribution Centers", "Warehouses", "Food Production", "Logistics Hubs", "Processing Facilities"],
+    useCases: [
+      {
+        icon: "BarChart2",
+        title: "Production KPI Dashboards",
+        description:
+          "Display real-time output targets, shift progress, quality rates, and performance metrics across the production floor — updated from Google Drive.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Safety & Compliance",
+        description:
+          "Keep safety procedures, PPE reminders, and compliance notices front and center on every screen — reducing incidents and keeping your team informed.",
+      },
+      {
+        icon: "Users",
+        title: "Shift Communications",
+        description:
+          "Broadcast shift schedules, team updates, HR announcements, and management messages across the entire facility without interrupting work.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Performance Recognition",
+        description:
+          "Celebrate top performers, team milestones, and production records on screen to boost morale and drive healthy competition across shifts.",
+      },
+    ],
+    features: [
+      {
+        icon: "Database",
+        title: "Live Data via Google Drive",
+        description:
+          "Connect Google Sheets or Docs to your screens through Google Drive — your KPIs, production numbers, and schedules update automatically on screen.",
+      },
+      {
+        icon: "Wifi",
+        title: "Offline Playback",
+        description:
+          "Citadel screens cache content locally, so your floor displays keep running even if the factory network goes down — zero downtime.",
+      },
+      {
+        icon: "Globe",
+        title: "Multi-Site Management",
+        description:
+          "Manage screens across every facility, shift room, and floor from one central dashboard — push updates to all sites or customize per location.",
+      },
+      {
+        icon: "Cloud",
+        title: "Remote Content Control",
+        description:
+          "Update any screen from any device, from anywhere. No need to send IT to the floor — changes go live in under 60 seconds.",
+      },
+    ],
+    integrations: [
+      { name: "Canva" },
+      { name: "Google Drive" },
+      { name: "YouTube" },
+      { name: "News Ticker" },
+      { name: "Live Weather" },
+      { name: "Google Reviews" },
+    ],
+    testimonial: {
+      quote:
+        "We rolled out Citadel across our three production floors and saw a measurable improvement in shift performance visibility within 60 days. The shift communication boards alone paid for the investment — our supervisors love it.",
+      name: "Derek Chambers",
+      role: "Plant Operations Manager",
+      company: "Apex Industrial Group",
+      initials: "DC",
+      avatarBg: "bg-amber-500",
+    },
+    faq: [
+      {
+        q: "Can I display live production data on screens?",
+        a: "Yes. Connect your Google Sheets via Google Drive and your KPIs, shift numbers, and output data update automatically on screen — no manual input required.",
+      },
+      {
+        q: "What happens if the factory network goes down?",
+        a: "Citadel screens cache content locally, so they keep displaying the most recent content even if the internet or local network is disrupted.",
+      },
+      {
+        q: "Can I show different content on different floors or zones?",
+        a: "Absolutely. You can segment your screens by floor, department, or building and assign unique content to each group — all managed from one account.",
+      },
+      {
+        q: "How quickly can I push a message to all screens?",
+        a: "Instantly. Push a message to every screen across your entire facility in under 60 seconds from any device — no IT involvement required.",
+      },
+      {
+        q: "Is the hardware suitable for industrial environments?",
+        a: "Yes. The Citadel Player works with any commercial HDMI display. For industrial environments, we recommend pairing with commercial-grade displays rated for dust and temperature range.",
+      },
+    ],
+    relatedSlugs: ["corporate", "transportation"],
+  },
+
+  finance: {
+    slug: "finance",
+    name: "Finance",
+    nameLong: "financial institutions",
+    lucideIcon: "Landmark",
+    metaTitle: "Digital Signage for Financial Institutions | Citadel",
+    metaDescription:
+      "Display live rates, promote products, and engage branch customers with Citadel digital signage for banks, credit unions, and financial services offices.",
+    keywords: [
+      "financial services digital signage",
+      "bank branch screens",
+      "credit union signage software",
+      "branch promotion displays",
+      "rate display screens",
+    ],
+    accent: {
+      badge: "bg-teal-100 text-teal-700",
+      bg: "bg-teal-50",
+      text: "text-teal-600",
+      border: "border-teal-200",
+      iconBg: "bg-teal-600",
+    },
+    hero: {
+      eyebrow: "Financial Services Digital Signage",
+      headline: "Turn every branch visit into a sales opportunity.",
+      sub: "Citadel helps banks and credit unions display current rates, promote financial products, and keep branch customers engaged while they wait — all updated instantly from one dashboard.",
+      stats: [
+        { value: "28%", label: "Avg. increase in promoted product uptake" },
+        { value: "Real-time", label: "Rate and offer display updates" },
+        { value: "< 5 min", label: "Screen setup time" },
+      ],
+      mockScreen: {
+        header: "Branch Information Display",
+        badge: "Live",
+        items: [
+          { label: "Today's Savings Rate", value: "4.75% APY", accent: true },
+          { label: "Current Wait Time", value: "~8 min" },
+          { label: "Featured Product", value: "Home Equity Loan" },
+          { label: "Branch Hours", value: "Open until 5pm" },
+        ],
+      },
+    },
+    customerTypes: ["Retail Banks", "Credit Unions", "Wealth Management Firms", "Insurance Offices", "Mortgage Brokers", "Financial Advisories"],
+    useCases: [
+      {
+        icon: "TrendingUp",
+        title: "Rate & Offer Displays",
+        description:
+          "Showcase current savings rates, loan offers, and promotional products on waiting area screens — updated instantly when rates change via Google Drive.",
+      },
+      {
+        icon: "Clock",
+        title: "Waiting Area Engagement",
+        description:
+          "Reduce perceived wait times with educational financial content, branch news, local weather, and institution highlights that keep customers informed while they wait.",
+      },
+      {
+        icon: "Megaphone",
+        title: "In-Branch Promotions",
+        description:
+          "Promote seasonal offers, new account bonuses, and financial products at exactly the right moment — when customers are already in your branch.",
+      },
+      {
+        icon: "Users",
+        title: "Staff & Back-Office Displays",
+        description:
+          "Keep your team aligned with back-office screens showing daily targets, compliance reminders, and internal communications without interrupting customer service.",
+      },
+    ],
+    features: [
+      {
+        icon: "RefreshCcw",
+        title: "Instant Rate Updates",
+        description:
+          "Update rates and offers across every branch screen from one dashboard the moment they change — no phone calls, no printed materials, no delays.",
+      },
+      {
+        icon: "Lock",
+        title: "Brand & Compliance Control",
+        description:
+          "Lock screens to approved content and branding guidelines. Role-based permissions ensure only authorized staff can publish or modify customer-facing displays.",
+      },
+      {
+        icon: "Globe",
+        title: "Multi-Branch Management",
+        description:
+          "Manage every screen across every branch from one account. Push to all locations or customize content per branch, region, or product focus.",
+      },
+      {
+        icon: "Calendar",
+        title: "Campaign Scheduling",
+        description:
+          "Pre-schedule promotional campaigns to go live and expire at exact times — quarterly offers, rate specials, and seasonal promotions run on autopilot.",
+      },
+    ],
+    integrations: [
+      { name: "Canva" },
+      { name: "YouTube" },
+      { name: "Google Drive" },
+      { name: "Google Reviews" },
+      { name: "News Ticker" },
+      { name: "Live Weather" },
+    ],
+    testimonial: {
+      quote:
+        "Our tellers used to get constant questions about current CD rates. Now our waiting area screens answer them before customers even reach the desk. Uptake on our featured products has climbed 28% since we deployed Citadel.",
+      name: "Pauline Nguyen",
+      role: "Branch Marketing Manager",
+      company: "Clearwater Credit Union",
+      initials: "PN",
+      avatarBg: "bg-teal-500",
+    },
+    faq: [
+      {
+        q: "How do I update rates or offers across all branches quickly?",
+        a: "Simply update your content in Canva or Google Drive and push it live — changes appear on every screen across every branch in under 60 seconds.",
+      },
+      {
+        q: "Can I control what content appears per branch?",
+        a: "Yes. Citadel's role-based permissions and location tagging let you assign different content to different branches — so regional promotions only show where they're relevant.",
+      },
+      {
+        q: "Is the content secure and compliant?",
+        a: "Yes. All content is published by your authorized team members only. No customer data or sensitive information is ever displayed unless explicitly added by your team.",
+      },
+      {
+        q: "How long does it take to get a branch set up?",
+        a: "Each screen is live in under 5 minutes. Plug in the Citadel Player, connect to Wi-Fi, and publish your content — our onboarding team can guide you through the whole process.",
+      },
+      {
+        q: "What apps and integrations come included?",
+        a: "Citadel includes Canva, YouTube, Google Drive, Google Reviews, Live Weather, and News Ticker — all at no extra cost, ready to use from day one.",
+      },
+    ],
+    relatedSlugs: ["retail", "corporate"],
   },
 };

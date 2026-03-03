@@ -30,7 +30,7 @@ const COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Solutions",
+    heading: "Industries",
     links: [
       { label: "Healthcare",     href: "/industries/healthcare"     },
       { label: "Retail",         href: "/industries/retail"         },
@@ -38,6 +38,9 @@ const COLUMNS: FooterColumn[] = [
       { label: "Corporate",      href: "/industries/corporate"      },
       { label: "Gyms & Spas",    href: "/industries/gyms-spas"      },
       { label: "Transportation", href: "/industries/transportation"  },
+      { label: "Education",      href: "/industries/education"      },
+      { label: "Manufacturing",  href: "/industries/manufacturing"  },
+      { label: "Finance",        href: "/industries/finance"        },
     ],
   },
   {
