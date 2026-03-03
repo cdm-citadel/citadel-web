@@ -94,7 +94,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
           { label: "Current Wait Time", value: "12 min", accent: true },
           { label: "Next Available Room", value: "Room 4" },
           { label: "Today's Providers", value: "Dr. Kim, Dr. Patel" },
-          { label: "Emergency Contact", value: "See front desk" },
+          { label: "Health Tip of the Day", value: "Stay hydrated" },
         ],
       },
     },
@@ -113,10 +113,10 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
           "Guide patients and visitors through complex facilities with clear directional screens, department directories, and building maps.",
       },
       {
-        icon: "AlertTriangle",
-        title: "Emergency Alerts",
+        icon: "Heart",
+        title: "Health & Wellness Education",
         description:
-          "Override all screens instantly with emergency alerts, lockdown notices, or critical announcements — one click and every screen updates in seconds.",
+          "Display curated health tips, preventive care information, and seasonal health campaigns that keep patients engaged and informed while they wait.",
       },
       {
         icon: "Users",
@@ -133,10 +133,10 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
           "All patient-facing content tools are designed with privacy in mind. No PHI is ever displayed or stored on screens.",
       },
       {
-        icon: "AlertTriangle",
-        title: "Emergency Override",
+        icon: "Zap",
+        title: "Instant Content Updates",
         description:
-          "Instantly override all screens with emergency messages, codes, or instructions — across every location in your network.",
+          "Push content updates to every screen instantly from any device — whether you're updating wait times, provider availability, or facility announcements.",
       },
       {
         icon: "Globe",
@@ -174,8 +174,8 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         a: "Yes. Citadel's platform is designed with patient privacy in mind. All content is curated by your team and no PHI is ever displayed or stored on screens.",
       },
       {
-        q: "Can I override all screens in an emergency?",
-        a: "Absolutely. Our emergency override feature lets you push a critical message to every screen in your network instantly, from any device.",
+        q: "Can I update content across all my locations at once?",
+        a: "Yes. Citadel lets you push content updates to every screen across every location simultaneously — changes go live in under 60 seconds from any device.",
       },
       {
         q: "How long does setup take for a clinic?",
