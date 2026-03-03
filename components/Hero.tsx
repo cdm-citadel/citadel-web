@@ -167,7 +167,7 @@ export default function Hero() {
                          border border-blue-200"
             >
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              Trusted by 10,000+ screens worldwide
+              Trusted by 3,000+ screens worldwide
             </motion.div>
 
             {/* Headline */}

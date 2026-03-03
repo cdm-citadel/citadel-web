@@ -77,7 +77,7 @@ function Hero() {
             >
               Create, schedule, and publish content across all your screens from
               one cloud dashboard — no IT team, no complexity, no downtime.
-              Trusted by 10,000+ screens worldwide.
+              Trusted by 3,000+ screens worldwide.
             </motion.p>
 
             <motion.div
@@ -365,7 +365,7 @@ const STATS = [
   { value: "99.9%",  label: "Platform uptime SLA" },
   { value: "140+",   label: "App integrations" },
   { value: "1,000+", label: "Ready-made templates" },
-  { value: "10,000+",label: "Screens managed" },
+  { value: "3,000+",label: "Screens managed" },
 ];
 
 function StatsBar() {

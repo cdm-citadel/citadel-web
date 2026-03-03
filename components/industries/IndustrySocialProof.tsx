@@ -51,7 +51,7 @@ export default function IndustrySocialProof({ data }: { data: IndustryData }) {
         {/* Caption */}
         <p className="text-sm text-slate-500">
           Trusted by{" "}
-          <span className="font-semibold text-slate-700">10,000+ screens</span>
+          <span className="font-semibold text-slate-700">3,000+ screens</span>
           {" "}across {data.name.toLowerCase()} businesses worldwide
         </p>
 

@@ -8,7 +8,7 @@
 import { motion } from "framer-motion";
 
 const STATS = [
-  { value: "10,000+", label: "Screens Managed" },
+  { value: "3,000+", label: "Screens Managed" },
   { value: "< 5 min", label: "Average Setup Time" },
   { value: "99.9%",   label: "Platform Uptime" },
   { value: "100+",    label: "Content Apps Included" },
