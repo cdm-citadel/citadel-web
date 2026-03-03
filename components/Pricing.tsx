@@ -17,9 +17,9 @@ const PLANS = [
     featured: false,
     features: [
       "Unlimited storage",
-      "Drag & drop content editor",
+      "Drag & drop content management",
       "Advanced scheduling",
-      "Remote screen management",
+      "Remote screen updates",
       "Proof of play reporting",
       "Email support",
     ],
@@ -36,7 +36,7 @@ const PLANS = [
     features: [
       "Everything in Business",
       "Live screen monitoring",
-      "CitadelAds monetization",
+      "Unlimited team members",
       "White-label dashboard",
       "Dedicated account manager",
       "SLA-backed uptime guarantee",
