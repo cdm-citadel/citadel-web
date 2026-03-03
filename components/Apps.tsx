@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import {
   Palette, Cloud, Star, Newspaper,
   HardDrive, Youtube,
-  ArrowRight, Camera,
+  Camera,
 } from "lucide-react";
 
 /* ── App definitions ─────────────────────────────────────────────── */
@@ -190,14 +190,6 @@ Powerful apps. All included.
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               {FEATURED_APP.description}
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center gap-1.5 text-teal-400 text-sm font-semibold
-                         hover:text-teal-300 group transition-colors"
-            >
-              Connect now
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
           </motion.div>
 
           {/* App cards */}
