@@ -154,7 +154,7 @@ export default function Pricing() {
         <p className="text-center text-sm text-slate-400 mt-10">
           All plans include a <strong className="text-slate-600">14-day free trial</strong> — no credit card required.
           Enterprise pricing available for large deployments.{" "}
-          <a href="#" className="text-indigo-600 hover:underline">Contact sales →</a>
+          <a href="/contact" className="text-indigo-600 hover:underline">Contact sales →</a>
         </p>
 
       </div>

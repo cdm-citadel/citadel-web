@@ -400,7 +400,7 @@ function ContactForm() {
                         </div>
                         <span className="text-xs text-slate-500 leading-relaxed">
                           I agree to Citadel&rsquo;s{" "}
-                          <a href="#" className="text-blue-600 hover:underline font-medium">Privacy Policy</a>
+                          <a href="https://app.getterms.io/view/GocYO/privacy/en-us" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">Privacy Policy</a>
                           {" "}and consent to being contacted about my enquiry. We never share your data with third parties.
                         </span>
                       </label>

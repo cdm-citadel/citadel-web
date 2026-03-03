@@ -161,12 +161,6 @@ export default function Industries() {
                                 group-hover:scale-110 transition-transform duration-300">
                   <Icon className="w-9 h-9 text-white" />
                 </div>
-                {/* Live badge */}
-                <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-semibold
-                                 bg-white/20 text-white px-2 py-0.5 rounded-full border border-white/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  Live
-                </span>
               </div>
 
               {/* Text area */}
