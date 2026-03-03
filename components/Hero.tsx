@@ -198,7 +198,7 @@ export default function Hero() {
               className="flex flex-wrap gap-3 mb-10"
             >
               <a
-                href="#"
+                href="https://app.citadeldigitalsignage.com/tenant-register"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
                            bg-blue-600 text-white font-semibold text-sm
                            hover:bg-blue-700 hover:scale-105 active:scale-95
@@ -208,7 +208,7 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="/book-a-demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
                            border-2 border-slate-200 text-slate-700 font-semibold text-sm
                            hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50

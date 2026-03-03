@@ -36,6 +36,7 @@ const CONTACT_METHODS = [
     iconBg: "bg-blue-600",
     cardBg: "bg-blue-50 border-blue-100",
     textColor: "text-blue-700",
+    href: "mailto:hello@citadelds.io",
   },
   {
     icon: MessageSquare,
@@ -45,6 +46,7 @@ const CONTACT_METHODS = [
     iconBg: "bg-emerald-600",
     cardBg: "bg-emerald-50 border-emerald-100",
     textColor: "text-emerald-700",
+    href: "https://support.citadeldigitalsignage.com/support/home",
   },
   {
     icon: Calendar,
@@ -54,6 +56,7 @@ const CONTACT_METHODS = [
     iconBg: "bg-violet-600",
     cardBg: "bg-violet-50 border-violet-100",
     textColor: "text-violet-700",
+    href: "/book-a-demo",
   },
 ];
 
@@ -149,10 +152,10 @@ function Hero() {
 
         {/* Contact method cards */}
         <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor }, i) => (
+          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href }, i) => (
             <motion.a
               key={title}
-              href="#"
+              href={href}
               variants={fadeUp} initial="hidden" animate="show" custom={0.25 + i * 0.08}
               className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border ${cardBg}
                           hover:shadow-lg hover:-translate-y-1 transition-all duration-200 text-center`}
@@ -660,7 +663,7 @@ function BottomCta() {
               No slides, no sales pitch — just a live walkthrough tailored to your business.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="#"
+              <a href="/book-a-demo"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-blue-700
                            font-bold text-base hover:bg-blue-50 hover:scale-105 active:scale-95
                            transition-all duration-150 shadow-xl shadow-blue-900/20">

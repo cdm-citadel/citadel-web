@@ -346,7 +346,7 @@ export default function PricingContent() {
                   </ul>
 
                   <a
-                    href="#"
+                    href="https://app.citadeldigitalsignage.com/tenant-register"
                     className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
                                 font-semibold text-sm hover:scale-105 active:scale-95 transition-all duration-150 ${
                       featured
@@ -379,7 +379,7 @@ export default function PricingContent() {
           <p className="text-center text-sm text-slate-400 mt-6">
             All plans include a <strong className="text-slate-600">14-day free trial</strong> — no credit card required.
             Need 50+ screens?{" "}
-            <a href="#" className="text-blue-600 hover:underline">Talk to sales →</a>
+            <a href="/contact" className="text-blue-600 hover:underline">Talk to sales →</a>
           </p>
         </div>
       </section>
@@ -459,7 +459,7 @@ export default function PricingContent() {
               </p>
             </div>
             <a
-              href="#"
+              href="https://app.citadeldigitalsignage.com/tenant-register"
               className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white
                          text-sm font-semibold hover:bg-blue-700 hover:scale-105 active:scale-95
                          transition-all duration-150 whitespace-nowrap"
@@ -480,7 +480,7 @@ export default function PricingContent() {
             </h2>
             <p className="text-slate-500">
               Still unsure?{" "}
-              <a href="#" className="text-blue-600 hover:underline">Talk to sales.</a>
+              <a href="/contact" className="text-blue-600 hover:underline">Talk to sales.</a>
             </p>
           </div>
 
@@ -540,7 +540,7 @@ export default function PricingContent() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="#"
+              href="https://app.citadeldigitalsignage.com/tenant-register"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-blue-600 text-white
                          font-semibold hover:bg-blue-700 hover:scale-105 active:scale-95
                          transition-all duration-150 shadow-lg shadow-blue-200"
@@ -549,7 +549,7 @@ export default function PricingContent() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href="/book-a-demo"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-slate-200
                          text-slate-700 font-semibold hover:border-slate-300 hover:bg-slate-50
                          transition-all duration-150"

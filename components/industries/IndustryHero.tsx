@@ -66,7 +66,7 @@ export default function IndustryHero({ data }: { data: IndustryData }) {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mb-8">
               <a
-                href="#"
+                href="https://app.citadeldigitalsignage.com/tenant-register"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-indigo-600
                            text-white font-bold text-sm hover:bg-indigo-700 hover:scale-105
                            active:scale-95 transition-all shadow-lg shadow-indigo-200"
@@ -74,7 +74,7 @@ export default function IndustryHero({ data }: { data: IndustryData }) {
                 Start Free Trial <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="/book-a-demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2
                            border-slate-200 text-slate-700 font-semibold text-sm
                            hover:border-indigo-300 hover:text-indigo-600 transition-all"
