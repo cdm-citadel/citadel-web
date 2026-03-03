@@ -1,14 +1,28 @@
 "use client";
 
 /**
- * Hero – full-width hero section with headline, subheadline, dual CTAs,
- * and a floating animated dashboard mockup on the right.
+ * Hero – split-screen layout with copy left, device showcase right.
+ *
+ * ASSET GUIDE – Place files in /public/hero/
+ * Video: WebM (VP9) + MP4 (H.264), 720p, 24fps, 10-15s loop, ≤ 3 MB
+ * Poster: WebP first-frame still
+ * Images: WebP, 1280×720, 50-150 KB each, 3-5 slides max
  */
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  ArrowRight, Play, Monitor, BarChart3,
-  Clock, CheckCircle2, Wifi,
+  ArrowRight,
+  Play,
+  CheckCircle2,
+  Monitor,
+  TrendingUp,
+  Wifi,
+  Image as ImageIcon,
+  LayoutDashboard,
+  Video,
+  CloudSun,
+  Rss,
 } from "lucide-react";
 
 /* ── Animation variants ──────────────────────────────────────────── */
@@ -21,123 +35,237 @@ const fadeUp = {
   }),
 };
 
-/* ── Dashboard mockup ────────────────────────────────────────────── */
-function DashboardMockup() {
-  const stats = [
-    { icon: Monitor,  label: "Active Screens", value: "12",    bg: "bg-blue-50",    fg: "text-blue-600"    },
-    { icon: BarChart3, label: "Plays Today",   value: "1,429", bg: "bg-sky-50",     fg: "text-sky-600"     },
-    { icon: Clock,    label: "Avg. Setup",      value: "< 5m",  bg: "bg-emerald-50", fg: "text-emerald-600" },
-  ];
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.88 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+/* ── Hero media config ──────────────────────────────────────────── */
+const HERO_MODE: "video" | "slideshow" = "video";
+
+const HERO_VIDEO = {
+  webm: "/hero/hero-video.webm",
+  mp4: "/hero/hero-video.mp4",
+  poster: "/hero/hero-poster.webp",
+};
+
+const HERO_SLIDES: { src: string; alt: string }[] = [
+  // { src: "/hero/slide-1.webp", alt: "Upload content to Citadel" },
+  // { src: "/hero/slide-2.webp", alt: "Organize your playlists" },
+  // { src: "/hero/slide-3.webp", alt: "Pair screens instantly" },
+];
+
+const SLIDE_INTERVAL = 5000;
+
+/* ── App dock config ─────────────────────────────────────────────── */
+const DOCK_APPS = [
+  { icon: ImageIcon, label: "Media", gradient: "from-blue-500 to-blue-600" },
+  { icon: LayoutDashboard, label: "Dashboards", gradient: "from-emerald-500 to-teal-600" },
+  { icon: Video, label: "Streams", gradient: "from-purple-500 to-violet-600" },
+  { icon: CloudSun, label: "Weather", gradient: "from-amber-400 to-orange-500" },
+  { icon: Rss, label: "Feeds", gradient: "from-rose-500 to-pink-600" },
+];
+
+/* ── Device showcase (right column) ──────────────────────────────── */
+function DeviceShowcase() {
+  const [activeDock, setActiveDock] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  const isVideo = HERO_MODE === "video" && !videoFailed;
+  const hasSlides = HERO_SLIDES.length > 0;
+
+  /* Auto-cycle active dock icon */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveDock((p) => (p + 1) % DOCK_APPS.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  /* Slideshow auto-advance */
+  useEffect(() => {
+    if (isVideo || !hasSlides || HERO_SLIDES.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((p) => (p + 1) % HERO_SLIDES.length);
+    }, SLIDE_INTERVAL);
+    return () => clearInterval(timer);
+  }, [isVideo, hasSlides]);
 
   return (
-    <div className="relative w-full max-w-[580px] mx-auto select-none">
-      {/* Ambient glow behind the card */}
-      <div className="absolute inset-0 -z-10 blur-3xl opacity-25 rounded-3xl
-                      bg-gradient-to-br from-blue-400 via-sky-400 to-blue-600 scale-90" />
-
-      {/* Main floating card */}
-      <div className="float-anim rounded-2xl bg-white border border-slate-200
-                      shadow-2xl shadow-slate-300/40 overflow-hidden">
-
-        {/* Window chrome bar */}
-        <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-red-400" />
-          <span className="w-3 h-3 rounded-full bg-yellow-400" />
-          <span className="w-3 h-3 rounded-full bg-green-400" />
-          <span className="ml-4 text-xs text-slate-400 font-mono tracking-wide">
-            Citadel Dashboard
-          </span>
-          <div className="ml-auto flex items-center gap-1.5">
-            <Wifi className="w-3.5 h-3.5 text-green-400" />
-            <span className="text-xs text-green-400 font-medium">12 / 12 Online</span>
-          </div>
-        </div>
-
-        {/* Dashboard body */}
-        <div className="p-5 bg-slate-50 grid grid-cols-3 gap-3">
-
-          {/* Stat cards */}
-          {stats.map(({ icon: Icon, label, value, bg, fg }) => (
-            <div key={label} className="bg-white rounded-xl p-3 border border-slate-100 shadow-sm">
-              <div className={`w-7 h-7 rounded-lg ${bg} ${fg} flex items-center justify-center mb-2`}>
-                <Icon className="w-3.5 h-3.5" />
-              </div>
-              <p className="text-lg font-bold text-slate-900 leading-none">{value}</p>
-              <p className="text-[10px] text-slate-500 mt-0.5">{label}</p>
-            </div>
-          ))}
-
-          {/* Live screens grid */}
-          <div className="col-span-3 bg-white rounded-xl border border-slate-100 shadow-sm p-3">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-semibold text-slate-700">Live Screens</span>
-              <span className="text-[10px] text-blue-600 font-medium cursor-pointer hover:underline">
-                View all →
-              </span>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`aspect-video rounded-lg flex items-center justify-center ${
-                    i < 7
-                      ? "bg-gradient-to-br from-blue-500 to-sky-500 text-white"
-                      : "bg-slate-100 text-slate-400 border-2 border-dashed border-slate-200 text-[8px] font-semibold"
-                  }`}
-                >
-                  {i < 7
-                    ? <CheckCircle2 className="w-3 h-3 opacity-80" />
-                    : "+ Add"
-                  }
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Schedule row */}
-          <div className="col-span-3 bg-white rounded-xl border border-slate-100 shadow-sm p-3">
-            <div className="flex items-center gap-2 mb-2">
-              <Clock className="w-3.5 h-3.5 text-blue-500" />
-              <span className="text-xs font-semibold text-slate-700">Active Schedule</span>
-            </div>
-            <div className="flex gap-1">
-              {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d, i) => (
-                <div
-                  key={d}
-                  className={`flex-1 h-5 rounded text-[8px] flex items-center justify-center font-medium ${
-                    i < 5 ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-400"
-                  }`}
-                >
-                  {d}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating badge – top right */}
+    <div className="relative w-full max-w-[560px] mx-auto select-none">
+      {/* ── Levitating monitor ── */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.4, ease: "backOut" }}
-        className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl border border-slate-100
-                   px-3.5 py-2 flex items-center gap-2 z-10"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-xs font-semibold text-slate-700 whitespace-nowrap">All screens live</span>
+        {/* Monitor bezel */}
+        <div className="relative bg-[#1a1a1a] rounded-[24px] p-3 pb-5 shadow-2xl">
+          {/* Screen */}
+          <div
+            className="rounded-xl overflow-hidden relative bg-slate-900"
+            style={{ aspectRatio: "16 / 9" }}
+          >
+            {/* Video mode */}
+            {isVideo && (
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={HERO_VIDEO.poster}
+                onError={() => setVideoFailed(true)}
+                className="w-full h-full object-cover"
+              >
+                <source src={HERO_VIDEO.webm} type="video/webm" />
+                <source src={HERO_VIDEO.mp4} type="video/mp4" />
+              </video>
+            )}
+
+            {/* Slideshow mode */}
+            {!isVideo && hasSlides && (
+              <>
+                {HERO_SLIDES.map(({ src, alt }, i) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={alt}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700
+                      ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
+                  />
+                ))}
+                {HERO_SLIDES.length > 1 && (
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {HERO_SLIDES.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentSlide(i)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          i === currentSlide ? "bg-white w-5" : "bg-white/40 w-1.5"
+                        }`}
+                        aria-label={`Slide ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* Placeholder (no assets yet) */}
+            {!isVideo && !hasSlides && (
+              <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900
+                              flex flex-col items-center justify-center gap-2">
+                <Monitor className="w-10 h-10 text-slate-600" />
+                <span className="text-slate-500 text-xs font-medium">
+                  Video / image placeholder
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Monitor chin indicator */}
+          <div className="flex justify-center pt-2">
+            <div className="w-8 h-1 rounded-full bg-[#2a2a2a]" />
+          </div>
+
+          {/* ── "All screens live" card – top left ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.0, duration: 0.5, ease: "backOut" }}
+            className="absolute -top-4 -left-5 z-20
+                       bg-white/60 backdrop-blur-xl border border-white/30
+                       rounded-2xl px-4 py-3 shadow-lg"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-green-500/10 flex items-center justify-center">
+                <Wifi className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <p className="text-sm font-bold text-slate-900 leading-none">All screens</p>
+                </div>
+                <p className="text-[11px] text-slate-500 mt-0.5">live</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Stat card – bottom right ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, duration: 0.5, ease: "backOut" }}
+            className="absolute -bottom-4 -right-5 z-20
+                       bg-white/60 backdrop-blur-xl border border-white/30
+                       rounded-2xl px-4 py-3 shadow-lg"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-xl font-bold text-slate-900 leading-none">80%</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">message recall</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
 
-      {/* Floating badge – bottom left */}
+      {/* ── Floating app dock ── */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: -8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.4, ease: "backOut" }}
-        className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl border border-slate-100
-                   px-3.5 py-2 flex items-center gap-2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-8 flex justify-center"
       >
-        <BarChart3 className="w-4 h-4 text-blue-600" />
-        <span className="text-xs font-semibold text-slate-700 whitespace-nowrap">+24% engagement</span>
+        <motion.div
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="inline-flex items-center gap-3 px-5 py-3
+                     bg-white/70 backdrop-blur-xl border border-white/40
+                     rounded-2xl shadow-lg"
+        >
+          {DOCK_APPS.map(({ icon: Icon, label, gradient }, i) => {
+            const isActive = i === activeDock;
+            return (
+              <motion.div
+                key={label}
+                animate={isActive ? { scale: 1.18, y: -5 } : { scale: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative"
+              >
+                {/* Glow ring behind active icon */}
+                <div
+                  className={`absolute -inset-1 rounded-2xl bg-blue-400/25 blur-sm transition-opacity duration-300
+                    ${isActive ? "opacity-100" : "opacity-0"}`}
+                />
+                <div
+                  className={`relative w-11 h-11 rounded-xl bg-gradient-to-br ${gradient}
+                              flex items-center justify-center shadow-md cursor-pointer
+                              transition-shadow duration-200
+                              ${isActive ? "shadow-lg ring-2 ring-white/50" : ""}`}
+                >
+                  <Icon className="w-5 h-5 text-white" strokeWidth={1.75} />
+                </div>
+                {/* Tooltip label */}
+                <span
+                  className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-semibold
+                              whitespace-nowrap transition-opacity duration-200
+                              ${isActive ? "opacity-100 text-slate-600" : "opacity-0"}`}
+                >
+                  {label}
+                </span>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -147,8 +275,7 @@ function DashboardMockup() {
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-16">
-
-      {/* Background gradient mesh */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
         <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-blue-100 rounded-full blur-3xl opacity-50" />
         <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-sky-200 rounded-full blur-3xl opacity-30" />
@@ -176,9 +303,9 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900
                          leading-[1.1] tracking-tight mb-6"
             >
-              Master Your Brand{" "}
+              Engage your audience{" "}
               <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
-                on Any Screen.
+                everywhere they look.
               </span>
             </motion.h1>
 
@@ -187,9 +314,8 @@ export default function Hero() {
               variants={fadeUp} initial="hidden" animate="show" custom={0.2}
               className="text-lg text-slate-500 max-w-lg mb-8 leading-relaxed"
             >
-              The easiest, most powerful digital signage software to manage your
-              screens, engage your customers, and drive revenue. Built for businesses
-              of all sizes.
+              Turn any screen into a powerful communication tool. Stream
+              dashboards, social feeds, and live meetings with one click.
             </motion.p>
 
             {/* CTAs */}
@@ -202,11 +328,11 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
-                           bg-blue-600 text-white font-semibold text-sm
-                           hover:bg-blue-700 hover:scale-105 active:scale-95
-                           transition-all duration-150 shadow-lg shadow-blue-200"
+                           bg-gradient-to-r from-blue-600 to-sky-500 text-white font-semibold text-sm
+                           hover:shadow-lg hover:shadow-blue-200 hover:scale-105 active:scale-95
+                           transition-all duration-150"
               >
-                Get Started for Free
+                Get Started
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
@@ -217,7 +343,7 @@ export default function Hero() {
                            hover:scale-105 active:scale-95 transition-all duration-150"
               >
                 <Play className="w-4 h-4 fill-current" />
-                View Demo
+                Watch Demo
               </a>
             </motion.div>
 
@@ -235,24 +361,24 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right: mockup ── */}
+          {/* ── Right: device showcase ── */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            variants={scaleIn}
+            initial="hidden"
+            animate="show"
             className="hidden lg:block"
           >
-            <DashboardMockup />
+            <DeviceShowcase />
           </motion.div>
 
-          {/* Mobile mockup (smaller, no absolute badges) */}
+          {/* Mobile showcase */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="lg:hidden mt-4"
           >
-            <DashboardMockup />
+            <DeviceShowcase />
           </motion.div>
 
         </div>
