@@ -12,32 +12,26 @@ const TESTIMONIALS = [
   {
     quote:
       "We replaced 6 manual bulletin boards across our clinic network with Citadel. Patient satisfaction scores improved 22% in the first quarter — screens that inform patients actually work.",
-    name: "Dr. Sarah Okonkwo",
+    name: "Dr. Sarah O.",
     role: "Operations Director",
-    company: "Meridian Health Group",
     initials: "SO",
     avatarBg: "bg-teal-500",
-    source: "G2",
   },
   {
     quote:
       "Our in-store promotions used to take 3 days to roll out across 40 locations. With Citadel it takes 4 minutes. Revenue from promoted items is up 18% since launch.",
-    name: "Marcus Tran",
+    name: "Marcus T.",
     role: "Head of Marketing",
-    company: "Westfield Retail Co.",
     initials: "MT",
     avatarBg: "bg-blue-500",
-    source: "Capterra",
   },
   {
     quote:
       "We manage 200 screens across our corporate campus from one dashboard. The scheduling engine alone saves our AV team 10+ hours every single week.",
-    name: "Priya Sharma",
+    name: "Priya S.",
     role: "AV & Workplace Tech Lead",
-    company: "Nexus Financial",
     initials: "PS",
     avatarBg: "bg-sky-500",
-    source: "G2",
   },
 ];
 
@@ -89,7 +83,7 @@ export default function Testimonials() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid md:grid-cols-3 gap-6"
         >
-          {TESTIMONIALS.map(({ quote, name, role, company, initials, avatarBg, source }) => (
+          {TESTIMONIALS.map(({ quote, name, role, initials, avatarBg }) => (
             <motion.div
               key={name}
               variants={item}
@@ -109,21 +103,15 @@ export default function Testimonials() {
               </blockquote>
 
               {/* Footer */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full ${avatarBg} flex items-center justify-center
-                                   text-white text-sm font-bold shrink-0`}>
-                    {initials}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">{name}</p>
-                    <p className="text-xs text-slate-500">{role}, {company}</p>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-full ${avatarBg} flex items-center justify-center
+                                 text-white text-sm font-bold shrink-0`}>
+                  {initials}
                 </div>
-                <span className="text-xs font-semibold text-slate-400 border border-slate-200
-                                 rounded-full px-2.5 py-1 shrink-0">
-                  {source}
-                </span>
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{name}</p>
+                  <p className="text-xs text-slate-500">{role}</p>
+                </div>
               </div>
             </motion.div>
           ))}

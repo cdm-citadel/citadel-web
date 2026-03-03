@@ -19,6 +19,7 @@ const fadeUp = {
   }),
 };
 
+/* Images: drop 760×416 WebP files in /public/in-practice/ and update paths below */
 const PRINCIPLES = [
   {
     icon: BookOpen,
@@ -26,6 +27,7 @@ const PRINCIPLES = [
     iconBg: "bg-blue-600",
     label: "01",
     title: "Educate Clients",
+    image: "", // e.g. "/in-practice/educate.webp"
     description:
       "Keep customers informed at every touchpoint. Display product guides, service explanations, and helpful content exactly where decisions are made — turning passive waiting into active understanding.",
   },
@@ -35,6 +37,7 @@ const PRINCIPLES = [
     iconBg: "bg-violet-600",
     label: "02",
     title: "Engage Customers",
+    image: "", // e.g. "/in-practice/engage.webp"
     description:
       "Replace static displays with dynamic content that captures attention and keeps people looking. Relevant, timely media creates moments that stick — and brings customers back.",
   },
@@ -44,6 +47,7 @@ const PRINCIPLES = [
     iconBg: "bg-amber-500",
     label: "03",
     title: "Elevate Your Brand",
+    image: "", // e.g. "/in-practice/elevate.webp"
     description:
       "Every screen is a brand moment. Control exactly how your business looks and feels — consistently, across every location — so every visit reinforces who you are.",
   },
@@ -77,7 +81,7 @@ export default function SignageInPractice() {
 
         {/* Principle cards */}
         <div className="grid sm:grid-cols-3 gap-6">
-          {PRINCIPLES.map(({ icon: Icon, accent, iconBg, label, title, description }, i) => (
+          {PRINCIPLES.map(({ icon: Icon, accent, iconBg, label, title, image, description }, i) => (
             <motion.div
               key={title}
               variants={fadeUp} initial="hidden" whileInView="show" custom={i * 0.12}
@@ -85,29 +89,40 @@ export default function SignageInPractice() {
               className="group bg-white rounded-2xl overflow-hidden
                          hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
-              {/* Image placeholder — replace this div with <Image /> when ready */}
-              <div className={`relative h-52 bg-gradient-to-br ${accent} overflow-hidden`}>
-                {/* Subtle texture */}
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-                    backgroundSize: "22px 22px",
-                  }}
-                />
-                {/* Decorative circles */}
-                <div className="absolute w-40 h-40 rounded-full bg-white/10 -top-10 -right-10" />
-                <div className="absolute w-24 h-24 rounded-full bg-white/10 -bottom-6 -left-6" />
-                {/* Centred icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-16 h-16 rounded-2xl ${iconBg} bg-opacity-90
-                                   flex items-center justify-center shadow-lg
-                                   group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                </div>
+              {/* Card image area */}
+              <div className={`relative h-52 overflow-hidden ${image ? "" : `bg-gradient-to-br ${accent}`}`}>
+                {image ? (
+                  <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <>
+                    {/* Subtle texture */}
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+                        backgroundSize: "22px 22px",
+                      }}
+                    />
+                    {/* Decorative circles */}
+                    <div className="absolute w-40 h-40 rounded-full bg-white/10 -top-10 -right-10" />
+                    <div className="absolute w-24 h-24 rounded-full bg-white/10 -bottom-6 -left-6" />
+                    {/* Centred icon */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className={`w-16 h-16 rounded-2xl ${iconBg} bg-opacity-90
+                                       flex items-center justify-center shadow-lg
+                                       group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                  </>
+                )}
                 {/* Step label */}
-                <span className="absolute top-4 left-4 text-white/60 text-xs font-bold tracking-widest">
+                <span className={`absolute top-4 left-4 text-xs font-bold tracking-widest
+                  ${image ? "text-white drop-shadow-md" : "text-white/60"}`}>
                   {label}
                 </span>
               </div>

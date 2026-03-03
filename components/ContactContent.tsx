@@ -74,7 +74,7 @@ const TRUST_POINTS = [
   { icon: Zap,        label: "2-hour response",  sub: "During business hours"          },
   { icon: Headphones, label: "Real humans",       sub: "No bots, no runarounds"         },
   { icon: Shield,     label: "Data protected",    sub: "SOC 2 Type II certified"        },
-  { icon: Star,       label: "4.8★ on Capterra",  sub: "2,000+ verified support reviews"},
+  { icon: Star,       label: "4.8★ rated",         sub: "2,000+ verified support reviews"},
 ];
 
 const FAQ_ITEMS = [

@@ -165,9 +165,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "We replaced 6 manual bulletin boards across our clinic network with Citadel. Patient satisfaction scores improved 22% in the first quarter — screens that inform patients actually work.",
-      name: "Dr. Sarah Okonkwo",
+      name: "Dr. Sarah O.",
       role: "Operations Director",
-      company: "Meridian Health Group",
+      company: "",
       initials: "SO",
       avatarBg: "bg-teal-500",
     },
@@ -302,9 +302,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Our in-store promotions used to take 3 days to roll out across 40 locations. With Citadel it takes 4 minutes. Revenue from promoted items is up 18% since launch.",
-      name: "Marcus Tran",
+      name: "Marcus T.",
       role: "Head of Marketing",
-      company: "Westfield Retail Co.",
+      company: "",
       initials: "MT",
       avatarBg: "bg-blue-500",
     },
@@ -439,9 +439,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Switching to Citadel digital menu boards was the best decision we made this year. We update specials in 30 seconds and our upsell revenue on featured items is up 15%.",
-      name: "Carlos Rivera",
+      name: "Carlos R.",
       role: "Owner & Head Chef",
-      company: "Verde Bistro",
+      company: "",
       initials: "CR",
       avatarBg: "bg-orange-500",
     },
@@ -576,9 +576,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "We manage 200 screens across our corporate campus from one dashboard. The scheduling engine alone saves our AV team 10+ hours every single week.",
-      name: "Priya Sharma",
+      name: "Priya S.",
       role: "AV & Workplace Tech Lead",
-      company: "Nexus Financial",
+      company: "",
       initials: "PS",
       avatarBg: "bg-sky-500",
     },
@@ -713,9 +713,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Our class schedules are always up to date on screen and members love the member spotlight feature. Membership upgrades are up 25% this quarter.",
-      name: "Jordan Blake",
+      name: "Jordan B.",
       role: "Studio Owner",
-      company: "Peak Fitness Studio",
+      company: "",
       initials: "JB",
       avatarBg: "bg-emerald-500",
     },
@@ -850,9 +850,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Passenger enquiries at the info desk dropped 60% in the first month after deploying Citadel. Setup was live in one afternoon and it has been flawless ever since.",
-      name: "James Woolley",
+      name: "James W.",
       role: "Station Manager",
-      company: "Westfield Transit Hub",
+      company: "",
       initials: "JW",
       avatarBg: "bg-cyan-500",
     },
@@ -987,9 +987,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Citadel replaced a patchwork of printed flyers and outdated bulletin boards across our three campuses. Announcements that used to take days to distribute now go live in seconds — and students actually see them.",
-      name: "Rebecca Flores",
+      name: "Rebecca F.",
       role: "Director of Communications",
-      company: "Westbrook Community College",
+      company: "",
       initials: "RF",
       avatarBg: "bg-sky-500",
     },
@@ -1124,9 +1124,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "We rolled out Citadel across our three production floors and saw a measurable improvement in shift performance visibility within 60 days. The shift communication boards alone paid for the investment — our supervisors love it.",
-      name: "Derek Chambers",
+      name: "Derek C.",
       role: "Plant Operations Manager",
-      company: "Apex Industrial Group",
+      company: "",
       initials: "DC",
       avatarBg: "bg-amber-500",
     },
@@ -1261,9 +1261,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     testimonial: {
       quote:
         "Our tellers used to get constant questions about current CD rates. Now our waiting area screens answer them before customers even reach the desk. Uptake on our featured products has climbed 28% since we deployed Citadel.",
-      name: "Pauline Nguyen",
+      name: "Pauline N.",
       role: "Branch Marketing Manager",
-      company: "Clearwater Credit Union",
+      company: "",
       initials: "PN",
       avatarBg: "bg-teal-500",
     },

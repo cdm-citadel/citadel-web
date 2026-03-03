@@ -10,30 +10,30 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import type { IndustryData } from "@/lib/industries-data";
 
-const MINI_QUOTES: Record<string, Array<{ quote: string; name: string; company: string }>> = {
+const MINI_QUOTES: Record<string, Array<{ quote: string; name: string }>> = {
   healthcare: [
-    { quote: "Setup took less than 10 minutes per screen. Our IT team was amazed.", name: "Operations Lead", company: "Lakewood Urgent Care" },
-    { quote: "Emergency alert override has been invaluable during drills.", name: "Facilities Manager", company: "Central District Hospital" },
+    { quote: "Setup took less than 10 minutes per screen. Our IT team was amazed.", name: "Operations Lead" },
+    { quote: "Emergency alert override has been invaluable during drills.", name: "Facilities Manager" },
   ],
   retail: [
-    { quote: "We cut promotion update time from 2 days to 30 seconds.", name: "Store Manager", company: "Harborview Retail" },
-    { quote: "Our Canva designs go live on screen in one click.", name: "Marketing Lead", company: "Beacon Apparel" },
+    { quote: "We cut promotion update time from 2 days to 30 seconds.", name: "Store Manager" },
+    { quote: "Our Canva designs go live on screen in one click.", name: "Marketing Lead" },
   ],
   restaurants: [
-    { quote: "Daypart switching means our menus are always correct.", name: "General Manager", company: "Verde Bistro" },
-    { quote: "Customers started ordering specials as soon as we put them on screen.", name: "Owner", company: "Eastside Grill" },
+    { quote: "Daypart switching means our menus are always correct.", name: "General Manager" },
+    { quote: "Customers started ordering specials as soon as we put them on screen.", name: "Owner" },
   ],
   corporate: [
-    { quote: "Teams announcements now show on every floor automatically.", name: "IT Manager", company: "Nexus Capital Partners" },
-    { quote: "Employee recognition on the lobby screen has been a huge morale boost.", name: "HR Director", company: "Meridian Group" },
+    { quote: "Teams announcements now show on every floor automatically.", name: "IT Manager" },
+    { quote: "Employee recognition on the lobby screen has been a huge morale boost.", name: "HR Director" },
   ],
   "gyms-spas": [
-    { quote: "Class schedule updates from Mindbody show on screens instantly.", name: "Studio Manager", company: "Peak Fitness Studio" },
-    { quote: "Members stop and read the membership upgrade screen every time.", name: "Owner", company: "Solace Spa & Wellness" },
+    { quote: "Class schedule updates from Mindbody show on screens instantly.", name: "Studio Manager" },
+    { quote: "Members stop and read the membership upgrade screen every time.", name: "Owner" },
   ],
   transportation: [
-    { quote: "Passenger enquiries at the info desk dropped 60% in the first month.", name: "Station Manager", company: "Westfield Transit Hub" },
-    { quote: "GTFS feed integration was up and running in one afternoon.", name: "Systems Engineer", company: "Metro Rail Authority" },
+    { quote: "Passenger enquiries at the info desk dropped 60% in the first month.", name: "Station Manager" },
+    { quote: "GTFS feed integration was up and running in one afternoon.", name: "Systems Engineer" },
   ],
 };
 
@@ -78,7 +78,7 @@ export default function IndustryTestimonial({ data }: { data: IndustryData }) {
             <div className="text-left">
               <p className="font-semibold text-white">{testimonial.name}</p>
               <p className="text-sm text-slate-400">
-                {testimonial.role}, {testimonial.company}
+                {testimonial.role}
               </p>
             </div>
           </div>
@@ -102,14 +102,13 @@ export default function IndustryTestimonial({ data }: { data: IndustryData }) {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-12 grid sm:grid-cols-2 gap-4"
           >
-            {miniQuotes.map(({ quote, name, company }) => (
+            {miniQuotes.map(({ quote, name }) => (
               <div
                 key={name}
                 className="bg-slate-800 rounded-2xl p-5 text-left border border-slate-700"
               >
                 <p className="text-slate-300 text-sm leading-relaxed mb-3">"{quote}"</p>
                 <p className="text-xs font-semibold text-white">{name}</p>
-                <p className={`text-xs ${data.accent.text}`}>{company}</p>
               </div>
             ))}
           </motion.div>

@@ -8,16 +8,16 @@
 import { Building2, Stethoscope, ShoppingBag, UtensilsCrossed, Dumbbell, Plane } from "lucide-react";
 
 const LOGOS = [
-  { label: "HealthFirst Clinics",    icon: Stethoscope },
-  { label: "Apex Retail Group",      icon: ShoppingBag },
-  { label: "Metro Dining Co.",       icon: UtensilsCrossed },
-  { label: "Summit Corporate",       icon: Building2 },
-  { label: "FitLife Gyms",           icon: Dumbbell },
-  { label: "TransitHub",             icon: Plane },
-  { label: "CityMed Centers",        icon: Stethoscope },
-  { label: "Harbor Boutiques",       icon: ShoppingBag },
-  { label: "Table & Vine Kitchens",  icon: UtensilsCrossed },
-  { label: "Pinnacle Office Suites", icon: Building2 },
+  { label: "Stark Industries",       icon: Building2 },
+  { label: "Dunder Mifflin",         icon: Building2 },
+  { label: "Los Pollos Hermanos",    icon: UtensilsCrossed },
+  { label: "Globo Gym",              icon: Dumbbell },
+  { label: "Paddy's Pub",            icon: UtensilsCrossed },
+  { label: "Sterling Cooper",        icon: Building2 },
+  { label: "Sacred Heart Hospital",  icon: Stethoscope },
+  { label: "Buy More",               icon: ShoppingBag },
+  { label: "Bluth Company",          icon: Building2 },
+  { label: "Oceanic Airlines",       icon: Plane },
 ];
 
 /* We render the list twice to create a seamless loop */
@@ -44,7 +44,7 @@ export default function TrustedBy() {
     <section className="py-14 border-y border-slate-100 bg-white overflow-hidden">
       {/* Heading */}
       <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">
-        Trusted by modern clinics, retailers, restaurants, and more
+        Everyone shows who they work with — here's who we'd love to work with
       </p>
 
       {/* Marquee wrapper – overflow hidden with fade edges */}

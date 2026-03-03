@@ -13,6 +13,7 @@ const STEPS = [
     number: "1",
     icon: Upload,
     title: "Upload",
+    image: "/how-it-works/step-1.webp",
     description:
       "Add your images, videos, and Canva designs directly to your media library. Everything in one place, ready to use.",
   },
@@ -20,6 +21,7 @@ const STEPS = [
     number: "2",
     icon: LayoutGrid,
     title: "Organize",
+    image: "/how-it-works/step-2.webp",
     description:
       "Build playlists, set schedules, and arrange your content with drag and drop. No design skills required.",
   },
@@ -27,6 +29,7 @@ const STEPS = [
     number: "3",
     icon: Link,
     title: "Pair",
+    image: "/how-it-works/step-3.webp",
     description:
       "Connect the Citadel Player to any HDMI display and pair it to your dashboard in seconds — no IT team required.",
   },
@@ -79,25 +82,28 @@ export default function HowItWorks() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid md:grid-cols-3 gap-8 relative"
+          className="grid md:grid-cols-3 gap-8 relative [container-type:inline-size]"
         >
           {/* Connector line (desktop only) */}
           <div
             aria-hidden="true"
-            className="hidden md:block absolute top-[252px] left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)]
+            className="hidden md:block absolute top-[calc((100cqi-4rem)/3+3.75rem)] left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)]
                        h-px bg-gradient-to-r from-blue-200 via-sky-200 to-blue-200"
           />
 
-          {STEPS.map(({ number, icon: Icon, title, description }) => (
+          {STEPS.map(({ number, icon: Icon, title, image, description }) => (
             <motion.div
               key={number}
               variants={item}
               className="relative flex flex-col items-center text-center"
             >
-              {/* Image placeholder */}
-              <div className="w-full rounded-2xl bg-slate-100 border-2 border-dashed border-slate-200
-                              h-48 mb-6 flex items-center justify-center">
-                <span className="text-slate-400 text-sm font-medium">Step {number} image</span>
+              {/* Step image */}
+              <div className="w-full rounded-2xl overflow-hidden bg-slate-100 aspect-square mb-6">
+                <img
+                  src={image}
+                  alt={`Step ${number}: ${title}`}
+                  className="w-full h-full object-contain"
+                />
               </div>
 
               {/* Step circle */}

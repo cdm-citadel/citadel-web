@@ -102,7 +102,7 @@ function Hero() {
                            hover:scale-105 active:scale-95 transition-all duration-150"
               >
                 <Play className="w-4 h-4 fill-current" />
-                Watch Demo
+                See How It Works
               </a>
             </motion.div>
 
