@@ -1,8 +1,17 @@
 /**
  * JsonLd – Structured data (JSON-LD) schemas for SEO.
  * Server component — intentionally no "use client".
- * Renders Organization, SoftwareApplication, and FAQPage schemas.
+ * Renders WebSite, Organization, SoftwareApplication, and FAQPage schemas.
  */
+
+const WEBSITE = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Citadel Digital Signage",
+  url: "https://citadeldigitalsignage.com",
+  description:
+    "Cloud-based digital signage software — create, schedule, and manage content across any number of screens from one dashboard.",
+};
 
 const ORGANIZATION = {
   "@context": "https://schema.org",
@@ -10,12 +19,7 @@ const ORGANIZATION = {
   name: "Citadel Digital Signage",
   url: "https://citadeldigitalsignage.com",
   logo: "https://citadeldigitalsignage.com/logo.png",
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+1-800-555-1234",
-    contactType: "customer support",
-    email: "hello@citadeldigitalsignage.com",
-  },
+  email: "hello@citadeldigitalsignage.com",
   sameAs: [
     "https://twitter.com/citadelds",
     "https://www.linkedin.com/company/citadelds",
@@ -101,7 +105,7 @@ const FAQ_PAGE = {
       name: "What content apps does Citadel support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Citadel includes built-in content apps including Canva, Google Slides, YouTube, Instagram, Live Weather, Google Reviews, and many more — all at no extra charge.",
+        text: "Citadel includes 6 built-in content apps: Canva, YouTube, Instagram, Google Drive, Google Reviews, Live Weather, and a News Ticker — all included at no extra charge.",
       },
     },
     {
@@ -126,6 +130,10 @@ const FAQ_PAGE = {
 export default function JsonLd() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION) }}

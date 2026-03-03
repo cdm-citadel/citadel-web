@@ -14,10 +14,18 @@ export const metadata: Metadata = {
     "Get in touch with the Citadel team. Ask about pricing, book a live demo, or get technical support — we reply within 2 business hours.",
   alternates: { canonical: "/contact" },
   openGraph: {
+    type: "website",
+    siteName: "Citadel Digital Signage",
+    locale: "en_US",
     title: "Contact Citadel Digital Signage",
     description:
-      "Reach our team by email, live chat, or book a free 30-minute demo. We reply within 2 business hours.",
-    type: "website",
+      "Reach our team by email or book a free 30-minute demo. We reply within 2 business hours.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Citadel Digital Signage",
+    description:
+      "Reach our team by email or book a free 30-minute demo. We reply within 2 business hours.",
   },
 };
 

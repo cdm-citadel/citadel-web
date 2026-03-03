@@ -13,6 +13,20 @@ export const metadata: Metadata = {
     "Read the Citadel Digital Signage Terms of Service, including the Royalty-Free License Agreement governing use of the platform and content library.",
   alternates: { canonical: "/terms-of-service" },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: "Citadel Digital Signage",
+    locale: "en_US",
+    title: "Terms of Service – Citadel Digital Signage",
+    description:
+      "Read the Citadel Digital Signage Terms of Service and Royalty-Free License Agreement.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Service – Citadel Digital Signage",
+    description:
+      "Read the Citadel Digital Signage Terms of Service and Royalty-Free License Agreement.",
+  },
 };
 
 export default function TermsOfServicePage() {
