@@ -19,9 +19,9 @@ import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, ChevronDown, Play,
   Monitor, BarChart2, Layers, Clock, Zap,
-  Globe, Lock, Users, Calendar, Wifi, Cloud,
+  Lock, Users, Calendar, Wifi, Cloud,
   RefreshCcw, Tv, Layout, ShieldCheck,
-  Sparkles, MousePointer2, Puzzle, Bell,
+  Sparkles, MousePointer2, Puzzle,
   Stethoscope, ShoppingBag, UtensilsCrossed,
   Building2, Dumbbell, Bus, GraduationCap, Factory, Landmark, Plus, Info,
 } from "lucide-react";
@@ -588,17 +588,13 @@ const CAPABILITIES = [
   { icon: RefreshCcw,  title: "Playlist Looping",     desc: "Build rotating playlists that cycle through content 24/7." },
   { icon: Calendar,    title: "Content Scheduling",   desc: "Schedule by day, time, date range, or recurring pattern." },
   { icon: Tv,          title: "Portrait & Landscape", desc: "Support any screen orientation — vertical or horizontal." },
-  { icon: Layout,      title: "Split-Screen Zones",   desc: "Divide screens into independent zones showing different content." },
   { icon: Cloud,       title: "Offline Playback",     desc: "Content keeps playing even when internet goes down." },
   { icon: Zap,         title: "Auto-Restart",         desc: "Player automatically recovers from power cuts or reboots." },
-  { icon: Globe,       title: "Online Editor",        desc: "Design and publish from any browser — no software to install." },
   { icon: Users,       title: "Multi-User Access",    desc: "3 team members on Business, unlimited on Enterprise — all with role-based permissions." },
   { icon: BarChart2,   title: "Analytics & Reports",  desc: "Track screen uptime, content plays, and engagement metrics." },
   { icon: Lock,        title: "Kiosk Mode",           desc: "Lock screens to a single app or webpage — perfect for lobbies." },
-  { icon: Bell,        title: "Emergency Alerts",     desc: "Override every screen instantly with a full-screen alert." },
-  { icon: Layers,      title: "Canva Integration",     desc: "Design in Canva and publish to any screen in one click — no exporting or uploading." },
-  { icon: Monitor,     title: "Hardware Agnostic",    desc: "Works with any commercial display — no proprietary hardware needed." },
-  { icon: Sparkles,    title: "Remote Management",    desc: "Reboot, update, or check any screen from anywhere in the world." },
+  { icon: Layers,      title: "Canva Integration",    desc: "Design in Canva and publish to any screen in one click — no exporting or uploading." },
+  { icon: Monitor,     title: "Any Display",          desc: "Works with any commercial display — no proprietary hardware needed." },
 ];
 
 function CapabilitiesGrid() {
