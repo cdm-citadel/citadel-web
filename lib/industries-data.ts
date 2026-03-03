@@ -846,7 +846,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     ],
     testimonial: {
       quote:
-        "Passenger enquiries at the info desk dropped 60% in the first month after deploying Citadel. The GTFS integration was live in one afternoon and it has been flawless ever since.",
+        "Passenger enquiries at the info desk dropped 60% in the first month after deploying Citadel. Setup was live in one afternoon and it has been flawless ever since.",
       name: "James Woolley",
       role: "Station Manager",
       company: "Westfield Transit Hub",

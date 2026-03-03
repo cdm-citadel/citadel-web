@@ -23,8 +23,7 @@ import {
   RefreshCcw, Tv, Layout, ShieldCheck,
   Sparkles, MousePointer2, Puzzle, Bell,
   Stethoscope, ShoppingBag, UtensilsCrossed,
-  Building2, Dumbbell, Bus, GraduationCap,
-  Factory, Landmark, Plus, Info,
+  Building2, Dumbbell, Bus, Plus, Info,
 } from "lucide-react";
 
 /* ─── Animation helpers ─────────────────────────────────────────── */
@@ -363,9 +362,9 @@ function Hero() {
 /* ─── 2. STATS BAR ──────────────────────────────────────────────── */
 const STATS = [
   { value: "99.9%",  label: "Platform uptime SLA" },
-  { value: "140+",   label: "App integrations" },
+  { value: "< 5 min", label: "Average setup time" },
   { value: "1,000+", label: "Ready-made templates" },
-  { value: "3,000+",label: "Screens managed" },
+  { value: "3,000+", label: "Screens managed" },
 ];
 
 function StatsBar() {
@@ -401,9 +400,9 @@ const PILLARS = [
   {
     icon: Puzzle,
     color: "bg-sky-100 text-sky-600",
-    title: "Connect Everything You Use",
+    title: "Powerful Apps, All Included",
     description:
-      "140+ native integrations — Power BI, Google Sheets, Instagram, RSS feeds, weather apps, and more. If your data lives somewhere, Citadel can display it.",
+      "Canva, YouTube, Instagram, Google Drive, Google Reviews, Live Weather, and News Ticker — all built in at no extra cost. Connect your content and go live in minutes.",
   },
   {
     icon: MousePointer2,
@@ -497,14 +496,14 @@ const FEATURE_SECTIONS = [
   },
   {
     eyebrow: "Apps & Integrations",
-    title: "140+ integrations — your data, live on screen",
+    title: "Powerful apps built in — your content, live on screen",
     description:
-      "Connect to the tools your business already uses. Pull live data from Google Sheets, show Power BI dashboards, display your latest Instagram posts, or stream live sports scores — all without writing a single line of code.",
+      "Every Citadel plan includes a full suite of built-in apps at no extra cost. Display your Canva designs, YouTube videos, Instagram feed, Google Drive files, and more — all without writing a single line of code.",
     bullets: [
-      "Google Workspace, Microsoft 365, Slack",
-      "Social media: Instagram, Facebook, X",
-      "Data: Power BI, Tableau, Google Sheets",
-      "Weather, news tickers, stock prices, YouTube",
+      "Canva: design and publish slides in one click",
+      "Instagram: display your live feed and stories",
+      "Google Drive: Slides, Docs, and Sheets live on screen",
+      "YouTube, Live Weather, Google Reviews, News Ticker",
     ],
     icon: Puzzle,
     color: "bg-violet-600",
@@ -585,7 +584,7 @@ function FeatureSections() {
 /* ─── 5. CAPABILITIES GRID ──────────────────────────────────────── */
 const CAPABILITIES = [
   { icon: Layers,      title: "Images & Videos",      desc: "JPEG, PNG, MP4, GIF — display any file type on any screen." },
-  { icon: Puzzle,      title: "App Integrations",     desc: "140+ native apps including Power BI, Google & social media." },
+  { icon: Puzzle,      title: "App Integrations",     desc: "Built-in apps: Canva, YouTube, Instagram, Google Drive, Google Reviews, Live Weather & News Ticker." },
   { icon: RefreshCcw,  title: "Playlist Looping",     desc: "Build rotating playlists that cycle through content 24/7." },
   { icon: Calendar,    title: "Content Scheduling",   desc: "Schedule by day, time, date range, or recurring pattern." },
   { icon: Tv,          title: "Portrait & Landscape", desc: "Support any screen orientation — vertical or horizontal." },
@@ -649,15 +648,12 @@ function CapabilitiesGrid() {
 
 /* ─── 6. INDUSTRIES QUICK LINKS ─────────────────────────────────── */
 const INDUSTRY_LINKS = [
-  { slug: "healthcare",    name: "Healthcare",     icon: Stethoscope, color: "bg-blue-50 text-blue-600 border-blue-100" },
-  { slug: "retail",        name: "Retail",         icon: ShoppingBag, color: "bg-pink-50 text-pink-600 border-pink-100" },
+  { slug: "healthcare",    name: "Healthcare",     icon: Stethoscope,     color: "bg-blue-50 text-blue-600 border-blue-100" },
+  { slug: "retail",        name: "Retail",         icon: ShoppingBag,     color: "bg-pink-50 text-pink-600 border-pink-100" },
   { slug: "restaurants",   name: "Restaurants",    icon: UtensilsCrossed, color: "bg-orange-50 text-orange-600 border-orange-100" },
-  { slug: "corporate",     name: "Corporate",      icon: Building2,   color: "bg-indigo-50 text-indigo-600 border-indigo-100" },
-  { slug: "gyms-spas",     name: "Gyms & Spas",    icon: Dumbbell,    color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
-  { slug: "transportation",name: "Transportation", icon: Bus,         color: "bg-violet-50 text-violet-600 border-violet-100" },
-  { slug: "education",     name: "Education",      icon: GraduationCap, color: "bg-sky-50 text-sky-600 border-sky-100" },
-  { slug: "manufacturing", name: "Manufacturing",  icon: Factory,     color: "bg-amber-50 text-amber-600 border-amber-100" },
-  { slug: "finance",       name: "Finance",        icon: Landmark,    color: "bg-teal-50 text-teal-600 border-teal-100" },
+  { slug: "corporate",     name: "Corporate",      icon: Building2,       color: "bg-indigo-50 text-indigo-600 border-indigo-100" },
+  { slug: "gyms-spas",     name: "Gyms & Spas",    icon: Dumbbell,        color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
+  { slug: "transportation",name: "Transportation", icon: Bus,             color: "bg-violet-50 text-violet-600 border-violet-100" },
 ];
 
 function IndustriesSection() {
@@ -679,12 +675,12 @@ function IndustriesSection() {
             </span>
           </h2>
           <p className="text-lg text-slate-500 max-w-xl mx-auto">
-            Citadel powers screens across 9+ industries. Explore tailored
+            Citadel powers screens across every major industry. Explore tailored
             solutions and industry-specific templates.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {INDUSTRY_LINKS.map(({ slug, name, icon: Icon, color }, i) => (
             <motion.div
               key={slug}
@@ -741,7 +737,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What integrations are available?",
-    a: "Citadel connects to 140+ apps and data sources natively — including Google Workspace, Microsoft 365, Power BI, Tableau, Instagram, Facebook, YouTube, RSS feeds, weather services, and more. Custom integrations are available via REST API on the Enterprise plan.",
+    a: "Every Citadel plan includes built-in integrations with Canva, YouTube, Instagram, Google Drive, Google Reviews, Live Weather, and News Ticker — all at no extra charge and ready to use from day one.",
   },
   {
     q: "Is there a free trial?",
