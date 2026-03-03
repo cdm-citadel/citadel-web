@@ -515,9 +515,9 @@ const FEATURE_SECTIONS = [
     eyebrow: "Teams & Permissions",
     title: "Give your whole team the right level of access",
     description:
-      "Set up as many users as you need with role-based permissions. Let regional managers publish to their own screens, give department heads a locked template to fill in, and keep your IT team in control of the master account.",
+      "Set up your team with role-based permissions. Let regional managers publish to their own screens, give department heads a locked template to fill in, and keep your IT team in control of the master account.",
     bullets: [
-      "Unlimited users on Enterprise plan",
+      "3 team members on Business, unlimited on Enterprise",
       "Role-based access: Admin, Editor, Viewer",
       "Content approval workflows",
       "Zone-level permissions by location or department",
@@ -592,7 +592,7 @@ const CAPABILITIES = [
   { icon: Cloud,       title: "Offline Playback",     desc: "Content keeps playing even when internet goes down." },
   { icon: Zap,         title: "Auto-Restart",         desc: "Player automatically recovers from power cuts or reboots." },
   { icon: Globe,       title: "Online Editor",        desc: "Design and publish from any browser — no software to install." },
-  { icon: Users,       title: "Multi-User Access",    desc: "Invite unlimited team members with role-based permissions." },
+  { icon: Users,       title: "Multi-User Access",    desc: "3 team members on Business, unlimited on Enterprise — all with role-based permissions." },
   { icon: BarChart2,   title: "Analytics & Reports",  desc: "Track screen uptime, content plays, and engagement metrics." },
   { icon: Lock,        title: "Kiosk Mode",           desc: "Lock screens to a single app or webpage — perfect for lobbies." },
   { icon: Bell,        title: "Emergency Alerts",     desc: "Override every screen instantly with a full-screen alert." },
