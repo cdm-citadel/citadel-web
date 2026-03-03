@@ -2,14 +2,14 @@
 
 /**
  * Apps – "100+ apps. All included." dark bento-grid section.
- * Bento layout: featured Canva card (row-span-2 left) + 8 app cards in 3-col grid.
- * Dark navy background as a visual contrast break from the white sections above.
+ * Bento layout: featured Canva card (row-span-2 left) + 6 app cards in 3-col grid.
+ * Dark navy background with dot-grid and radial glow for depth.
  */
 
 import { motion } from "framer-motion";
 import {
   Palette, Cloud, Star, Newspaper,
-  Twitter, HardDrive, Youtube, LayoutGrid,
+  HardDrive, Youtube,
   ArrowRight, Camera,
 } from "lucide-react";
 
@@ -29,49 +29,48 @@ const APPS = [
     description: "Real-time forecasts, auto-location.",
     icon: Cloud,
     iconBg: "bg-amber-500",
-    iconColor: "text-white",
+    iconShadow: "shadow-amber-900/50",
+    hoverBorder: "hover:border-amber-500/40",
   },
   {
     name: "Instagram",
     description: "Display your feed and stories live.",
     icon: Camera,
     iconBg: "bg-gradient-to-br from-pink-500 to-purple-600",
-    iconColor: "text-white",
+    iconShadow: "shadow-pink-900/50",
+    hoverBorder: "hover:border-pink-500/40",
   },
   {
     name: "Google Reviews",
     description: "Auto-show your 5-star reviews.",
     icon: Star,
     iconBg: "bg-blue-500",
-    iconColor: "text-white",
+    iconShadow: "shadow-blue-900/50",
+    hoverBorder: "hover:border-blue-500/40",
   },
   {
     name: "News Ticker",
     description: "Scroll live headlines from RSS.",
     icon: Newspaper,
-    iconBg: "bg-slate-500",
-    iconColor: "text-white",
-  },
-  {
-    name: "X / Twitter",
-    description: "Live tweet walls and feeds.",
-    icon: Twitter,
-    iconBg: "bg-slate-800",
-    iconColor: "text-white",
+    iconBg: "bg-sky-600",
+    iconShadow: "shadow-sky-900/50",
+    hoverBorder: "hover:border-sky-500/40",
   },
   {
     name: "Google Drive",
     description: "Slides, Docs, and Sheets — live.",
     icon: HardDrive,
     iconBg: "bg-green-500",
-    iconColor: "text-white",
+    iconShadow: "shadow-green-900/50",
+    hoverBorder: "hover:border-green-500/40",
   },
   {
     name: "YouTube",
     description: "Stream video content seamlessly.",
     icon: Youtube,
     iconBg: "bg-red-500",
-    iconColor: "text-white",
+    iconShadow: "shadow-red-900/50",
+    hoverBorder: "hover:border-red-500/40",
   },
 ];
 
@@ -91,12 +90,12 @@ function AppCard({ app }: { app: (typeof APPS)[0] }) {
   return (
     <motion.div
       variants={item}
-      className="group bg-[#0f1629] border border-[#1e2d45] rounded-2xl p-5
-                 hover:border-indigo-500/40 hover:bg-[#131c30]
-                 transition-all duration-200 cursor-default"
+      className={`group bg-[#0d1526] border border-[#1e2d45] rounded-2xl p-5
+                 ${app.hoverBorder} hover:bg-[#111e34]
+                 transition-all duration-200 cursor-default`}
     >
-      <div className={`w-10 h-10 rounded-xl ${app.iconBg} flex items-center justify-center mb-4 shadow-lg`}>
-        <Icon className={`w-5 h-5 ${app.iconColor}`} />
+      <div className={`w-10 h-10 rounded-xl ${app.iconBg} flex items-center justify-center mb-4 shadow-lg ${app.iconShadow}`}>
+        <Icon className="w-5 h-5 text-white" />
       </div>
       <p className="font-semibold text-white text-sm mb-1">{app.name}</p>
       <p className="text-slate-400 text-xs leading-relaxed">{app.description}</p>
@@ -109,11 +108,39 @@ export default function Apps() {
   const FeaturedIcon = FEATURED_APP.icon;
 
   return (
-    <section className="py-24 bg-[#07091a]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 bg-[#07091a] overflow-hidden">
+
+      {/* Dot-grid background */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      {/* Central radial glow */}
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-[700px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
         <div className="text-center mb-14">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block px-4 py-1.5 rounded-full bg-blue-900/50 text-blue-300
+                       border border-blue-700/40 text-xs font-semibold uppercase tracking-widest mb-4"
+          >
+            App Gallery
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,12 +174,12 @@ export default function Apps() {
           {/* Featured card – Canva (row-span-2 on large screens) */}
           <motion.div
             variants={item}
-            className="group lg:row-span-2 bg-[#0f1629] border border-[#1e2d45] rounded-2xl p-7
-                       flex flex-col hover:border-teal-500/50 hover:bg-[#101e2e]
+            className="group lg:row-span-2 bg-[#0d1526] border border-[#1e2d45] rounded-2xl p-7
+                       flex flex-col hover:border-teal-500/50 hover:bg-[#0e1e2e]
                        transition-all duration-200 cursor-default"
           >
             {/* Icon */}
-            <div className="w-14 h-14 rounded-2xl bg-teal-500 flex items-center justify-center mb-auto shadow-lg shadow-teal-900/40">
+            <div className="w-14 h-14 rounded-2xl bg-teal-500 flex items-center justify-center mb-auto shadow-lg shadow-teal-900/60">
               <FeaturedIcon className="w-7 h-7 text-white" strokeWidth={2} />
             </div>
 
@@ -173,29 +200,10 @@ export default function Apps() {
             </a>
           </motion.div>
 
-          {/* App cards 1–7 */}
+          {/* App cards */}
           {APPS.map((app) => (
             <AppCard key={app.name} app={app} />
           ))}
-
-          {/* "+ More" card */}
-          <motion.a
-            variants={item}
-            href="#"
-            className="group bg-[#0f1629] border border-[#1e2d45] rounded-2xl p-5
-                       hover:border-indigo-500/40 hover:bg-[#131c30]
-                       transition-all duration-200 flex flex-col items-center justify-center
-                       gap-3 text-center min-h-[120px]"
-          >
-            <div className="w-10 h-10 rounded-xl bg-indigo-600/30 border border-indigo-500/30
-                            flex items-center justify-center group-hover:bg-indigo-600/50 transition-colors">
-              <LayoutGrid className="w-5 h-5 text-indigo-400" />
-            </div>
-            <div>
-              <p className="font-semibold text-white text-sm">+ More</p>
-              <p className="text-slate-500 text-xs mt-0.5">View full app library</p>
-            </div>
-          </motion.a>
 
         </motion.div>
       </div>

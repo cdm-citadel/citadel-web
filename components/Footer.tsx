@@ -2,64 +2,58 @@
 
 /**
  * Footer – Standard SaaS footer with four link columns and branding.
+ * All links reflect pages/routes that actually exist on the site.
  */
 
 import Link from "next/link";
-import { Monitor, Twitter, Linkedin, Youtube, Mail, Phone } from "lucide-react";
+import { Monitor, Linkedin, Mail, Phone } from "lucide-react";
 
-/** Routes for the Solutions (industry) column */
-const SOLUTIONS_HREFS: Record<string, string> = {
-  "Healthcare":     "/industries/healthcare",
-  "Retail":         "/industries/retail",
-  "Restaurants":    "/industries/restaurants",
-  "Corporate":      "/industries/corporate",
-  "Gyms & Spas":    "/industries/gyms-spas",
-  "Transportation": "/industries/transportation",
+type FooterLink = {
+  label: string;
+  href: string;
+  external?: boolean;
 };
 
-const COLUMNS = [
+type FooterColumn = {
+  heading: string;
+  links: FooterLink[];
+};
+
+const COLUMNS: FooterColumn[] = [
   {
     heading: "Product",
     links: [
-      "Features",
-      "Hardware",
-      "Pricing",
-      "Integrations",
-      "Changelog",
-      "Status",
+      { label: "Digital Signage", href: "/digital-signage" },
+      { label: "Hardware",        href: "/#hardware" },
+      { label: "Pricing",         href: "/pricing" },
+      { label: "Book a Demo",     href: "/book-a-demo" },
     ],
   },
   {
     heading: "Solutions",
     links: [
-      "Healthcare",
-      "Retail",
-      "Restaurants",
-      "Corporate",
-      "Gyms & Spas",
-      "Transportation",
+      { label: "Healthcare",     href: "/industries/healthcare"     },
+      { label: "Retail",         href: "/industries/retail"         },
+      { label: "Restaurants",    href: "/industries/restaurants"    },
+      { label: "Corporate",      href: "/industries/corporate"      },
+      { label: "Gyms & Spas",    href: "/industries/gyms-spas"      },
+      { label: "Transportation", href: "/industries/transportation"  },
     ],
   },
   {
     heading: "Resources",
     links: [
-      "Documentation",
-      "Blog",
-      "Case Studies",
-      "Webinars",
-      "API Reference",
-      "Community",
+      { label: "Knowledgebase", href: "https://support.citadeldigitalsignage.com/support/home",        external: true },
+      { label: "Support",       href: "https://support.citadeldigitalsignage.com/support/tickets/new", external: true },
+      { label: "Book a Demo",   href: "/book-a-demo" },
     ],
   },
   {
-    heading: "Contact",
+    heading: "Company",
     links: [
-      "Support",
-      "Sales",
-      "Partnerships",
-      "Press",
-      "Careers",
-      "Legal",
+      { label: "Contact Us",  href: "/contact" },
+      { label: "Book a Demo", href: "/book-a-demo" },
+      { label: "Support",     href: "https://support.citadeldigitalsignage.com/support/tickets/new", external: true },
     ],
   },
 ];
@@ -75,14 +69,14 @@ export default function Footer() {
           {/* Brand column – 2 col span */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2 mb-4 group">
+            <Link href="/" className="flex items-center gap-2 mb-4 group">
               <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
                 <Monitor className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
               <span className="font-bold text-lg text-white tracking-tight">
                 Citadel<span className="text-blue-400">DS</span>
               </span>
-            </a>
+            </Link>
 
             <p className="text-sm leading-relaxed mb-5 max-w-xs">
               The easiest, most powerful digital signage software. Built for businesses of all sizes.
@@ -90,31 +84,31 @@ export default function Footer() {
 
             {/* Contact */}
             <div className="flex flex-col gap-2 mb-5">
-              <a href="mailto:hello@citadeldigitalsignage.com"
-                className="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <a
+                href="mailto:hello@citadeldigitalsignage.com"
+                className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+              >
                 <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 hello@citadeldigitalsignage.com
               </a>
-              <a href="tel:+18005551234"
-                className="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <a
+                href="tel:+18005551234"
+                className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+              >
                 <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 +1 (800) 555-1234
               </a>
             </div>
 
-            {/* Social icons */}
+            {/* Social – LinkedIn only */}
             <div className="flex items-center gap-3">
-              {[
-                { icon: Twitter,  href: "#", label: "Twitter"  },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Youtube,  href: "#", label: "YouTube"  },
-              ].map(({ icon: Icon, href, label }) => (
-                <a key={label} href={href} aria-label={label}
-                  className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-blue-600 flex items-center justify-center
-                             transition-colors">
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -125,22 +119,24 @@ export default function Footer() {
                 {heading}
               </h4>
               <ul className="flex flex-col gap-2.5">
-                {links.map((link) => {
-                  const href = heading === "Solutions" ? (SOLUTIONS_HREFS[link] ?? "#") : "#";
-                  return (
-                    <li key={link}>
-                      {heading === "Solutions" && SOLUTIONS_HREFS[link] ? (
-                        <Link href={href} className="text-sm hover:text-white transition-colors">
-                          {link}
-                        </Link>
-                      ) : (
-                        <a href={href} className="text-sm hover:text-white transition-colors">
-                          {link}
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
+                {links.map(({ label, href, external }) => (
+                  <li key={label + href}>
+                    {external ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm hover:text-white transition-colors"
+                      >
+                        {label}
+                      </a>
+                    ) : (
+                      <Link href={href} className="text-sm hover:text-white transition-colors">
+                        {label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
