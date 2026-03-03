@@ -14,7 +14,7 @@ import IndustryUseCases     from "@/components/industries/IndustryUseCases";
 import IndustryFeatures    from "@/components/industries/IndustryFeatures";
 import IndustryTestimonial from "@/components/industries/IndustryTestimonial";
 import IndustryFaq         from "@/components/industries/IndustryFaq";
-import IndustryRelated     from "@/components/industries/IndustryRelated";
+import IndustriesGrid     from "@/components/IndustriesGrid";
 import FinalCTA            from "@/components/FinalCTA";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -59,11 +59,6 @@ export default async function IndustryPage({ params }: Props) {
   const { slug } = await params;
   const industry = INDUSTRIES_DATA[slug];
   if (!industry) notFound();
-
-  /* Related industry data (passed as props to keep client bundle lean) */
-  const relatedIndustries = industry.relatedSlugs.map(
-    (s) => INDUSTRIES_DATA[s]
-  ).filter(Boolean);
 
   /* Per-page JSON-LD schemas */
   const breadcrumbSchema = {
@@ -121,7 +116,7 @@ export default async function IndustryPage({ params }: Props) {
         <IndustryFeatures    data={industry} />
         <IndustryTestimonial data={industry} />
         <IndustryFaq         data={industry} />
-        <IndustryRelated     currentName={industry.name} related={relatedIndustries} />
+        <IndustriesGrid />
         <FinalCTA />
       </main>
     </>

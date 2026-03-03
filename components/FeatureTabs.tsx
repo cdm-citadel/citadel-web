@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   MousePointerClick, Wifi, CalendarClock, BarChart2,
   ImagePlay, Smartphone, Clock3, Activity,
-  Wand2, Globe2, AlarmClock, MonitorCheck,
+  Globe2, AlarmClock, MonitorCheck,
 } from "lucide-react";
 
 /* ── Tab data ──────────────────────────────────────────────────── */
@@ -18,35 +18,35 @@ const TABS = [
   {
     id: "drag-drop",
     icon: MousePointerClick,
-    label: "Drag & Drop Creation",
-    headline: "Design stunning content in minutes.",
-    body: "Connect your Canva account for seamless brand-consistent designs — no design team required. Upload your own images and videos or use the built-in royalty-free media library.",
+    label: "Content Management",
+    headline: "Create with Canva. Manage with ease.",
+    body: "Connect your Canva account to design brand-consistent content without a design team. Organise media into playlists using drag-and-drop, then publish to any screen in seconds.",
     bullets: [
-      { icon: ImagePlay,   text: "Canva integration for branded designs" },
-      { icon: Wand2,       text: "Native Canva integration" },
-      { icon: Globe2,      text: "Royalty-free media library" },
+      { icon: ImagePlay,        text: "Canva integration for branded content" },
+      { icon: MousePointerClick, text: "Drag & drop playlist management" },
+      { icon: Globe2,           text: "Royalty-free media library" },
     ],
     visual: {
       gradient: "from-blue-500 to-sky-600",
       icon: MousePointerClick,
-      label: "Content Editor",
+      label: "Content Manager",
     },
   },
   {
     id: "remote",
     icon: Wifi,
-    label: "Remote Management",
-    headline: "Control 1 screen or 1,000 from anywhere.",
-    body: "Push content updates instantly from any device, anywhere in the world. Use bulk editing and smart tag management to organise your entire network without breaking a sweat.",
+    label: "Remote Updates",
+    headline: "Update any screen from anywhere, instantly.",
+    body: "Push content to one screen or a thousand from any device, anywhere in the world. Use bulk actions and smart tag filtering to keep your entire network current — no on-site visits required.",
     bullets: [
-      { icon: Smartphone,   text: "Manage from any device" },
-      { icon: Globe2,       text: "Bulk edit & tag management" },
+      { icon: Smartphone,   text: "Push updates from any device" },
+      { icon: Globe2,       text: "Bulk actions & tag filtering" },
       { icon: MonitorCheck, text: "Real-time device status" },
     ],
     visual: {
       gradient: "from-cyan-500 to-blue-600",
       icon: Wifi,
-      label: "Remote Control",
+      label: "Remote Updates",
     },
   },
   {
