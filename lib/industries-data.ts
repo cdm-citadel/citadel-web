@@ -152,12 +152,12 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     integrations: [
-      { name: "Epic" },
-      { name: "Cerner" },
-      { name: "athenahealth" },
       { name: "Canva" },
-      { name: "Google Calendar" },
-      { name: "Weather API" },
+      { name: "YouTube" },
+      { name: "Google Drive" },
+      { name: "Live Weather" },
+      { name: "Google Reviews" },
+      { name: "News Ticker" },
     ],
     testimonial: {
       quote:
@@ -289,12 +289,12 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     integrations: [
-      { name: "Shopify" },
-      { name: "Square" },
       { name: "Canva" },
-      { name: "Google Slides" },
       { name: "Instagram" },
-      { name: "RSS Feeds" },
+      { name: "Google Drive" },
+      { name: "YouTube" },
+      { name: "Google Reviews" },
+      { name: "News Ticker" },
     ],
     testimonial: {
       quote:
@@ -315,8 +315,8 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         a: "Yes. You can upload your own graphics, use our Canva integration, or start from one of 500+ retail templates. Full brand control is always yours.",
       },
       {
-        q: "Does Citadel integrate with my POS system?",
-        a: "Citadel integrates with Shopify, Square, and other POS platforms so pricing and product data can flow directly to your screens.",
+        q: "What apps and tools can I connect to Citadel?",
+        a: "Citadel includes built-in integrations with Canva, Instagram, YouTube, Google Drive, Google Reviews, Live Weather, and News Ticker — all included at no extra charge.",
       },
       {
         q: "Can different stores show different content?",
@@ -426,12 +426,12 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     integrations: [
-      { name: "Toast POS" },
-      { name: "Square" },
-      { name: "Lightspeed" },
       { name: "Canva" },
-      { name: "DoorDash" },
-      { name: "Google My Business" },
+      { name: "YouTube" },
+      { name: "Instagram" },
+      { name: "Google Reviews" },
+      { name: "Live Weather" },
+      { name: "News Ticker" },
     ],
     testimonial: {
       quote:
@@ -460,8 +460,8 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         a: "Yes. The Citadel Player works with any HDMI screen. Plug it in, connect to Wi-Fi, and your digital board is live in minutes.",
       },
       {
-        q: "Does Citadel work with my POS system?",
-        a: "Citadel integrates with Toast, Square, Lightspeed, and other popular POS systems for seamless pricing and item updates.",
+        q: "What integrations come included with Citadel?",
+        a: "Citadel includes built-in integrations with Canva, YouTube, Instagram, Google Reviews, Live Weather, and News Ticker — all at no extra charge and ready to use from day one.",
       },
     ],
     relatedSlugs: ["retail", "corporate"],
@@ -541,7 +541,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         icon: "Database",
         title: "Live Data Integrations",
         description:
-          "Connect to Salesforce, Google Sheets, and other data sources to surface live metrics directly on your office screens.",
+          "Connect to Google Drive and Canva to surface live presentations, documents, and branded content directly on your office screens.",
       },
       {
         icon: "Users",
@@ -557,18 +557,18 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
       {
         icon: "MessageSquare",
-        title: "Internal Comms Integrations",
+        title: "Content Integrations",
         description:
-          "Pull content from Slack, Microsoft Teams, or your intranet to surface important updates on screens automatically.",
+          "Pull content from Google Drive, Canva, and YouTube to surface company updates, presentations, and media on screens automatically.",
       },
     ],
     integrations: [
-      { name: "Slack" },
-      { name: "Microsoft Teams" },
-      { name: "Salesforce" },
-      { name: "Google Workspace" },
-      { name: "SharePoint" },
-      { name: "Power BI" },
+      { name: "Canva" },
+      { name: "Google Drive" },
+      { name: "YouTube" },
+      { name: "Instagram" },
+      { name: "Google Reviews" },
+      { name: "News Ticker" },
     ],
     testimonial: {
       quote:
@@ -585,16 +585,16 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         a: "Yes. Citadel's role-based access lets you give department managers control over their own screens while keeping global admin access centralized.",
       },
       {
-        q: "Can I show live data like sales metrics on screens?",
-        a: "Absolutely. Citadel connects to Salesforce, Google Sheets, Power BI, and other data sources to display live KPIs and business metrics.",
+        q: "Can I show live content like presentations on screens?",
+        a: "Absolutely. Citadel connects to Google Drive so you can display live Google Slides, Docs, and Sheets — keeping every team aligned with current information.",
       },
       {
         q: "How do I push urgent communications company-wide?",
         a: "From the dashboard, select all screens (or specific groups) and push a message — it goes live everywhere in under 60 seconds.",
       },
       {
-        q: "Does Citadel integrate with Microsoft Teams or Slack?",
-        a: "Yes. You can pull messages or announcements from Teams, Slack, and SharePoint to surface them on your office screens automatically.",
+        q: "What integrations does Citadel include for corporate offices?",
+        a: "Citadel includes built-in integrations with Google Drive, Canva, YouTube, Instagram, Google Reviews, and News Ticker — all included at no extra charge and ready to use from day one.",
       },
       {
         q: "Can Citadel work in hybrid and remote office environments?",
@@ -632,7 +632,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       sub: "Citadel helps gyms and spas show live class schedules, celebrate member milestones, and promote membership upgrades automatically — all while keeping the energy high on the floor.",
       stats: [
         { value: "30%", label: "Avg. class booking lift" },
-        { value: "Auto", label: "Mindbody & schedule sync" },
+        { value: "Auto", label: "Class schedule updates" },
         { value: "100+", label: "Fitness-specific templates" },
       ],
       mockScreen: {
@@ -652,7 +652,7 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
         icon: "Calendar",
         title: "Live Class Schedules",
         description:
-          "Auto-sync your class schedule from Mindbody, Pike13, or CSV so members always see the most accurate schedule on screen.",
+          "Display your live class schedule on screen — push updates from Google Drive or Canva so members always see the most accurate times and instructors.",
       },
       {
         icon: "Sparkles",
@@ -676,9 +676,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     features: [
       {
         icon: "RefreshCcw",
-        title: "Schedule Auto-Sync",
+        title: "Easy Schedule Updates",
         description:
-          "Connect Mindbody, Pike13, or your booking system — class schedules update on screens automatically, no manual work required.",
+          "Create your class schedule in Canva or Google Drive and push it live to your screens in one click — always accurate, no manual work required.",
       },
       {
         icon: "Film",
@@ -700,16 +700,16 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     integrations: [
-      { name: "Mindbody" },
-      { name: "Pike13" },
       { name: "Canva" },
       { name: "YouTube" },
       { name: "Instagram" },
-      { name: "Spotify" },
+      { name: "Google Reviews" },
+      { name: "Live Weather" },
+      { name: "News Ticker" },
     ],
     testimonial: {
       quote:
-        "Our class schedules update from Mindbody instantly and members love the member spotlight screen. Membership upgrades are up 25% this quarter.",
+        "Our class schedules are always up to date on screen and members love the member spotlight feature. Membership upgrades are up 25% this quarter.",
       name: "Jordan Blake",
       role: "Studio Owner",
       company: "Peak Fitness Studio",
@@ -718,8 +718,8 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     },
     faq: [
       {
-        q: "Does Citadel sync with Mindbody?",
-        a: "Yes. Citadel integrates directly with Mindbody and Pike13 to auto-update your class schedules on screen — no manual entry needed.",
+        q: "Can I display my class schedule on screens?",
+        a: "Yes. Create your schedule in Canva or Google Drive and push it live to your screens in one click — members always see the most up-to-date times and instructors.",
       },
       {
         q: "Can I show member milestones and spotlights?",
@@ -813,9 +813,9 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     features: [
       {
         icon: "Radio",
-        title: "Live Feed Integration",
+        title: "Live Content Integration",
         description:
-          "Connect GTFS feeds, proprietary APIs, and real-time data sources to power accurate, live arrival and service information.",
+          "Display live News Ticker feeds, Live Weather, and YouTube content to keep passengers informed and entertained while they wait.",
       },
       {
         icon: "AlertTriangle",
@@ -837,12 +837,12 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
       },
     ],
     integrations: [
-      { name: "GTFS" },
-      { name: "TransitMix" },
-      { name: "Google Maps" },
-      { name: "Weather API" },
-      { name: "Emergency Alert Systems" },
-      { name: "REST APIs" },
+      { name: "Canva" },
+      { name: "YouTube" },
+      { name: "News Ticker" },
+      { name: "Live Weather" },
+      { name: "Google Drive" },
+      { name: "Google Reviews" },
     ],
     testimonial: {
       quote:
@@ -855,8 +855,8 @@ export const INDUSTRIES_DATA: Record<string, IndustryData> = {
     },
     faq: [
       {
-        q: "Does Citadel support GTFS real-time feeds?",
-        a: "Yes. Citadel integrates with GTFS and GTFS-RT feeds to display live arrival, departure, and service alert data on your passenger information screens.",
+        q: "What live content can I show on passenger screens?",
+        a: "Citadel supports News Ticker feeds, Live Weather, YouTube, and Canva designs — so passengers always see fresh, accurate information and engaging content on screen.",
       },
       {
         q: "How quickly can I push a service disruption alert?",
