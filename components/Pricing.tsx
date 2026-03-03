@@ -150,8 +150,22 @@ export default function Pricing() {
           ))}
         </div>
 
+        {/* Learn more */}
+        <div className="text-center mt-10">
+          <a
+            href="/pricing"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full
+                       border-2 border-indigo-200 text-indigo-600 font-semibold text-sm
+                       hover:bg-indigo-50 hover:border-indigo-300 hover:scale-105
+                       active:scale-95 transition-all duration-150"
+          >
+            Learn More
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+
         {/* Footer note */}
-        <p className="text-center text-sm text-slate-400 mt-10">
+        <p className="text-center text-sm text-slate-400 mt-6">
           All plans include a <strong className="text-slate-600">14-day free trial</strong> — no credit card required.
           Enterprise pricing available for large deployments.{" "}
           <a href="/contact" className="text-indigo-600 hover:underline">Contact sales →</a>

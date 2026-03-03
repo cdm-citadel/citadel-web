@@ -45,7 +45,7 @@ const scaleIn = {
 };
 
 /* ── Hero media config ──────────────────────────────────────────── */
-const HERO_MODE: "video" | "slideshow" = "video";
+const HERO_MODE: "video" | "slideshow" = "slideshow";
 
 const HERO_VIDEO = {
   webm: "/hero/hero-video.webm",
@@ -54,9 +54,9 @@ const HERO_VIDEO = {
 };
 
 const HERO_SLIDES: { src: string; alt: string }[] = [
-  // { src: "/hero/slide-1.webp", alt: "Upload content to Citadel" },
-  // { src: "/hero/slide-2.webp", alt: "Organize your playlists" },
-  // { src: "/hero/slide-3.webp", alt: "Pair screens instantly" },
+  { src: "/hero/slide-1.webp", alt: "Digital signage for gas stations and retail" },
+  { src: "/hero/slide-2.webp", alt: "Award-winning digital signage software" },
+  { src: "/hero/slide-3.webp", alt: "Digital signage content on any screen" },
 ];
 
 const SLIDE_INTERVAL = 5000;
@@ -79,11 +79,11 @@ function DeviceShowcase() {
   const isVideo = HERO_MODE === "video" && !videoFailed;
   const hasSlides = HERO_SLIDES.length > 0;
 
-  /* Auto-cycle active dock icon */
+  /* Auto-cycle active dock icon (synced with slideshow) */
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveDock((p) => (p + 1) % DOCK_APPS.length);
-    }, 3000);
+    }, SLIDE_INTERVAL);
     return () => clearInterval(timer);
   }, []);
 
