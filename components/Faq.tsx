@@ -38,7 +38,7 @@ const FAQ_ITEMS = [
   {
     question: "What content apps does Citadel support?",
     answer:
-      "Citadel includes 100+ built-in content apps: Canva, Google Slides, YouTube, Instagram, Live Weather, Google Reviews, X/Twitter, Google Drive, News Ticker, and many more — all included at no extra charge.",
+      "Citadel includes built-in content apps: Canva, Google Slides, YouTube, Instagram, Live Weather, Google Reviews, Google Drive, News Ticker, and many more — all included at no extra charge.",
   },
   {
     question: "Is Citadel secure and GDPR compliant?",

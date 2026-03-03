@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Apps – "100+ apps. All included." dark bento-grid section.
+ * Apps – "Powerful apps. All included." dark bento-grid section.
  * Bento layout: featured Canva card (row-span-2 left) + 6 app cards in 3-col grid.
  * Dark navy background with dot-grid and radial glow for depth.
  */
@@ -148,7 +148,7 @@ export default function Apps() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4"
           >
-            100+ apps. All included.
+Powerful apps. All included.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

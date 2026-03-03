@@ -81,7 +81,7 @@ export default function IndustryFeatures({ data }: { data: IndustryData }) {
           transition={{ duration: 0.5, delay: 0.2 }}
           className={`rounded-2xl ${data.accent.bg} border ${data.accent.border} p-8`}
         >
-          <p className="font-bold text-slate-900 mb-1">100+ integrations available</p>
+          <p className="font-bold text-slate-900 mb-1">Integrations available</p>
           <p className="text-sm text-slate-500 mb-5">
             Connect Citadel to the tools your {data.name.toLowerCase()} team already uses.
           </p>

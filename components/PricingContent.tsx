@@ -57,7 +57,7 @@ const PLANS: Plan[] = [
       "Advanced scheduling & day-parting",
       "Remote screen management",
       "Proof of play reporting",
-      "100+ app integrations incl. Canva",
+      "App integrations incl. Canva",
       "Email support",
     ],
     cta: "Start Free Trial",
@@ -136,7 +136,7 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
     category: "Integrations",
     icon: Cpu,
     rows: [
-      { label: "Apps included",             business: "100+",       enterprise: "100+" },
+      { label: "Apps included",             business: true,         enterprise: true },
       { label: "Webhooks",                  business: true,         enterprise: true },
       { label: "API access",                business: false,        enterprise: true },
       { label: "SSO / SAML",               business: false,        enterprise: true },
