@@ -13,7 +13,7 @@ import {
   Monitor, Menu, X, ChevronDown, ExternalLink,
   Stethoscope, ShoppingBag, UtensilsCrossed, Building2, Dumbbell, Bus,
   GraduationCap, Factory, Landmark,
-  BookOpen, LifeBuoy, CalendarDays,
+  BookOpen, LifeBuoy, CalendarDays, FileText,
 } from "lucide-react";
 
 /** Simple nav links (no dropdown) */
@@ -40,6 +40,14 @@ const INDUSTRY_NAV = [
 
 /** Resources dropdown items */
 const RESOURCES_NAV = [
+  {
+    label: "Blog",
+    description: "Tips, guides, and industry insights",
+    href: "/blog",
+    icon: FileText,
+    color: "bg-indigo-50 text-indigo-600",
+    external: false,
+  },
   {
     label: "Knowledgebase",
     description: "Guides, tutorials, and how-tos",

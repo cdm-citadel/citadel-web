@@ -1,7 +1,17 @@
 import { MetadataRoute } from "next";
 import { INDUSTRY_SLUGS } from "@/lib/industries-data";
+import { getAllPosts, getAllTopics } from "@/lib/sanity/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let posts: { slug: string; publishedAt: string; updatedAt?: string }[] = [];
+  let topics: string[] = [];
+
+  try {
+    [posts, topics] = await Promise.all([getAllPosts(), getAllTopics()]);
+  } catch {
+    /* Sanity not configured yet — skip blog URLs */
+  }
+
   return [
     {
       url: "https://citadeldigitalsignage.com",
@@ -44,6 +54,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    /* ── Blog ─────────────────────────────────────────────────────── */
+    {
+      url: "https://citadeldigitalsignage.com/blog",
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...posts.map((post) => ({
+      url: `https://citadeldigitalsignage.com/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt ?? post.publishedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...topics.map((topic) => ({
+      url: `https://citadeldigitalsignage.com/blog/topic/${topic}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
     })),
   ];
 }
