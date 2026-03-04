@@ -327,7 +327,7 @@ export default function Hero() {
                            hover:shadow-lg hover:shadow-blue-200 hover:scale-105 active:scale-95
                            transition-all duration-150"
               >
-                Get Started
+                Try For Free
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
@@ -338,7 +338,7 @@ export default function Hero() {
                            hover:scale-105 active:scale-95 transition-all duration-150"
               >
                 <Play className="w-4 h-4 fill-current" />
-                See How It Works
+                Book a Demo
               </a>
             </motion.div>
 

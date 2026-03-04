@@ -12,6 +12,19 @@ import { ImageIcon } from "lucide-react";
 import { ICON_MAP } from "./icon-map";
 import type { IndustryData } from "@/lib/industries-data";
 
+/* Map of industry slugs that have a real image in /public/industries/ */
+const INDUSTRY_IMAGES: Record<string, string> = {
+  healthcare: "/industries/healthcare.webp",
+  retail: "/industries/retail.webp",
+  restaurants: "/industries/restaurants.webp",
+  corporate: "/industries/corporate.webp",
+  "gyms-spas": "/industries/gyms-spas.webp",
+  transportation: "/industries/transportation.webp",
+  education: "/industries/education.webp",
+  finance: "/industries/finance.webp",
+  manufacturing: "/industries/manufacturing.webp",
+};
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: (delay = 0) => ({
@@ -23,6 +36,7 @@ const fadeUp = {
 
 export default function IndustryImageSection({ data }: { data: IndustryData }) {
   const bullets = data.features.slice(0, 3);
+  const image = INDUSTRY_IMAGES[data.slug];
 
   return (
     <section className="py-24 bg-white">
@@ -81,38 +95,47 @@ export default function IndustryImageSection({ data }: { data: IndustryData }) {
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" custom={0.15}
             viewport={{ once: true }}
-            className={`relative h-[420px] rounded-3xl border-2 border-dashed
-                        ${data.accent.border} ${data.accent.bg}
-                        flex flex-col items-center justify-center gap-5 shadow-sm overflow-hidden`}
+            className={`relative h-[420px] rounded-3xl overflow-hidden shadow-xl
+                        ${image ? "" : `border-2 border-dashed ${data.accent.border} ${data.accent.bg} flex flex-col items-center justify-center gap-5 shadow-sm`}`}
           >
-            {/* Subtle dot-grid overlay */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-30"
-              style={{
-                backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
-                backgroundSize: "24px 24px",
-              }}
-            />
+            {image ? (
+              <img
+                src={image}
+                alt={`Citadel deployed in ${data.nameLong.toLowerCase()}`}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <>
+                {/* Subtle dot-grid overlay */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                  }}
+                />
 
-            {/* Placeholder icon + labels */}
-            <div className={`relative w-16 h-16 rounded-2xl ${data.accent.iconBg}
-                             flex items-center justify-center shadow-lg`}>
-              <ImageIcon className="w-7 h-7 text-white" />
-            </div>
-            <div className="relative text-center px-8">
-              <p className={`text-sm font-semibold ${data.accent.text}`}>Image Placeholder</p>
-              <p className="text-xs text-slate-400 mt-1.5 leading-snug">
-                Replace with a real photo of Citadel deployed in{" "}
-                <span className="font-medium">{data.nameLong.toLowerCase()}</span>
-              </p>
-            </div>
+                {/* Placeholder icon + labels */}
+                <div className={`relative w-16 h-16 rounded-2xl ${data.accent.iconBg}
+                                 flex items-center justify-center shadow-lg`}>
+                  <ImageIcon className="w-7 h-7 text-white" />
+                </div>
+                <div className="relative text-center px-8">
+                  <p className={`text-sm font-semibold ${data.accent.text}`}>Image Placeholder</p>
+                  <p className="text-xs text-slate-400 mt-1.5 leading-snug">
+                    Replace with a real photo of Citadel deployed in{" "}
+                    <span className="font-medium">{data.nameLong.toLowerCase()}</span>
+                  </p>
+                </div>
 
-            {/* Bottom accent strip */}
-            <div
-              aria-hidden="true"
-              className={`absolute bottom-0 left-0 right-0 h-1 ${data.accent.iconBg} opacity-60`}
-            />
+                {/* Bottom accent strip */}
+                <div
+                  aria-hidden="true"
+                  className={`absolute bottom-0 left-0 right-0 h-1 ${data.accent.iconBg} opacity-60`}
+                />
+              </>
+            )}
           </motion.div>
 
         </div>

@@ -41,7 +41,7 @@ const PLANS = [
       "Dedicated account manager",
       "SLA-backed uptime guarantee",
     ],
-    cta: "Get Started",
+    cta: "Try For Free",
     ctaStyle: "bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-200",
   },
 ];

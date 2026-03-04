@@ -79,7 +79,7 @@ const PLANS: Plan[] = [
       "API access",
       "Priority phone support",
     ],
-    cta: "Get Started",
+    cta: "Try For Free",
   },
 ];
 

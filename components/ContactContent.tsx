@@ -556,8 +556,8 @@ function ContactForm() {
                   MR
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-white">Marcus Reid</p>
-                  <p className="text-xs text-blue-200">IT Manager, FreshMart Retail Group</p>
+                  <p className="text-xs font-semibold text-white">Marcus R.</p>
+                  <p className="text-xs text-blue-200">IT Manager</p>
                 </div>
               </div>
             </div>

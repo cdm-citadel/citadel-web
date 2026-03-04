@@ -39,7 +39,7 @@ const PRINCIPLES = [
     glow: "rgba(139,92,246,0.28)",
     label: "02",
     title: "Engage Customers",
-    image: "", // e.g. "/in-practice/engage.webp"
+    image: "/in-practice/engage-customers.webp",
     description:
       "Replace static displays with dynamic content that captures attention and keeps people looking. Relevant, timely media creates moments that stick — and brings customers back.",
   },
@@ -50,7 +50,7 @@ const PRINCIPLES = [
     glow: "rgba(245,158,11,0.28)",
     label: "03",
     title: "Elevate Your Brand",
-    image: "", // e.g. "/in-practice/elevate.webp"
+    image: "/in-practice/elevate-brand.webp",
     description:
       "Every screen is a brand moment. Control exactly how your business looks and feels — consistently, across every location — so every visit reinforces who you are.",
   },

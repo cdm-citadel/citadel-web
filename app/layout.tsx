@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
         </a>
         <JsonLd />
         {children}
+        <CookieConsentBanner />
       </body>
     </html>
   );
