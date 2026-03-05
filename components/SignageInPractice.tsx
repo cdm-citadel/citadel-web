@@ -117,6 +117,9 @@ export default function SignageInPractice() {
                   <img
                     src={image}
                     alt={title}
+                    width={760}
+                    height={416}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 ) : (

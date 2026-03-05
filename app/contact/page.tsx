@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactContent from "@/components/ContactContent";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Contact Us – Citadel Digital Signage",
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Contact Us" path="/contact" />
       <Navbar />
       <main id="main-content" className="pt-16">
         <ContactContent />

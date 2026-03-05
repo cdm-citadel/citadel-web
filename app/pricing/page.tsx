@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PricingContent from "@/components/PricingContent";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Pricing – Citadel Digital Signage",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Pricing" path="/pricing" />
       <Navbar />
       <main id="main-content" className="pt-16">
         <PricingContent />

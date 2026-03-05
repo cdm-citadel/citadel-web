@@ -5,7 +5,7 @@
  * "Industries" and "Resources" nav items open dropdown flyouts (desktop) / expandable sub-lists (mobile).
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -88,6 +88,8 @@ export default function Navbar() {
 
   const industriesTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const resourcesTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const mobileMenuRef   = useRef<HTMLDivElement>(null);
+  const hamburgerRef    = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -99,6 +101,59 @@ export default function Navbar() {
   const closeIndustries = () => { industriesTimer.current = setTimeout(() => setIndustriesOpen(false), 150); };
   const openResources   = () => { clearTimeout(resourcesTimer.current);  setResourcesOpen(true);   };
   const closeResources  = () => { resourcesTimer.current  = setTimeout(() => setResourcesOpen(false),  150); };
+
+  /* Keyboard handlers for desktop dropdowns */
+  const handleIndustriesKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setIndustriesOpen((o) => !o); }
+    if (e.key === "Escape") setIndustriesOpen(false);
+  };
+  const handleResourcesKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setResourcesOpen((o) => !o); }
+    if (e.key === "Escape") setResourcesOpen(false);
+  };
+
+  /* Close dropdowns on outside Escape */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setIndustriesOpen(false); setResourcesOpen(false); }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  /* Mobile focus trap */
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    hamburgerRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const menu = mobileMenuRef.current;
+    if (!menu) return;
+
+    const focusable = menu.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    const trap = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { closeMobile(); return; }
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+
+    document.addEventListener("keydown", trap);
+    first.focus();
+    return () => document.removeEventListener("keydown", trap);
+  }, [mobileOpen, closeMobile]);
 
   return (
     <>
@@ -154,6 +209,8 @@ export default function Navbar() {
                     }`}
                   aria-haspopup="true"
                   aria-expanded={industriesOpen}
+                  onClick={() => setIndustriesOpen((o) => !o)}
+                  onKeyDown={handleIndustriesKey}
                 >
                   Industries
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`} />
@@ -230,6 +287,8 @@ export default function Navbar() {
                     }`}
                   aria-haspopup="true"
                   aria-expanded={resourcesOpen}
+                  onClick={() => setResourcesOpen((o) => !o)}
+                  onKeyDown={handleResourcesKey}
                 >
                   Resources
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""}`} />
@@ -329,6 +388,7 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <button
+              ref={hamburgerRef}
               className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
@@ -350,7 +410,7 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed top-16 left-0 right-0 z-40 bg-white border-b border-slate-100 shadow-lg lg:hidden"
           >
-            <nav className="flex flex-col p-4 gap-1" aria-label="Mobile navigation">
+            <nav ref={mobileMenuRef} className="flex flex-col p-4 gap-1" aria-label="Mobile navigation">
 
               {/* Digital Signage */}
               {NAV_LINKS_BEFORE.map((link) => (

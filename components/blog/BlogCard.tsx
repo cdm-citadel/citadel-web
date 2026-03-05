@@ -29,6 +29,9 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             <img
               src={imageUrl}
               alt={post.coverImage?.alt ?? post.title}
+              width={600}
+              height={340}
+              loading="lazy"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
@@ -69,7 +72,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           </p>
 
           {/* Meta */}
-          <div className="flex items-center gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-4 text-xs text-slate-500">
             <span className="flex items-center gap-1">
               <User className="w-3 h-3" />
               {post.author?.name ?? "Citadel Team"}

@@ -14,11 +14,12 @@ const components = {
         <figure className="my-8">
           <img
             src={url}
-            alt={value.alt ?? ""}
+            alt={value.alt || "Blog post image"}
+            loading="lazy"
             className="w-full rounded-xl"
           />
           {value.caption && (
-            <figcaption className="text-center text-sm text-slate-400 mt-2">
+            <figcaption className="text-center text-sm text-slate-500 mt-2">
               {value.caption}
             </figcaption>
           )}

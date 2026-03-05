@@ -107,6 +107,12 @@ body {
 .blog-prose img { border-radius: 0.75rem; margin: 1.5em 0; }
 .blog-prose hr { border-color: #e2e8f0; margin: 2em 0; }
 
+/* ── Focus indicators (WCAG 2.1 AA) ───────────────────────────── */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 /* ── Motion accessibility ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

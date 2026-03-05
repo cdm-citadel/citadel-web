@@ -102,6 +102,9 @@ export default function IndustryImageSection({ data }: { data: IndustryData }) {
               <img
                 src={image}
                 alt={`Citadel deployed in ${data.nameLong.toLowerCase()}`}
+                width={760}
+                height={420}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             ) : (

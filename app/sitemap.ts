@@ -74,5 +74,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
+    ...INDUSTRY_SLUGS.map((slug) => ({
+      url: `https://citadeldigitalsignage.com/blog/industry/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }

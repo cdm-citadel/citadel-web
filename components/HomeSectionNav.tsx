@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 
 const SECTIONS = [
   { id: "hero",          label: "Home"         },
-  { id: "how-it-works",  label: "How It Works" },
   { id: "in-practice",   label: "In Practice"  },
+  { id: "how-it-works",  label: "How It Works" },
   { id: "features",      label: "Features"     },
   { id: "industries",    label: "Industries"   },
   { id: "pricing",       label: "Pricing"      },

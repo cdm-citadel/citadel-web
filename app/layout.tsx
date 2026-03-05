@@ -30,7 +30,10 @@ export const metadata: Metadata = {
     "multi-location signage",
     "business screen software",
   ],
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/feed.xml" },
+  },
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
@@ -54,6 +57,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        {/* Apollo website tracker */}
+        <Script id="apollo-tracker" strategy="afterInteractive">
+          {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"66314b6262e863057a50843a"})},
+document.head.appendChild(o)}initApollo();`}
+        </Script>
+      </head>
       <body className="antialiased">
         <a
           href="#main-content"
@@ -79,8 +91,9 @@ export default function RootLayout({
             gtag('config', 'G-XXXXXXXXXX');
           `}
         </Script>
+        {/* SoPro chat widget */}
         <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
+          src="https://chat.sopro.io/chat-widget/7zQa3nAo4sD2000448629786etFfyvwN.js"
           strategy="lazyOnload"
         />
       </body>

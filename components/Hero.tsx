@@ -156,6 +156,9 @@ function DeviceShowcase() {
                     key={src}
                     src={src}
                     alt={alt}
+                    width={1280}
+                    height={720}
+                    loading={i === 0 ? "eager" : "lazy"}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700
                       ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
                   />

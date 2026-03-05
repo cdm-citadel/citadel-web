@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DigitalSignageContent from "@/components/DigitalSignageContent";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Digital Signage Software – Citadel | Manage Every Screen, Effortlessly",
@@ -42,6 +43,7 @@ export const metadata: Metadata = {
 export default function DigitalSignagePage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Digital Signage" path="/digital-signage" />
       <Navbar />
       <main id="main-content" className="pt-16">
         <DigitalSignageContent />

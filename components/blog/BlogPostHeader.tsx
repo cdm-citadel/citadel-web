@@ -12,7 +12,7 @@ export default function BlogPostHeader({ post }: { post: BlogPost }) {
     <header className="pt-28 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-[calc(33.333%+1.5rem)]">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1 text-sm text-slate-400 mb-6">
+        <nav className="flex items-center gap-1 text-sm text-slate-500 mb-6">
           <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
@@ -79,6 +79,9 @@ export default function BlogPostHeader({ post }: { post: BlogPost }) {
             <img
               src={imageUrl}
               alt={post.coverImage?.alt ?? post.title}
+              width={1200}
+              height={630}
+              loading="eager"
               className="w-full h-auto object-cover"
             />
           </div>

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookADemoContent from "@/components/BookADemoContent";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Book a Demo | Citadel Digital Signage",
@@ -27,11 +29,16 @@ export const metadata: Metadata = {
 export default function BookADemoPage() {
   return (
     <>
+      <BreadcrumbJsonLd name="Book a Demo" path="/book-a-demo" />
       <Navbar />
       <main id="main-content">
         <BookADemoContent />
       </main>
       <Footer />
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
     </>
   );
 }

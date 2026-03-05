@@ -36,8 +36,6 @@ const CONTACT_METHODS = [
     iconBg: "bg-emerald-600",
     cardBg: "bg-emerald-50 border-emerald-100",
     textColor: "text-emerald-700",
-    href: "https://support.citadeldigitalsignage.com/support/home",
-    external: true,
   },
   {
     icon: Calendar,
@@ -70,7 +68,7 @@ const TRUST_POINTS = [
 const FAQ_ITEMS = [
   {
     q: "How quickly will you respond to my enquiry?",
-    a: "Our team aims to respond to all email and web form enquiries within 4 business hours, Mon–Fri 9 am – 6 pm EST. For urgent technical issues, live chat is available during the same hours for immediate assistance.",
+    a: "Our team aims to respond to all email and web form enquiries within 4 business hours, Mon–Fri 9 am – 6 pm EST. For urgent technical issues, you can also open a support ticket for immediate assistance.",
   },
   {
     q: "Is there a free trial available?",
@@ -143,26 +141,41 @@ function Hero() {
 
         {/* Contact method cards */}
         <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href, external }, i) => (
-            <motion.a
-              key={title}
-              href={href}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              variants={fadeUp} initial="hidden" animate="show" custom={0.25 + i * 0.08}
-              className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border ${cardBg}
-                          hover:shadow-lg hover:-translate-y-1 transition-all duration-200 text-center`}
-            >
-              <div className={`w-12 h-12 rounded-2xl ${iconBg} flex items-center justify-center shadow-sm
-                               group-hover:scale-110 transition-transform duration-200`}>
-                <Icon className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className={`text-sm font-bold ${textColor}`}>{title}</p>
-                <p className="text-sm font-medium text-slate-700 mt-0.5">{detail}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{sub}</p>
-              </div>
-            </motion.a>
-          ))}
+          {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href }, i) => {
+            const inner = (
+              <>
+                <div className={`w-12 h-12 rounded-2xl ${iconBg} flex items-center justify-center shadow-sm
+                                 ${href ? "group-hover:scale-110" : ""} transition-transform duration-200`}>
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className={`text-sm font-bold ${textColor}`}>{title}</p>
+                  <p className="text-sm font-medium text-slate-700 mt-0.5">{detail}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{sub}</p>
+                </div>
+              </>
+            );
+            const cls = `flex flex-col items-center gap-3 p-6 rounded-2xl border ${cardBg} text-center ${
+              href ? "group hover:shadow-lg hover:-translate-y-1 transition-all duration-200" : ""
+            }`;
+            return href ? (
+              <motion.a
+                key={title} href={href}
+                variants={fadeUp} initial="hidden" animate="show" custom={0.25 + i * 0.08}
+                className={cls}
+              >
+                {inner}
+              </motion.a>
+            ) : (
+              <motion.div
+                key={title}
+                variants={fadeUp} initial="hidden" animate="show" custom={0.25 + i * 0.08}
+                className={cls}
+              >
+                {inner}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -238,7 +251,7 @@ function ContactForm() {
       if (!res.ok) throw new Error("Submit failed");
       setSubmitted(true);
     } catch {
-      setErrors({ message: "Something went wrong. Please try again or use live chat." });
+      setErrors({ message: "Something went wrong. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -282,10 +295,12 @@ function ContactForm() {
                         <input
                           name="firstName" value={form.firstName} onChange={handleChange}
                           placeholder="Jane"
+                          aria-invalid={!!errors.firstName}
+                          aria-describedby={errors.firstName ? "err-firstName" : undefined}
                           className={`${inputBase} ${errors.firstName ? inputError : ""}`}
                         />
                         {errors.firstName && (
-                          <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+                          <p id="err-firstName" role="alert" aria-live="polite" className="mt-1 text-xs text-red-500">{errors.firstName}</p>
                         )}
                       </div>
                       <div>
@@ -295,10 +310,12 @@ function ContactForm() {
                         <input
                           name="lastName" value={form.lastName} onChange={handleChange}
                           placeholder="Smith"
+                          aria-invalid={!!errors.lastName}
+                          aria-describedby={errors.lastName ? "err-lastName" : undefined}
                           className={`${inputBase} ${errors.lastName ? inputError : ""}`}
                         />
                         {errors.lastName && (
-                          <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
+                          <p id="err-lastName" role="alert" aria-live="polite" className="mt-1 text-xs text-red-500">{errors.lastName}</p>
                         )}
                       </div>
                     </div>
@@ -312,10 +329,12 @@ function ContactForm() {
                         <input
                           type="email" name="email" value={form.email} onChange={handleChange}
                           placeholder="jane@company.com"
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? "err-email" : undefined}
                           className={`${inputBase} ${errors.email ? inputError : ""}`}
                         />
                         {errors.email && (
-                          <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                          <p id="err-email" role="alert" aria-live="polite" className="mt-1 text-xs text-red-500">{errors.email}</p>
                         )}
                       </div>
                       <div>
@@ -325,10 +344,12 @@ function ContactForm() {
                         <input
                           name="company" value={form.company} onChange={handleChange}
                           placeholder="Acme Inc."
+                          aria-invalid={!!errors.company}
+                          aria-describedby={errors.company ? "err-company" : undefined}
                           className={`${inputBase} ${errors.company ? inputError : ""}`}
                         />
                         {errors.company && (
-                          <p className="mt-1 text-xs text-red-500">{errors.company}</p>
+                          <p id="err-company" role="alert" aria-live="polite" className="mt-1 text-xs text-red-500">{errors.company}</p>
                         )}
                       </div>
                     </div>
@@ -341,6 +362,8 @@ function ContactForm() {
                       <div className="relative">
                         <select
                           name="inquiryType" value={form.inquiryType} onChange={handleChange}
+                          aria-invalid={!!errors.inquiryType}
+                          aria-describedby={errors.inquiryType ? "err-inquiryType" : undefined}
                           className={`${inputBase} appearance-none pr-10 ${errors.inquiryType ? inputError : ""}`}
                         >
                           <option value="">Select a topic…</option>
@@ -351,7 +374,7 @@ function ContactForm() {
                         <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                       </div>
                       {errors.inquiryType && (
-                        <p className="mt-1 text-xs text-red-500">{errors.inquiryType}</p>
+                        <p id="err-inquiryType" role="alert" aria-live="polite" className="mt-1 text-xs text-red-500">{errors.inquiryType}</p>
                       )}
                     </div>
 
@@ -364,11 +387,13 @@ function ContactForm() {
                         name="message" value={form.message} onChange={handleChange}
                         rows={5}
                         placeholder="Tell us a bit about your business, how many screens you need, and what you're hoping to achieve…"
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "err-message" : undefined}
                         className={`${inputBase} resize-none leading-relaxed ${errors.message ? inputError : ""}`}
                       />
                       <div className="flex items-start justify-between mt-1">
                         {errors.message
-                          ? <p className="text-xs text-red-500">{errors.message}</p>
+                          ? <p id="err-message" role="alert" aria-live="polite" className="text-xs text-red-500">{errors.message}</p>
                           : <span />
                         }
                         <span className="text-xs text-slate-400 shrink-0 ml-2">
@@ -438,6 +463,8 @@ function ContactForm() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="py-12 text-center"
+                  role="status"
+                  aria-live="polite"
                 >
                   <motion.div
                     initial={{ scale: 0, opacity: 0 }}
@@ -577,8 +604,8 @@ function FaqSection() {
           </h2>
           <p className="text-lg text-slate-500">
             Can&rsquo;t find what you&rsquo;re looking for?{" "}
-            <a href="https://support.citadeldigitalsignage.com/support/tickets/new" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
-              Open a support ticket
+            <a href="/contact" className="text-blue-600 hover:underline font-medium">
+              Contact us directly
             </a>
             .
           </p>

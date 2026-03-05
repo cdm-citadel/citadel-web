@@ -1,8 +1,8 @@
 /**
  * Root page – assembles all homepage sections in order.
  * Section order:
- *   Navbar → Hero → TrustedBy → StatsBar → HowItWorks →
- *   SignageInPractice → FeatureTabs → Hardware → Industries → Testimonials →
+ *   Navbar → Hero → TrustedBy → StatsBar → SignageInPractice →
+ *   HowItWorks → FeatureTabs → Hardware → Industries → Testimonials →
  *   Apps → Pricing → Faq → FinalCTA → Footer
  */
 
@@ -32,8 +32,8 @@ export default function HomePage() {
         <Hero />
         <TrustedBy />
         <StatsBar />
-        <HowItWorks />
         <SignageInPractice />
+        <HowItWorks />
         <FeatureTabs />
         <Hardware />
         <Industries />

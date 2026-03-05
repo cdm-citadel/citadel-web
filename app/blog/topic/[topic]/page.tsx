@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { getAllTopics, getPostsByTopic } from "@/lib/sanity/queries";
 import TopicFilter from "@/components/blog/TopicFilter";
 import BlogListingClient from "@/components/blog/BlogListingClient";
+import BlogFilterJsonLd from "@/components/blog/BlogFilterJsonLd";
 import FinalCTA from "@/components/FinalCTA";
 
 type Props = { params: Promise<{ topic: string }> };
@@ -28,6 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${label} | Citadel Blog`,
     description: `Articles about ${label.toLowerCase()} from Citadel Digital Signage.`,
     alternates: { canonical: `/blog/topic/${topic}` },
+    openGraph: {
+      type: "website",
+      siteName: "Citadel Digital Signage",
+      locale: "en_US",
+      url: `https://citadeldigitalsignage.com/blog/topic/${topic}`,
+      title: `${label} | Citadel Blog`,
+      description: `Articles about ${label.toLowerCase()} from Citadel Digital Signage.`,
+    },
+    twitter: {
+      card: "summary",
+      title: `${label} | Citadel Blog`,
+      description: `Articles about ${label.toLowerCase()} from Citadel Digital Signage.`,
+    },
   };
 }
 
@@ -39,6 +53,8 @@ export default async function TopicPage({ params }: Props) {
   ]);
 
   return (
+    <>
+    <BlogFilterJsonLd label={toLabel(topic)} path={`/blog/topic/${topic}`} />
     <main id="main-content">
       <section className="pt-32 pb-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -64,5 +80,6 @@ export default async function TopicPage({ params }: Props) {
 
       <FinalCTA />
     </main>
+    </>
   );
 }
