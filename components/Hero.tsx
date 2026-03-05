@@ -30,15 +30,6 @@ import {
 } from "lucide-react";
 
 /* ── Animation variants ──────────────────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.88 },
   show: {
@@ -170,8 +161,8 @@ function DeviceShowcase() {
                       <button
                         key={i}
                         onClick={() => setCurrentSlide(i)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          i === currentSlide ? "bg-white w-5" : "bg-white/40 w-1.5"
+                        className={`w-5 h-1.5 rounded-full transition-all duration-300 origin-center ${
+                          i === currentSlide ? "bg-white scale-x-100" : "bg-white/40 scale-x-[0.3]"
                         }`}
                         aria-label={`Slide ${i + 1}`}
                       />
@@ -332,19 +323,17 @@ export default function Hero() {
           {/* ── Left: copy ── */}
           <div>
             {/* Eyebrow pill */}
-            <motion.div
-              variants={fadeUp} initial="hidden" animate="show" custom={0}
+            <div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
                          bg-blue-100 text-blue-700 text-sm font-semibold mb-6
                          border border-blue-200"
             >
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               Trusted by 3,000+ screens worldwide
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <motion.h1
-              variants={fadeUp} initial="hidden" animate="show" custom={0.1}
+            <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900
                          leading-[1.1] tracking-tight mb-6"
             >
@@ -352,20 +341,18 @@ export default function Hero() {
               <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
                 everywhere they look.
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Subheadline */}
-            <motion.p
-              variants={fadeUp} initial="hidden" animate="show" custom={0.2}
+            <p
               className="text-lg text-slate-500 max-w-lg mb-8 leading-relaxed"
             >
               Turn any screen into a powerful communication tool. Stream
               dashboards, social feeds, and live meetings with one click.
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              variants={fadeUp} initial="hidden" animate="show" custom={0.3}
+            <div
               className="flex flex-wrap gap-3 mb-10"
             >
               <a
@@ -390,11 +377,10 @@ export default function Hero() {
                 <Play className="w-4 h-4 fill-current" />
                 Book a Demo
               </a>
-            </motion.div>
+            </div>
 
             {/* Trust signals */}
-            <motion.div
-              variants={fadeUp} initial="hidden" animate="show" custom={0.4}
+            <div
               className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500"
             >
               {["No credit card required", "Free 14-day trial", "Cancel anytime"].map((t) => (
@@ -403,7 +389,7 @@ export default function Hero() {
                   {t}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* ── Right: device showcase ── */}

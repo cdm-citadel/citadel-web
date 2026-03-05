@@ -143,6 +143,8 @@ export default function Hardware() {
                 <img
                   src="/hardware/citadel-player.webp"
                   alt="Citadel Player"
+                  width={160}
+                  height={160}
                   className="w-40 object-contain rounded-2xl border-2 border-blue-400/30 bg-white p-3"
                 />
               </div>
