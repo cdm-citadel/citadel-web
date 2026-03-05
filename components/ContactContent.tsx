@@ -61,7 +61,7 @@ const INQUIRY_TYPES = [
 ];
 
 const TRUST_POINTS = [
-  { icon: Zap,        label: "2-hour response",  sub: "During business hours"          },
+  { icon: Zap,        label: "4-hour response",  sub: "During business hours"          },
   { icon: Headphones, label: "Real humans",       sub: "No bots, no runarounds"         },
   { icon: Shield,     label: "Data protected",    sub: "SOC 2 Type II certified"        },
   { icon: Star,       label: "4.8★ rated",         sub: "2,000+ verified support reviews"},
@@ -70,7 +70,7 @@ const TRUST_POINTS = [
 const FAQ_ITEMS = [
   {
     q: "How quickly will you respond to my enquiry?",
-    a: "Our team aims to respond to all email and web form enquiries within 2 business hours, Mon–Fri 9 am – 6 pm EST. For urgent technical issues, live chat is available during the same hours for immediate assistance.",
+    a: "Our team aims to respond to all email and web form enquiries within 4 business hours, Mon–Fri 9 am – 6 pm EST. For urgent technical issues, live chat is available during the same hours for immediate assistance.",
   },
   {
     q: "Is there a free trial available?",
@@ -119,7 +119,7 @@ function Hero() {
                      bg-blue-100 text-blue-700 text-sm font-semibold mb-6 border border-blue-200"
         >
           <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-          We reply within 2 business hours
+          We reply within 4 business hours
         </motion.div>
 
         <motion.h1
@@ -452,12 +452,12 @@ function ContactForm() {
                   <p className="text-slate-500 max-w-sm mx-auto mb-8 leading-relaxed">
                     Thanks{form.firstName ? `, ${form.firstName}` : ""}! We&rsquo;ve got your message and
                     a member of our team will be in touch{" "}
-                    <span className="font-semibold text-slate-700">within 2 business hours</span>.
+                    <span className="font-semibold text-slate-700">within 4 business hours</span>.
                   </p>
 
                   <div className="grid grid-cols-3 gap-4 max-w-sm mx-auto mb-10">
                     {[
-                      { icon: Clock, label: "2-hr reply" },
+                      { icon: Clock, label: "4-hr reply" },
                       { icon: Headphones, label: "Real human" },
                       { icon: Shield, label: "Data safe" },
                     ].map(({ icon: Icon, label }) => (
