@@ -25,6 +25,7 @@ import {
   Palette, Camera, Star, Newspaper, HardDrive, Youtube,
 } from "lucide-react";
 import IndustriesGrid from "@/components/IndustriesGrid";
+import HomeSectionNav from "@/components/HomeSectionNav";
 
 /* ─── Animation helpers ─────────────────────────────────────────── */
 const fadeUp = {
@@ -38,7 +39,7 @@ const fadeUp = {
 /* ─── 1. HERO ───────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[88vh] flex items-center overflow-hidden">
       {/* Background mesh */}
       <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-100 rounded-full blur-3xl opacity-50" />
@@ -291,7 +292,7 @@ const STATS = [
 
 function StatsBar() {
   return (
-    <section className="py-12 bg-slate-900">
+    <section id="stats" className="py-12 bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {STATS.map(({ value, label }, i) => (
@@ -337,7 +338,7 @@ const PILLARS = [
 
 function CorePillars() {
   return (
-    <section className="py-24 bg-white">
+    <section id="pillars" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -1126,7 +1127,7 @@ function TeamsVisual() {
 
 function FeatureSections() {
   return (
-    <section className="py-8 bg-white">
+    <section id="features" className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
         {FEATURE_SECTIONS.map(({
           eyebrow, title, description, bullets, icon: Icon, color, bgColor, accentText, reverse,
@@ -1203,7 +1204,7 @@ const CAPABILITIES = [
 
 function CapabilitiesGrid() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section id="capabilities" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -1280,7 +1281,7 @@ function FaqSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-slate-50">
+    <section id="faq" className="py-24 bg-slate-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -1389,9 +1390,19 @@ function CtaSection() {
 }
 
 /* ─── ROOT EXPORT ───────────────────────────────────────────────── */
+const DS_SECTIONS = [
+  { id: "hero",         label: "Home"         },
+  { id: "stats",        label: "Stats"        },
+  { id: "pillars",      label: "Why Citadel"  },
+  { id: "features",     label: "Features"     },
+  { id: "capabilities", label: "Capabilities" },
+  { id: "faq",          label: "FAQ"          },
+];
+
 export default function DigitalSignageContent() {
   return (
     <>
+      <HomeSectionNav sections={DS_SECTIONS} />
       <Hero />
       <StatsBar />
       <CorePillars />

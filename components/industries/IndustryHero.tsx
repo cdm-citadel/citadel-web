@@ -19,7 +19,7 @@ export default function IndustryHero({ data }: { data: IndustryData }) {
   const screenGradient = getScreenGradient(data.slug);
 
   return (
-    <section className="pt-28 pb-20 bg-white overflow-hidden">
+    <section id="hero" className="pt-28 pb-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Breadcrumb */}

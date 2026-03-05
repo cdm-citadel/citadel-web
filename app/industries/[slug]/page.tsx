@@ -16,6 +16,7 @@ import IndustryTestimonial from "@/components/industries/IndustryTestimonial";
 import IndustryFaq         from "@/components/industries/IndustryFaq";
 import IndustriesGrid     from "@/components/IndustriesGrid";
 import FinalCTA            from "@/components/FinalCTA";
+import HomeSectionNav      from "@/components/HomeSectionNav";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -107,6 +108,15 @@ export default async function IndustryPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+
+      <HomeSectionNav sections={[
+        { id: "hero",         label: "Home"        },
+        { id: "solutions",    label: "Solutions"   },
+        { id: "use-cases",    label: "Use Cases"   },
+        { id: "features",     label: "Features"    },
+        { id: "testimonial",  label: "Testimonial" },
+        { id: "faq",          label: "FAQ"         },
+      ]} />
 
       <main id="main-content">
         <IndustryHero         data={industry} />

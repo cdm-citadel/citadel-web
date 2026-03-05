@@ -1,15 +1,16 @@
 "use client";
 
 /**
- * HomeSectionNav – floating right-side dot navigation for the homepage.
+ * HomeSectionNav – floating right-side dot navigation.
  * - Active section label stays visible; others appear on hover.
  * - Progress lines between dots: blue for passed/active, grey for upcoming.
  * - Only visible on xl screens and larger.
+ * - Accepts an optional `sections` prop to reuse across pages.
  */
 
 import { useEffect, useState } from "react";
 
-const SECTIONS = [
+const DEFAULT_SECTIONS: Section[] = [
   { id: "hero",          label: "Home"         },
   { id: "in-practice",   label: "In Practice"  },
   { id: "how-it-works",  label: "How It Works" },
@@ -19,13 +20,15 @@ const SECTIONS = [
   { id: "faq",           label: "FAQ"          },
 ];
 
-export default function HomeSectionNav() {
-  const [active, setActive] = useState("hero");
+type Section = { id: string; label: string };
+
+export default function HomeSectionNav({ sections = DEFAULT_SECTIONS }: { sections?: Section[] }) {
+  const [active, setActive] = useState(sections[0]?.id ?? "hero");
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    SECTIONS.forEach(({ id }) => {
+    sections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (!el) return;
 
@@ -43,17 +46,17 @@ export default function HomeSectionNav() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [sections]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const activeIndex = SECTIONS.findIndex((s) => s.id === active);
+  const activeIndex = sections.findIndex((s) => s.id === active);
 
   return (
     <div className="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end">
-      {SECTIONS.map(({ id, label }, i) => {
+      {sections.map(({ id, label }, i) => {
         const isActiveSec  = i === activeIndex;
         const isPast       = i < activeIndex;
         const isActiveOrPast = i <= activeIndex;
@@ -95,7 +98,7 @@ export default function HomeSectionNav() {
             </button>
 
             {/* Progress line to next dot */}
-            {i < SECTIONS.length - 1 && (
+            {i < sections.length - 1 && (
               <div className="w-3 flex justify-center">
                 <div
                   className={`w-0.5 h-5 transition-colors duration-300

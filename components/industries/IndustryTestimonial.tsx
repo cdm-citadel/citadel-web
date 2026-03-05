@@ -42,7 +42,7 @@ export default function IndustryTestimonial({ data }: { data: IndustryData }) {
   const miniQuotes = MINI_QUOTES[data.slug] ?? [];
 
   return (
-    <section className="py-24 bg-slate-900 overflow-hidden">
+    <section id="testimonial" className="py-24 bg-slate-900 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
