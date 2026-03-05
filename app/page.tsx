@@ -5,28 +5,28 @@
  *   HowItWorks → FeatureTabs → Hardware → Industries → Testimonials →
  *   Apps → Pricing → Faq → FinalCTA → Footer
  *
- * Below-fold sections are code-split via next/dynamic to reduce initial JS.
+ * Heaviest below-fold sections are code-split via next/dynamic.
  */
 
 import dynamic from "next/dynamic";
-import Navbar           from "@/components/Navbar";
-import Hero             from "@/components/Hero";
-import TrustedBy        from "@/components/TrustedBy";
-import StatsBar         from "@/components/StatsBar";
-import Footer           from "@/components/Footer";
-import HomeSectionNav   from "@/components/HomeSectionNav";
+import Navbar              from "@/components/Navbar";
+import Hero                from "@/components/Hero";
+import TrustedBy           from "@/components/TrustedBy";
+import StatsBar            from "@/components/StatsBar";
+import SignageInPractice   from "@/components/SignageInPractice";
+import HowItWorks          from "@/components/HowItWorks";
+import Industries          from "@/components/Industries";
+import Pricing             from "@/components/Pricing";
+import Faq                 from "@/components/Faq";
+import FinalCTA            from "@/components/FinalCTA";
+import Footer              from "@/components/Footer";
+import HomeSectionNav      from "@/components/HomeSectionNav";
 
-/* Below-fold: lazy-loaded JS chunks, still SSR-rendered */
-const SignageInPractice = dynamic(() => import("@/components/SignageInPractice"));
-const HowItWorks        = dynamic(() => import("@/components/HowItWorks"));
-const FeatureTabs       = dynamic(() => import("@/components/FeatureTabs"));
-const Hardware          = dynamic(() => import("@/components/Hardware"));
-const Industries        = dynamic(() => import("@/components/Industries"));
-const Testimonials      = dynamic(() => import("@/components/Testimonials"));
-const Apps              = dynamic(() => import("@/components/Apps"));
-const Pricing           = dynamic(() => import("@/components/Pricing"));
-const Faq               = dynamic(() => import("@/components/Faq"));
-const FinalCTA          = dynamic(() => import("@/components/FinalCTA"));
+/* Heavy below-fold sections: lazy-loaded JS chunks, still SSR-rendered */
+const FeatureTabs  = dynamic(() => import("@/components/FeatureTabs"));
+const Hardware     = dynamic(() => import("@/components/Hardware"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const Apps         = dynamic(() => import("@/components/Apps"));
 
 export default function HomePage() {
   return (

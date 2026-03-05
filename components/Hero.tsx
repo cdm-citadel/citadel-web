@@ -10,7 +10,6 @@
  */
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -153,15 +152,14 @@ function DeviceShowcase() {
             {!isVideo && hasSlides && (
               <>
                 {HERO_SLIDES.map(({ src, alt }, i) => (
-                  <Image
+                  <img
                     key={src}
                     src={src}
                     alt={alt}
                     width={1280}
                     height={720}
-                    priority={i === 0}
                     loading={i === 0 ? "eager" : "lazy"}
-                    sizes="(max-width: 768px) 100vw, 560px"
+                    fetchPriority={i === 0 ? "high" : "auto"}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700
                       ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
                   />

@@ -61,6 +61,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
+        {/* Preload LCP hero image */}
+        <link rel="preload" href="/hero/slide-1.webp" as="image" type="image/webp" />
         {/* Apollo website tracker */}
         <Script id="apollo-tracker" strategy="lazyOnload">
           {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
