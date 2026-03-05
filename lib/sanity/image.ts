@@ -1,8 +1,8 @@
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import { sanityClient } from "./client";
 import type { SanityImage } from "./types";
 
-const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
+const builder = sanityClient ? createImageUrlBuilder(sanityClient) : null;
 
 /** Chainable image URL builder — returns empty string when Sanity is not configured */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

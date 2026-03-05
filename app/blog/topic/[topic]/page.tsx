@@ -16,7 +16,9 @@ function toLabel(slug: string) {
 
 export async function generateStaticParams() {
   const topics = await getAllTopics();
-  return topics.map((topic) => ({ topic }));
+  return topics
+    .filter((t): t is string => typeof t === "string" && t.length > 0)
+    .map((topic) => ({ topic }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
