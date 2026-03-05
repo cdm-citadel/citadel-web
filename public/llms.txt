@@ -1,0 +1,65 @@
+# Citadel Digital Signage
+
+> The easiest, most powerful digital signage software to manage your screens, engage your customers, and drive revenue.
+
+Citadel is a cloud-based digital signage platform that lets businesses create, schedule, and publish content to any screen from one dashboard. No IT team required.
+
+## Key Facts
+
+- Product: Cloud digital signage software (SaaS)
+- Website: https://citadeldigitalsignage.com
+- App: https://app.citadeldigitalsignage.com
+- Support: https://support.citadeldigitalsignage.com
+- Free trial: 14 days, no credit card required
+- Uptime SLA: 99.9%
+- Screens managed: 3,000+
+
+## Features
+
+- Drag-and-drop content creation
+- Real-time scheduling and playlist management
+- Canva integration for design
+- Offline playback (screens keep playing without internet)
+- Multi-location management from one dashboard
+- Built-in apps: media player, dashboards, streams, weather, news feeds, YouTube
+- Role-based access control
+- Analytics and engagement tracking
+- Works with any screen (horizontal or vertical orientation)
+
+## Industries Served
+
+- Healthcare: patient education, wayfinding, wait-time displays
+- Retail: promotions, product info, in-store engagement
+- Restaurants: digital menu boards, specials, order status
+- Corporate: internal comms, meeting room displays, KPI dashboards
+- Gyms & Spas: class schedules, promotions, member engagement
+- Transportation: real-time schedules, wayfinding, alerts
+- Education: campus announcements, event boards, emergency alerts
+- Finance: rate boards, queue management, compliance displays
+- Manufacturing: production dashboards, safety info, shift schedules
+
+## Pages
+
+- Homepage: https://citadeldigitalsignage.com
+- Digital Signage Product: https://citadeldigitalsignage.com/digital-signage
+- Pricing: https://citadeldigitalsignage.com/pricing
+- Contact: https://citadeldigitalsignage.com/contact
+- Book a Demo: https://citadeldigitalsignage.com/book-a-demo
+- Blog: https://citadeldigitalsignage.com/blog
+- Terms of Service: https://citadeldigitalsignage.com/terms-of-service
+
+## Industry Pages
+
+- Healthcare: https://citadeldigitalsignage.com/industries/healthcare
+- Retail: https://citadeldigitalsignage.com/industries/retail
+- Restaurants: https://citadeldigitalsignage.com/industries/restaurants
+- Corporate: https://citadeldigitalsignage.com/industries/corporate
+- Gyms & Spas: https://citadeldigitalsignage.com/industries/gyms-spas
+- Transportation: https://citadeldigitalsignage.com/industries/transportation
+- Education: https://citadeldigitalsignage.com/industries/education
+- Finance: https://citadeldigitalsignage.com/industries/finance
+- Manufacturing: https://citadeldigitalsignage.com/industries/manufacturing
+
+## Blog Feed
+
+- RSS: https://citadeldigitalsignage.com/feed.xml

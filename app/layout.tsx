@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     types: { "application/rss+xml": "/feed.xml" },
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "PASTE_GOOGLE_VERIFICATION_CODE_HERE",
+  },
   openGraph: {
     type: "website",
     siteName: "Citadel Digital Signage",
@@ -80,7 +83,7 @@ document.head.appendChild(o)}initApollo();`}
         <CookieConsentBanner />
         {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-096838S100"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -88,7 +91,7 @@ document.head.appendChild(o)}initApollo();`}
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-096838S100');
           `}
         </Script>
         {/* SoPro chat widget */}

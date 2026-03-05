@@ -1,3 +1,13 @@
 User-agent: *
 Allow: /
 Sitemap: https://citadeldigitalsignage.com/sitemap.xml
+
+# LLM context
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
