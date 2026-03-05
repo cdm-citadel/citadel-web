@@ -120,236 +120,158 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: actual platform UI mockup */}
+          {/* Right: content-drop illustration */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:block"
+            aria-hidden="true"
+            className="relative hidden lg:block h-[460px]"
           >
             {/* Ambient glow */}
             <div className="absolute inset-0 -z-10 blur-3xl opacity-20 rounded-3xl
                             bg-gradient-to-br from-blue-400 via-sky-400 to-blue-600 scale-90" />
 
-            {/* Browser chrome */}
-            <div className="rounded-2xl bg-white border border-slate-200 shadow-2xl shadow-slate-300/40 overflow-hidden">
-              <div className="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                <div className="ml-3 flex-1 bg-slate-700 rounded px-3 py-1 text-[10px] text-slate-400 font-mono">
-                  app.citadelds.io/screens
-                </div>
-              </div>
-
-              {/* App shell — sidebar + main, modal overlaid */}
-              <div className="relative flex h-[365px] overflow-hidden">
-
-                {/* ── Sidebar ── */}
-                <div className="w-[132px] shrink-0 bg-slate-900 flex flex-col">
-                  {/* Logo row */}
-                  <div className="flex items-center gap-1.5 px-3 py-2.5 border-b border-slate-700/60">
-                    <div className="w-5 h-5 bg-blue-500 rounded flex items-center justify-center shrink-0">
-                      <Monitor className="w-3 h-3 text-white" />
-                    </div>
-                    <span className="text-white text-[11px] font-bold">Citadel</span>
-                    <span className="ml-auto text-[7px] bg-blue-600 text-white px-1.5 py-0.5 rounded font-semibold">
-                      Manage Plan
-                    </span>
+            {/* ── Horizontal screen (landscape) ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute left-0 bottom-4 w-[340px]"
+            >
+              {/* Bezel */}
+              <div className="bg-slate-900 rounded-xl p-1.5 shadow-2xl shadow-slate-400/30">
+                {/* Screen content — coffee shop menu */}
+                <div className="bg-white rounded-lg overflow-hidden h-[200px] flex flex-col">
+                  {/* Menu header */}
+                  <div className="bg-gradient-to-r from-amber-700 to-amber-600 px-3 py-2 flex items-center justify-between">
+                    <span className="text-white text-[11px] font-bold tracking-wide">DAILY SPECIALS</span>
+                    <span className="text-amber-200 text-[8px]">Downtown Cafe</span>
                   </div>
-
-                  {/* Nav items */}
-                  <div className="flex-1 px-2 py-2 overflow-hidden">
-                    <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest px-1.5 mt-1 mb-1">
-                      Streaming
-                    </p>
+                  {/* Menu items */}
+                  <div className="flex-1 px-3 py-2 space-y-1.5">
                     {[
-                      { label: "Screens",     active: true  },
-                      { label: "Channels",    active: false },
-                      { label: "Playlists",   active: false },
-                      { label: "Files/Assets",active: false },
-                    ].map(({ label, active }) => (
-                      <div
-                        key={label}
-                        className={`px-2 py-1.5 rounded text-[10px] font-medium mb-0.5 ${
-                          active ? "bg-blue-600 text-white" : "text-slate-400"
-                        }`}
-                      >
-                        {label}
-                      </div>
-                    ))}
-
-                    <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest px-1.5 mt-3 mb-1">
-                      Administration
-                    </p>
-                    {["Tags", "Bulk Actions", "Analytics", "Exports"].map((label) => (
-                      <div key={label} className="px-2 py-1.5 rounded text-[10px] text-slate-400 mb-0.5">
-                        {label}
+                      { item: "Cappuccino", price: "$4.50", hot: true },
+                      { item: "Iced Matcha Latte", price: "$5.25", hot: false },
+                      { item: "Avocado Toast", price: "$8.00", hot: true },
+                      { item: "Acai Bowl", price: "$9.50", hot: false },
+                    ].map(({ item, price, hot }) => (
+                      <div key={item} className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] text-slate-700 font-medium">{item}</span>
+                          {hot && <span className="text-[7px] bg-red-100 text-red-600 px-1 rounded font-bold">HOT</span>}
+                        </div>
+                        <span className="text-[10px] text-slate-900 font-bold">{price}</span>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                {/* ── Main content ── */}
-                <div className="flex-1 flex flex-col bg-slate-50 min-w-0 overflow-hidden">
-                  {/* Toolbar */}
-                  <div className="bg-white border-b border-slate-100 px-3 py-2 flex items-center gap-2 shrink-0">
-                    <span className="text-[12px] font-bold text-slate-800 shrink-0">Screens</span>
-                    <div className="flex-1 min-w-0 bg-slate-100 rounded px-2 py-1 text-[9px] text-slate-400 truncate">
-                      Search screens by name or pin...
-                    </div>
-                    <div className="w-5 h-5 bg-slate-100 rounded-full flex items-center justify-center shrink-0">
-                      <Info className="w-3 h-3 text-slate-400" />
-                    </div>
-                    <div className="flex items-center gap-1 bg-blue-600 text-white text-[8px] font-semibold px-2 py-1.5 rounded shrink-0">
-                      <Plus className="w-2.5 h-2.5" />
-                      Create New Screen
-                    </div>
-                  </div>
-
-                  {/* Table header */}
-                  <div className="flex items-center px-3 py-1.5 bg-white border-b border-slate-100 shrink-0">
-                    <div className="w-3 h-3 rounded border border-slate-300 shrink-0 mr-3" />
-                    <span className="flex-1 text-[9px] font-semibold text-slate-500 uppercase tracking-wide">Name</span>
-                    <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-wide w-14 text-right">PIN</span>
-                    <div className="w-5" />
-                  </div>
-
-                  {/* Rows */}
-                  {[
-                    { name: "My Screen 1",  pin: "000000" },
-                    { name: "My Screen 2",  pin: "000000" },
-                    { name: "My Screen 3",  pin: "000000" },
-                    { name: "My Screen 4",  pin: "000000", highlight: true },
-                    { name: "My Screen 5",  pin: "000000" },
-                    { name: "My Screen 6",  pin: "000000" },
-                    { name: "My Screen 7",  pin: "000000" },
-                  ].map(({ name, pin, highlight }) => (
-                    <div
-                      key={name}
-                      className={`flex items-center px-3 py-2 border-b border-slate-50 shrink-0 ${
-                        highlight ? "bg-blue-50/70" : "bg-white"
-                      }`}
-                    >
-                      <div className="w-3 h-3 rounded border border-slate-200 shrink-0 mr-3" />
-                      <span className={`flex-1 text-[10px] truncate ${
-                        highlight ? "text-blue-700 font-semibold" : "text-slate-700"
-                      }`}>
-                        {name}
-                      </span>
-                      <span className={`text-[10px] font-mono w-14 text-right shrink-0 ${
-                        highlight ? "text-blue-600 font-bold" : "text-blue-500"
-                      }`}>
-                        {pin}
-                      </span>
-                      <div className="w-5 shrink-0 text-center text-slate-200 text-[10px]">×</div>
-                    </div>
-                  ))}
-
-                  {/* Pagination */}
-                  <div className="mt-auto bg-white border-t border-slate-100 px-3 py-1.5 flex items-center justify-between shrink-0">
-                    <span className="text-[9px] text-slate-400">25 per page</span>
-                    <span className="text-[9px] text-slate-400">Page 1 of 12 (282 total rows)</span>
+                  {/* Promo strip */}
+                  <div className="bg-amber-50 border-t border-amber-100 px-3 py-1.5 flex items-center gap-2">
+                    <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
+                    <span className="text-[9px] text-amber-700 font-semibold">Happy Hour 3–5 PM — 20% off all drinks!</span>
                   </div>
                 </div>
-
-                {/* ── Modal overlay ── */}
-                <div className="absolute inset-0 bg-black/25 flex items-center justify-center z-20">
-                  <div className="bg-white rounded-xl shadow-2xl w-[260px] overflow-hidden border border-slate-200">
-
-                    {/* Modal header */}
-                    <div className="px-4 pt-3.5 pb-2.5 border-b border-slate-100">
-                      <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                        <span className="text-[11px] font-bold text-slate-900 leading-tight">
-                          Screen – My Screen 4
-                        </span>
-                        <span className="px-1.5 py-0.5 bg-green-100 text-green-700 text-[8px] font-bold rounded-full shrink-0">
-                          Online
-                        </span>
-                      </div>
-                      <p className="text-[9px] text-slate-400">View and manage screen information.</p>
-                    </div>
-
-                    {/* Tabs */}
-                    <div className="flex border-b border-slate-100 overflow-x-hidden">
-                      {["Screen Info", "Playback", "Scheduling", "Location"].map((tab, i) => (
-                        <button
-                          key={tab}
-                          className={`px-2.5 py-1.5 text-[8px] font-semibold whitespace-nowrap ${
-                            i === 0
-                              ? "border-b-2 border-blue-600 text-blue-600"
-                              : "text-slate-400"
-                          }`}
-                        >
-                          {tab}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Modal body */}
-                    <div className="px-4 py-3 space-y-2.5">
-                      <div>
-                        <p className="text-[9px] font-semibold text-slate-600 mb-1">Screen Name *</p>
-                        <div className="border border-slate-200 rounded-lg px-3 py-1.5 text-[10px] text-slate-700">
-                          My Screen 4
-                        </div>
-                      </div>
-                      <div className="flex gap-4 flex-wrap">
-                        <div>
-                          <span className="text-[9px] text-slate-500">PIN: </span>
-                          <span className="text-[10px] text-blue-600 font-mono font-bold">000000</span>
-                          <RefreshCcw className="w-2.5 h-2.5 text-slate-400 inline ml-1" />
-                        </div>
-                        <div>
-                          <span className="text-[9px] text-slate-500">Device: </span>
-                          <span className="text-[10px] text-slate-700">Desktop App</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className="text-[9px] text-slate-500">Last Online: </span>
-                        <span className="text-[10px] text-slate-600">Feb 21, 2026, 12:04 AM</span>
-                      </div>
-                      <div>
-                        <p className="text-[9px] font-semibold text-slate-600 mb-1">Notes</p>
-                        <div className="border border-slate-200 rounded-lg px-3 py-2 text-[9px] text-slate-500 bg-slate-50 h-11 overflow-hidden leading-relaxed">
-                          These are my notes...
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Modal footer */}
-                    <div className="px-4 py-2.5 border-t border-slate-100 flex justify-end gap-2">
-                      <button className="px-3 py-1.5 text-[9px] font-semibold text-slate-600 border border-slate-200 rounded-lg">
-                        Cancel
-                      </button>
-                      <button className="px-3 py-1.5 text-[9px] font-semibold text-slate-400 bg-slate-100 rounded-lg">
-                        Save Changes
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
               </div>
-            </div>
+              {/* Stand */}
+              <div className="mx-auto w-12 h-2 bg-slate-800 rounded-b" />
+              <div className="mx-auto w-20 h-1.5 bg-slate-700 rounded-b-lg" />
+            </motion.div>
+
+            {/* ── Vertical screen (portrait) ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-4 top-4 w-[180px]"
+            >
+              {/* Bezel */}
+              <div className="bg-slate-900 rounded-xl p-1.5 shadow-2xl shadow-slate-400/30">
+                {/* Screen content — news / social feed */}
+                <div className="bg-white rounded-lg overflow-hidden h-[290px] flex flex-col">
+                  {/* Weather strip */}
+                  <div className="bg-gradient-to-r from-sky-500 to-blue-500 px-2.5 py-1.5 flex items-center gap-1.5">
+                    <Cloud className="w-3 h-3 text-white" />
+                    <span className="text-white text-[9px] font-semibold">72°F Sunny</span>
+                    <span className="ml-auto text-sky-100 text-[8px]">New York</span>
+                  </div>
+                  {/* Image card */}
+                  <div className="p-2">
+                    <div className="bg-gradient-to-br from-blue-100 to-sky-50 rounded-lg h-[80px] flex items-center justify-center">
+                      <div className="text-center">
+                        <Monitor className="w-5 h-5 text-blue-500 mx-auto mb-1" />
+                        <span className="text-[8px] text-blue-600 font-bold">WELCOME</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* News headlines */}
+                  <div className="px-2.5 space-y-2 flex-1">
+                    <div>
+                      <p className="text-[9px] font-bold text-slate-800 leading-tight">Company Q1 results exceed expectations</p>
+                      <p className="text-[8px] text-slate-500 mt-0.5">5 min ago</p>
+                    </div>
+                    <div className="border-t border-slate-100 pt-2">
+                      <p className="text-[9px] font-bold text-slate-800 leading-tight">New office lobby display installed</p>
+                      <p className="text-[8px] text-slate-500 mt-0.5">12 min ago</p>
+                    </div>
+                    <div className="border-t border-slate-100 pt-2">
+                      <p className="text-[9px] font-bold text-slate-800 leading-tight">Team event this Friday at 4 PM</p>
+                      <p className="text-[8px] text-slate-500 mt-0.5">1 hr ago</p>
+                    </div>
+                  </div>
+                  {/* Ticker */}
+                  <div className="bg-slate-900 px-2 py-1">
+                    <p className="text-[8px] text-blue-400 font-mono truncate">BREAKING: Digital signage adoption up 34% year-over-year...</p>
+                  </div>
+                </div>
+              </div>
+              {/* Stand */}
+              <div className="mx-auto w-8 h-2 bg-slate-800 rounded-b" />
+              <div className="mx-auto w-14 h-1.5 bg-slate-700 rounded-b-lg" />
+            </motion.div>
+
+            {/* ── Floating content tiles ── */}
+            {[
+              { Icon: Youtube,   label: "Video",    bg: "bg-red-50",     text: "text-red-500",     x: "left-[38%]", y: "top-0",       delay: 0.9,  dur: "6s" },
+              { Icon: Cloud,     label: "Weather",  bg: "bg-sky-50",     text: "text-sky-500",     x: "left-[18%]", y: "top-0",       delay: 1.0,  dur: "7s" },
+              { Icon: Star,      label: "Social",   bg: "bg-purple-50",  text: "text-purple-500",  x: "right-0",    y: "top-[42%]",   delay: 1.1,  dur: "5.5s" },
+              { Icon: Camera,    label: "Images",   bg: "bg-amber-50",   text: "text-amber-500",   x: "left-[2%]",  y: "top-[38%]",   delay: 1.2,  dur: "6.5s" },
+              { Icon: Newspaper, label: "News",     bg: "bg-emerald-50", text: "text-emerald-500", x: "left-[48%]", y: "bottom-0",    delay: 1.3,  dur: "7.5s" },
+              { Icon: Calendar,  label: "Schedule", bg: "bg-blue-50",    text: "text-blue-500",    x: "right-[8%]", y: "bottom-[10%]", delay: 1.4, dur: "5s" },
+            ].map(({ Icon, label, bg, text, x, y, delay, dur }) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, scale: 0.6, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay, duration: 0.45, ease: "backOut" }}
+                className={`absolute ${x} ${y} z-30`}
+              >
+                <div
+                  className={`${bg} backdrop-blur-sm border border-white/60 rounded-xl p-2 shadow-lg
+                              flex flex-col items-center gap-1 w-[56px] cursor-default`}
+                  style={{ animation: `float ${dur} ease-in-out infinite`, animationDelay: `${delay}s` }}
+                >
+                  <Icon className={`w-5 h-5 ${text}`} />
+                  <span className={`text-[8px] font-bold ${text}`}>{label}</span>
+                </div>
+              </motion.div>
+            ))}
 
             {/* Floating badges */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, duration: 0.4, ease: "backOut" }}
+              transition={{ delay: 1.6, duration: 0.4, ease: "backOut" }}
               className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl border border-slate-100
-                         px-3.5 py-2 flex items-center gap-2 z-10"
+                         px-3.5 py-2 flex items-center gap-2 z-40"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs font-semibold text-slate-700">282 screens online</span>
+              <Tv className="w-4 h-4 text-blue-600" />
+              <span className="text-xs font-semibold text-slate-700">Any screen, any orientation</span>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5, duration: 0.4, ease: "backOut" }}
-              className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl border border-slate-100
-                         px-3.5 py-2 flex items-center gap-2 z-10"
+              transition={{ delay: 1.8, duration: 0.4, ease: "backOut" }}
+              className="absolute -bottom-8 left-0 bg-white rounded-2xl shadow-xl border border-slate-100
+                         px-3.5 py-2 flex items-center gap-2 z-40"
             >
-              <BarChart2 className="w-4 h-4 text-blue-600" />
-              <span className="text-xs font-semibold text-slate-700">+31% engagement</span>
+              <Layers className="w-4 h-4 text-blue-600" />
+              <span className="text-xs font-semibold text-slate-700">Drag & drop any content</span>
             </motion.div>
           </motion.div>
 
