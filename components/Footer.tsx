@@ -47,7 +47,7 @@ const COLUMNS: FooterColumn[] = [
     heading: "Resources",
     links: [
       { label: "Blog",          href: "/blog" },
-      { label: "Knowledgebase", href: "https://support.citadeldigitalsignage.com/support/home",        external: true },
+      { label: "Knowledgebase", href: "https://support.citadeldigitalsignage.com/support/home", external: true },
       { label: "Support",       href: "https://support.citadeldigitalsignage.com/support/tickets/new", external: true },
       { label: "Book a Demo",   href: "/book-a-demo" },
     ],
