@@ -6,7 +6,7 @@
  */
 
 import Link from "next/link";
-import { Monitor, Linkedin, Mail, Phone } from "lucide-react";
+import { Monitor, Linkedin, Mail } from "lucide-react";
 
 type FooterLink = {
   label: string;
@@ -94,13 +94,6 @@ export default function Footer() {
               >
                 <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 hello@citadeldigitalsignage.com
-              </a>
-              <a
-                href="tel:+18005551234"
-                className="flex items-center gap-2 text-sm hover:text-white transition-colors"
-              >
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                +1 (800) 555-1234
               </a>
             </div>
 

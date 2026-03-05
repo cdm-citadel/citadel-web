@@ -77,7 +77,7 @@ const PLANS: Plan[] = [
       "Dedicated account manager",
       "SLA-backed uptime guarantee",
       "API access",
-      "Priority phone support",
+      "Priority support",
     ],
     cta: "Try For Free",
   },
@@ -133,7 +133,7 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
     icon: MessageSquare,
     rows: [
       { label: "Email support",             business: true,         enterprise: true },
-      { label: "Priority phone support",    business: false,        enterprise: true },
+      { label: "Priority support",           business: false,        enterprise: true },
       { label: "Dedicated account manager", business: false,        enterprise: true },
       { label: "Onboarding assistance",     business: false,        enterprise: true },
       { label: "SLA uptime guarantee",      business: false,        enterprise: true },

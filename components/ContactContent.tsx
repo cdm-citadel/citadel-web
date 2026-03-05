@@ -12,9 +12,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Mail, MessageSquare, Calendar, Clock, ArrowRight,
+  MessageSquare, Calendar, Clock, ArrowRight,
   CheckCircle2, ChevronDown, Star, Headphones,
-  Zap, Shield, Send, Phone, MapPin,
+  Zap, Shield, Send,
 } from "lucide-react";
 
 /* ─── Animation helpers ─────────────────────────────────────────── */
@@ -28,16 +28,6 @@ const fadeUp = {
 
 /* ─── Data ───────────────────────────────────────────────────────── */
 const CONTACT_METHODS = [
-  {
-    icon: Mail,
-    title: "Email Us",
-    detail: "hello@citadelds.io",
-    sub: "Reply within 2 business hours",
-    iconBg: "bg-blue-600",
-    cardBg: "bg-blue-50 border-blue-100",
-    textColor: "text-blue-700",
-    href: "mailto:hello@citadelds.io",
-  },
   {
     icon: MessageSquare,
     title: "Live Chat",
@@ -152,7 +142,7 @@ function Hero() {
         </motion.p>
 
         {/* Contact method cards */}
-        <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
           {CONTACT_METHODS.map(({ icon: Icon, title, detail, sub, iconBg, cardBg, textColor, href, external }, i) => (
             <motion.a
               key={title}
@@ -185,7 +175,7 @@ type FormState = {
   lastName: string;
   email: string;
   company: string;
-  phone: string;
+
   inquiryType: string;
   message: string;
   agreed: boolean;
@@ -193,7 +183,7 @@ type FormState = {
 
 const EMPTY_FORM: FormState = {
   firstName: "", lastName: "", email: "", company: "",
-  phone: "", inquiryType: "", message: "", agreed: false,
+  inquiryType: "", message: "", agreed: false,
 };
 
 function ContactForm() {
@@ -232,9 +222,26 @@ function ContactForm() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1400));
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          company: form.company,
+          inquiryType: form.inquiryType,
+          message: form.message,
+        }),
+      });
+      if (!res.ok) throw new Error("Submit failed");
+      setSubmitted(true);
+    } catch {
+      setErrors({ message: "Something went wrong. Please try again or use live chat." });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const inputBase =
@@ -326,39 +333,26 @@ function ContactForm() {
                       </div>
                     </div>
 
-                    {/* Phone + Inquiry type */}
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                          Phone Number
-                          <span className="ml-1 text-slate-400 font-normal">(optional)</span>
-                        </label>
-                        <input
-                          type="tel" name="phone" value={form.phone} onChange={handleChange}
-                          placeholder="+1 (555) 000-0000"
-                          className={inputBase}
-                        />
+                    {/* Inquiry type */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                        Inquiry Type <span className="text-red-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <select
+                          name="inquiryType" value={form.inquiryType} onChange={handleChange}
+                          className={`${inputBase} appearance-none pr-10 ${errors.inquiryType ? inputError : ""}`}
+                        >
+                          <option value="">Select a topic…</option>
+                          {INQUIRY_TYPES.map(t => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                       </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-600 mb-1.5">
-                          Inquiry Type <span className="text-red-400">*</span>
-                        </label>
-                        <div className="relative">
-                          <select
-                            name="inquiryType" value={form.inquiryType} onChange={handleChange}
-                            className={`${inputBase} appearance-none pr-10 ${errors.inquiryType ? inputError : ""}`}
-                          >
-                            <option value="">Select a topic…</option>
-                            {INQUIRY_TYPES.map(t => (
-                              <option key={t} value={t}>{t}</option>
-                            ))}
-                          </select>
-                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
-                        </div>
-                        {errors.inquiryType && (
-                          <p className="mt-1 text-xs text-red-500">{errors.inquiryType}</p>
-                        )}
-                      </div>
+                      {errors.inquiryType && (
+                        <p className="mt-1 text-xs text-red-500">{errors.inquiryType}</p>
+                      )}
                     </div>
 
                     {/* Message */}
@@ -520,24 +514,18 @@ function ContactForm() {
               </div>
             </div>
 
-            {/* Direct contact */}
+            {/* Business hours */}
             <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7 space-y-4">
-              <h3 className="text-base font-bold text-slate-900">Direct contact</h3>
-              {[
-                { icon: Mail,    label: "Email",   value: "hello@citadelds.io"   },
-                { icon: Phone,   label: "Phone",   value: "+1 (800) 000-0000"    },
-                { icon: Clock,   label: "Hours",   value: "Mon–Fri, 9 am – 6 pm EST" },
-              ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">{label}</p>
-                    <p className="text-sm font-medium text-slate-700">{value}</p>
-                  </div>
+              <h3 className="text-base font-bold text-slate-900">Business hours</h3>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4 text-slate-500" />
                 </div>
-              ))}
+                <div>
+                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">Hours</p>
+                  <p className="text-sm font-medium text-slate-700">Mon–Fri, 9 am – 6 pm EST</p>
+                </div>
+              </div>
             </div>
 
             {/* Testimonial */}
@@ -589,8 +577,8 @@ function FaqSection() {
           </h2>
           <p className="text-lg text-slate-500">
             Can&rsquo;t find what you&rsquo;re looking for?{" "}
-            <a href="mailto:hello@citadelds.io" className="text-blue-600 hover:underline font-medium">
-              Email us directly
+            <a href="https://support.citadeldigitalsignage.com/support/tickets/new" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
+              Open a support ticket
             </a>
             .
           </p>
