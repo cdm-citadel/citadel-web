@@ -13,7 +13,7 @@
  *   8. Final CTA
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -529,6 +529,286 @@ const FEATURE_SECTIONS = [
   },
 ];
 
+/* ─── Canva → Citadel animated visual ─────────────────────────── */
+const CANVA_DESIGNS = [
+  { title: "Summer Promo", gradient: "from-orange-400 to-pink-500", shapes: "circles" as const },
+  { title: "Menu Board", gradient: "from-emerald-400 to-teal-500", shapes: "bars" as const },
+  { title: "Welcome Slide", gradient: "from-blue-400 to-violet-500", shapes: "grid" as const },
+];
+
+function CanvaToScreen() {
+  const [phase, setPhase] = useState<"idle" | "flying" | "landed">("idle");
+  const [activeDesign, setActiveDesign] = useState(0);
+
+  useEffect(() => {
+    const IDLE = 1800;
+    const FLY = 900;
+    const LAND = 2000;
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const cycle = () => {
+      setPhase("idle");
+      timeout = setTimeout(() => {
+        setPhase("flying");
+        timeout = setTimeout(() => {
+          setPhase("landed");
+          timeout = setTimeout(() => {
+            setActiveDesign((p) => (p + 1) % CANVA_DESIGNS.length);
+            cycle();
+          }, LAND);
+        }, FLY);
+      }, IDLE);
+    };
+
+    cycle();
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const design = CANVA_DESIGNS[activeDesign];
+
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      custom={0.1}
+      viewport={{ once: true }}
+      className="relative h-80 rounded-3xl bg-blue-50 overflow-hidden flex items-center justify-center"
+    >
+      {/* ── Canva card (left side) ── */}
+      <motion.div
+        animate={
+          phase === "flying"
+            ? { x: 80, scale: 0.55, opacity: 0 }
+            : phase === "landed"
+            ? { x: 0, scale: 1, opacity: 0.4 }
+            : { x: 0, scale: 1, opacity: 1 }
+        }
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-6 sm:left-10 top-1/2 -translate-y-1/2 w-[130px]"
+      >
+        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+          {/* Canva header bar */}
+          <div className="bg-gradient-to-r from-[#7d2ae8] to-[#00c4cc] px-3 py-1.5 flex items-center gap-1.5">
+            <span className="text-white text-[9px] font-bold tracking-wide">Canva</span>
+            <div className="ml-auto flex gap-0.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+            </div>
+          </div>
+          {/* Design preview */}
+          <div className={`h-[90px] bg-gradient-to-br ${design.gradient} p-3 flex flex-col justify-between`}>
+            {design.shapes === "circles" && (
+              <>
+                <div className="flex gap-1.5">
+                  <div className="w-5 h-5 rounded-full bg-white/30" />
+                  <div className="w-5 h-5 rounded-full bg-white/20" />
+                </div>
+                <div className="space-y-1">
+                  <div className="h-1.5 w-16 bg-white/50 rounded-full" />
+                  <div className="h-1.5 w-10 bg-white/30 rounded-full" />
+                </div>
+              </>
+            )}
+            {design.shapes === "bars" && (
+              <>
+                <div className="flex gap-1 items-end h-8">
+                  <div className="w-3 h-4 bg-white/30 rounded-sm" />
+                  <div className="w-3 h-6 bg-white/40 rounded-sm" />
+                  <div className="w-3 h-8 bg-white/50 rounded-sm" />
+                  <div className="w-3 h-5 bg-white/35 rounded-sm" />
+                </div>
+                <div className="space-y-1">
+                  <div className="h-1.5 w-14 bg-white/50 rounded-full" />
+                  <div className="h-1.5 w-8 bg-white/30 rounded-full" />
+                </div>
+              </>
+            )}
+            {design.shapes === "grid" && (
+              <>
+                <div className="grid grid-cols-3 gap-1">
+                  <div className="h-4 bg-white/30 rounded-sm" />
+                  <div className="h-4 bg-white/20 rounded-sm" />
+                  <div className="h-4 bg-white/40 rounded-sm" />
+                </div>
+                <div className="space-y-1">
+                  <div className="h-1.5 w-16 bg-white/50 rounded-full" />
+                  <div className="h-1.5 w-12 bg-white/30 rounded-full" />
+                </div>
+              </>
+            )}
+          </div>
+          {/* Design title */}
+          <div className="px-3 py-2">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={activeDesign}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-[10px] font-semibold text-slate-700"
+              >
+                {design.title}
+              </motion.p>
+            </AnimatePresence>
+            <p className="text-[8px] text-slate-400 mt-0.5">1920 × 1080</p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ── Animated connection dots ── */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            animate={
+              phase === "flying"
+                ? { opacity: [0, 1, 0], x: [0, 20, 40], scale: [0.8, 1.2, 0.8] }
+                : { opacity: 0.3, x: 0, scale: 1 }
+            }
+            transition={
+              phase === "flying"
+                ? { duration: 0.7, delay: i * 0.15, ease: "easeInOut" }
+                : { duration: 0.3 }
+            }
+            className="w-2 h-2 rounded-full bg-blue-500"
+          />
+        ))}
+        <motion.div
+          animate={phase === "flying" ? { scale: [1, 1.3, 1], opacity: 1 } : { scale: 1, opacity: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <ArrowRight className="w-4 h-4 text-blue-500" />
+        </motion.div>
+      </div>
+
+      {/* ── Citadel screen (right side) ── */}
+      <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-[150px]">
+        {/* Monitor bezel */}
+        <div className="bg-[#1a1a1a] rounded-xl p-1.5 pb-2.5 shadow-xl">
+          <div className="rounded-lg overflow-hidden bg-slate-900 relative" style={{ aspectRatio: "16/9" }}>
+            {/* Screen content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={phase === "landed" ? `landed-${activeDesign}` : "empty"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0"
+              >
+                {phase === "landed" ? (
+                  <div className={`w-full h-full bg-gradient-to-br ${design.gradient} p-2 flex flex-col justify-between`}>
+                    {design.shapes === "circles" && (
+                      <>
+                        <div className="flex gap-1">
+                          <div className="w-3 h-3 rounded-full bg-white/30" />
+                          <div className="w-3 h-3 rounded-full bg-white/20" />
+                        </div>
+                        <div className="space-y-0.5">
+                          <div className="h-1 w-12 bg-white/50 rounded-full" />
+                          <div className="h-1 w-8 bg-white/30 rounded-full" />
+                        </div>
+                      </>
+                    )}
+                    {design.shapes === "bars" && (
+                      <>
+                        <div className="flex gap-0.5 items-end h-5">
+                          <div className="w-2 h-2.5 bg-white/30 rounded-sm" />
+                          <div className="w-2 h-4 bg-white/40 rounded-sm" />
+                          <div className="w-2 h-5 bg-white/50 rounded-sm" />
+                          <div className="w-2 h-3 bg-white/35 rounded-sm" />
+                        </div>
+                        <div className="space-y-0.5">
+                          <div className="h-1 w-10 bg-white/50 rounded-full" />
+                          <div className="h-1 w-6 bg-white/30 rounded-full" />
+                        </div>
+                      </>
+                    )}
+                    {design.shapes === "grid" && (
+                      <>
+                        <div className="grid grid-cols-3 gap-0.5">
+                          <div className="h-2.5 bg-white/30 rounded-sm" />
+                          <div className="h-2.5 bg-white/20 rounded-sm" />
+                          <div className="h-2.5 bg-white/40 rounded-sm" />
+                        </div>
+                        <div className="space-y-0.5">
+                          <div className="h-1 w-12 bg-white/50 rounded-full" />
+                          <div className="h-1 w-8 bg-white/30 rounded-full" />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Monitor className="w-5 h-5 text-slate-700" />
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Flying design card overlay during flight */}
+            <AnimatePresence>
+              {phase === "flying" && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.3, x: -60 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className={`absolute inset-0 bg-gradient-to-br ${design.gradient}`}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Dashed border pulse during flight */}
+            {phase === "flying" && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.6, 0] }}
+                transition={{ duration: 0.8, repeat: 1 }}
+                className="absolute inset-0 border-2 border-dashed border-white/60 rounded-lg"
+              />
+            )}
+          </div>
+          {/* Monitor chin */}
+          <div className="flex justify-center pt-1">
+            <div className="w-5 h-0.5 rounded-full bg-[#2a2a2a]" />
+          </div>
+        </div>
+        {/* Monitor stand */}
+        <div className="flex justify-center">
+          <div className="w-5 h-3 bg-[#1a1a1a] rounded-b-sm" />
+        </div>
+        <div className="flex justify-center -mt-0.5">
+          <div className="w-12 h-1 bg-[#1a1a1a] rounded-full" />
+        </div>
+        {/* Citadel label */}
+        <div className="text-center mt-2">
+          <span className="text-[10px] font-bold text-slate-600">Citadel</span>
+          <span className="text-[10px] font-bold text-blue-600">DS</span>
+        </div>
+      </div>
+
+      {/* ── Floating "Published" badge ── */}
+      <AnimatePresence>
+        {phase === "landed" && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.35, ease: "backOut" }}
+            className="absolute bottom-4 right-4 sm:right-8 bg-white rounded-full
+                       px-3 py-1.5 shadow-md border border-slate-100 flex items-center gap-1.5"
+          >
+            <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+            <span className="text-[10px] font-semibold text-slate-700">Published to screen</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
 function FeatureSections() {
   return (
     <section className="py-8 bg-white">
@@ -563,16 +843,20 @@ function FeatureSections() {
             </motion.div>
 
             {/* Visual side */}
-            <motion.div
-              variants={fadeUp} initial="hidden" whileInView="show" custom={0.1}
-              viewport={{ once: true }}
-              className={`h-80 rounded-3xl ${bgColor} border-2 border-dashed border-current
-                          ${accentText} opacity-60 flex items-center justify-center`}
-            >
-              <div className={`w-20 h-20 rounded-2xl ${color} flex items-center justify-center shadow-xl`}>
-                <Icon className="w-10 h-10 text-white" />
-              </div>
-            </motion.div>
+            {eyebrow === "Content Creation" ? (
+              <CanvaToScreen />
+            ) : (
+              <motion.div
+                variants={fadeUp} initial="hidden" whileInView="show" custom={0.1}
+                viewport={{ once: true }}
+                className={`h-80 rounded-3xl ${bgColor} border-2 border-dashed border-current
+                            ${accentText} opacity-60 flex items-center justify-center`}
+              >
+                <div className={`w-20 h-20 rounded-2xl ${color} flex items-center justify-center shadow-xl`}>
+                  <Icon className="w-10 h-10 text-white" />
+                </div>
+              </motion.div>
+            )}
           </div>
         ))}
       </div>

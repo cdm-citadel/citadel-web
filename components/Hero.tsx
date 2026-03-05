@@ -10,7 +10,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Play,
@@ -23,6 +23,10 @@ import {
   Video,
   CloudSun,
   Rss,
+  BarChart3,
+  Zap,
+  Eye,
+  Users,
 } from "lucide-react";
 
 /* ── Animation variants ──────────────────────────────────────────── */
@@ -70,19 +74,39 @@ const DOCK_APPS = [
   { icon: Rss, label: "Feeds", gradient: "from-rose-500 to-pink-600" },
 ];
 
+/* ── Cycling badge config (matched to DOCK_APPS order) ───────────── */
+// 0 = Media, 1 = Dashboards, 2 = Streams, 3 = Weather, 4 = Feeds
+const TOP_LEFT_BADGES = [
+  { icon: ImageIcon, iconBg: "bg-blue-500/10", iconColor: "text-blue-600", dotColor: "bg-blue-400", label: "Media library", sub: "48 assets" },
+  { icon: LayoutDashboard, iconBg: "bg-emerald-500/10", iconColor: "text-emerald-600", dotColor: "bg-emerald-400", label: "Dashboards", sub: "6 active" },
+  { icon: Video, iconBg: "bg-purple-500/10", iconColor: "text-purple-600", dotColor: "bg-purple-400", label: "Live stream", sub: "broadcasting" },
+  { icon: CloudSun, iconBg: "bg-amber-500/10", iconColor: "text-amber-600", dotColor: "bg-amber-400", label: "Weather app", sub: "active" },
+  { icon: Rss, iconBg: "bg-rose-500/10", iconColor: "text-rose-600", dotColor: "bg-rose-400", label: "Social feeds", sub: "synced" },
+];
+
+const BOTTOM_RIGHT_BADGES = [
+  { icon: Eye, iconBg: "bg-blue-500/10", iconColor: "text-blue-600", value: "2.4k", sub: "images served" },
+  { icon: BarChart3, iconBg: "bg-emerald-500/10", iconColor: "text-emerald-600", value: "12", sub: "live dashboards" },
+  { icon: TrendingUp, iconBg: "bg-purple-500/10", iconColor: "text-purple-600", value: "3x", sub: "more engagement" },
+  { icon: Zap, iconBg: "bg-amber-500/10", iconColor: "text-amber-600", value: "99.9%", sub: "uptime" },
+  { icon: Users, iconBg: "bg-rose-500/10", iconColor: "text-rose-600", value: "4.2k", sub: "plays today" },
+];
+
 /* ── Device showcase (right column) ──────────────────────────────── */
 function DeviceShowcase() {
   const [activeDock, setActiveDock] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [badgeIndex, setBadgeIndex] = useState(0);
   const [videoFailed, setVideoFailed] = useState(false);
 
   const isVideo = HERO_MODE === "video" && !videoFailed;
   const hasSlides = HERO_SLIDES.length > 0;
 
-  /* Auto-cycle active dock icon (synced with slideshow) */
+  /* Auto-cycle active dock icon + badges (synced with slideshow) */
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveDock((p) => (p + 1) % DOCK_APPS.length);
+      setBadgeIndex((p) => (p + 1) % TOP_LEFT_BADGES.length);
     }, SLIDE_INTERVAL);
     return () => clearInterval(timer);
   }, []);
@@ -170,48 +194,70 @@ function DeviceShowcase() {
             <div className="w-8 h-1 rounded-full bg-[#2a2a2a]" />
           </div>
 
-          {/* ── "All screens live" card – top left ── */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.0, duration: 0.5, ease: "backOut" }}
-            className="absolute -top-4 -left-5 z-20
-                       bg-white/60 backdrop-blur-xl border border-white/30
-                       rounded-2xl px-4 py-3 shadow-lg"
-          >
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-green-500/10 flex items-center justify-center">
-                <Wifi className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <p className="text-sm font-bold text-slate-900 leading-none">All screens</p>
-                </div>
-                <p className="text-[11px] text-slate-500 mt-0.5">live</p>
-              </div>
-            </div>
-          </motion.div>
+          {/* ── Cycling badge – top left ── */}
+          <div className="absolute -top-4 -left-5 z-20">
+            <AnimatePresence mode="wait">
+              {(() => {
+                const b = TOP_LEFT_BADGES[badgeIndex];
+                const Icon = b.icon;
+                return (
+                  <motion.div
+                    key={badgeIndex}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="bg-white/60 backdrop-blur-xl border border-white/30
+                               rounded-2xl px-4 py-3 shadow-lg"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-9 h-9 rounded-xl ${b.iconBg} flex items-center justify-center`}>
+                        <Icon className={`w-5 h-5 ${b.iconColor}`} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className={`w-2 h-2 rounded-full ${b.dotColor} animate-pulse`} />
+                          <p className="text-sm font-bold text-slate-900 leading-none">{b.label}</p>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-0.5">{b.sub}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </div>
 
-          {/* ── Stat card – bottom right ── */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.5, ease: "backOut" }}
-            className="absolute -bottom-4 -right-5 z-20
-                       bg-white/60 backdrop-blur-xl border border-white/30
-                       rounded-2xl px-4 py-3 shadow-lg"
-          >
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
-              </div>
-              <div>
-                <p className="text-xl font-bold text-slate-900 leading-none">80%</p>
-                <p className="text-[11px] text-slate-500 mt-0.5">message recall</p>
-              </div>
-            </div>
-          </motion.div>
+          {/* ── Cycling badge – bottom right ── */}
+          <div className="absolute -bottom-4 -right-5 z-20">
+            <AnimatePresence mode="wait">
+              {(() => {
+                const b = BOTTOM_RIGHT_BADGES[badgeIndex];
+                const Icon = b.icon;
+                return (
+                  <motion.div
+                    key={badgeIndex}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="bg-white/60 backdrop-blur-xl border border-white/30
+                               rounded-2xl px-4 py-3 shadow-lg"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-9 h-9 rounded-xl ${b.iconBg} flex items-center justify-center`}>
+                        <Icon className={`w-5 h-5 ${b.iconColor}`} />
+                      </div>
+                      <div>
+                        <p className="text-xl font-bold text-slate-900 leading-none">{b.value}</p>
+                        <p className="text-[11px] text-slate-500 mt-0.5">{b.sub}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 

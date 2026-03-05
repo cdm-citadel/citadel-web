@@ -69,7 +69,7 @@ const components = {
 
 export default function BlogContent({ body }: { body: PortableTextBlock[] }) {
   return (
-    <div className="blog-prose max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="blog-prose">
       <PortableText value={body} components={components} />
     </div>
   );

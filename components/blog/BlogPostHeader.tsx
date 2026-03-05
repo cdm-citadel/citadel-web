@@ -10,7 +10,7 @@ export default function BlogPostHeader({ post }: { post: BlogPost }) {
 
   return (
     <header className="pt-28 pb-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-[calc(33.333%+1.5rem)]">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1 text-sm text-slate-400 mb-6">
           <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>

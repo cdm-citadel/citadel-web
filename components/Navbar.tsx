@@ -41,14 +41,6 @@ const INDUSTRY_NAV = [
 /** Resources dropdown items */
 const RESOURCES_NAV = [
   {
-    label: "Blog",
-    description: "Tips, guides, and industry insights",
-    href: "/blog",
-    icon: FileText,
-    color: "bg-indigo-50 text-indigo-600",
-    external: false,
-  },
-  {
     label: "Knowledgebase",
     description: "Guides, tutorials, and how-tos",
     href: "https://support.citadeldigitalsignage.com/support/home",
@@ -70,6 +62,14 @@ const RESOURCES_NAV = [
     href: "/book-a-demo",
     icon: CalendarDays,
     color: "bg-purple-50 text-purple-600",
+    external: false,
+  },
+  {
+    label: "Blog",
+    description: "Tips, guides, and industry insights",
+    href: "/blog",
+    icon: FileText,
+    color: "bg-indigo-50 text-indigo-600",
     external: false,
   },
 ];
