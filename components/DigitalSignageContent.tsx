@@ -22,6 +22,7 @@ import {
   Lock, Users, Calendar, Wifi, Cloud,
   RefreshCcw, Tv, Layout, ShieldCheck,
   Sparkles, MousePointer2, Puzzle, Plus, Info,
+  Palette, Camera, Star, Newspaper, HardDrive, Youtube,
 } from "lucide-react";
 import IndustriesGrid from "@/components/IndustriesGrid";
 
@@ -809,6 +810,398 @@ function CanvaToScreen() {
   );
 }
 
+/* ─── Scheduling & Playlists animated visual ─────────────────────── */
+const SCHEDULE_SLOTS = [
+  { time: "8:00 AM", label: "Morning", content: "Welcome Msg", gradient: "from-amber-400 to-orange-400", icon: "sun" as const },
+  { time: "12:00 PM", label: "Afternoon", content: "Lunch Menu", gradient: "from-emerald-400 to-teal-500", icon: "utensils" as const },
+  { time: "5:00 PM", label: "Evening", content: "Happy Hour", gradient: "from-violet-500 to-purple-600", icon: "moon" as const },
+];
+
+const PLAYLIST_ITEMS = [
+  { name: "Promo Banner", duration: "15s", gradient: "from-blue-400 to-sky-500" },
+  { name: "Instagram Feed", duration: "20s", gradient: "from-pink-500 to-rose-500" },
+  { name: "Weather Widget", duration: "10s", gradient: "from-amber-400 to-orange-400" },
+  { name: "Google Reviews", duration: "15s", gradient: "from-emerald-400 to-green-500" },
+];
+
+function SchedulingVisual() {
+  const [activeSlot, setActiveSlot] = useState(0);
+  const [activePlaylistItem, setActivePlaylistItem] = useState(0);
+
+  /* Cycle through time slots */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlot((p) => (p + 1) % SCHEDULE_SLOTS.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  /* Cycle playlist items faster */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActivePlaylistItem((p) => (p + 1) % PLAYLIST_ITEMS.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const slot = SCHEDULE_SLOTS[activeSlot];
+
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      custom={0.1}
+      viewport={{ once: true }}
+      className="relative h-80 rounded-3xl bg-sky-50 overflow-hidden"
+    >
+      <div className="absolute inset-0 flex items-center px-5 sm:px-8 gap-4">
+
+        {/* ── Left: Schedule timeline ── */}
+        <div className="w-[140px] shrink-0">
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+            {/* Header */}
+            <div className="bg-sky-600 px-3 py-2 flex items-center gap-1.5">
+              <Calendar className="w-3 h-3 text-white" />
+              <span className="text-white text-[9px] font-bold">Day Schedule</span>
+            </div>
+
+            {/* Time slots */}
+            <div className="p-2 space-y-1.5">
+              {SCHEDULE_SLOTS.map((s, i) => {
+                const isActive = i === activeSlot;
+                return (
+                  <motion.div
+                    key={s.time}
+                    animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className={`flex items-center gap-2 px-2 py-1.5 rounded-lg transition-colors duration-300 ${
+                      isActive ? "bg-sky-50 ring-1 ring-sky-300" : "bg-white"
+                    }`}
+                  >
+                    {/* Time indicator */}
+                    <div className="flex flex-col items-center shrink-0 w-7">
+                      <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                        isActive ? "bg-sky-500" : "bg-slate-200"
+                      }`} />
+                      {i < SCHEDULE_SLOTS.length - 1 && (
+                        <div className="w-px h-3 bg-slate-200 mt-0.5" />
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <p className={`text-[8px] font-bold transition-colors duration-300 ${
+                        isActive ? "text-sky-700" : "text-slate-400"
+                      }`}>
+                        {s.time}
+                      </p>
+                      <p className={`text-[9px] font-semibold truncate transition-colors duration-300 ${
+                        isActive ? "text-slate-800" : "text-slate-500"
+                      }`}>
+                        {s.content}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Playlist section */}
+            <div className="border-t border-slate-100 px-2 py-2">
+              <p className="text-[7px] font-bold text-slate-400 uppercase tracking-widest px-1 mb-1">Playlist</p>
+              {PLAYLIST_ITEMS.map((item, i) => {
+                const isActive = i === activePlaylistItem;
+                return (
+                  <div
+                    key={item.name}
+                    className={`flex items-center gap-1.5 px-1.5 py-1 rounded text-[8px] transition-all duration-300 ${
+                      isActive ? "bg-sky-50 text-sky-700 font-bold" : "text-slate-400"
+                    }`}
+                  >
+                    <div className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-300 ${
+                      isActive ? "bg-sky-500" : "bg-slate-200"
+                    }`} />
+                    <span className="truncate">{item.name}</span>
+                    <span className="ml-auto text-[7px] text-slate-300 shrink-0">{item.duration}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Right: Screen preview ── */}
+        <div className="flex-1 flex flex-col items-center justify-center">
+          {/* Monitor */}
+          <div className="w-full max-w-[200px]">
+            <div className="bg-[#1a1a1a] rounded-xl p-1.5 pb-2.5 shadow-xl">
+              <div className="rounded-lg overflow-hidden bg-slate-900 relative" style={{ aspectRatio: "16/9" }}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSlot}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className={`absolute inset-0 bg-gradient-to-br ${slot.gradient} p-3 flex flex-col justify-between`}
+                  >
+                    {/* Mock content on screen */}
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-white/25" />
+                      <div className="h-1.5 w-12 bg-white/40 rounded-full" />
+                    </div>
+                    <div>
+                      <div className="h-2 w-20 bg-white/50 rounded-full mb-1" />
+                      <div className="h-1.5 w-14 bg-white/30 rounded-full" />
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Playlist item cycling overlay at bottom */}
+                <div className="absolute bottom-0 inset-x-0 bg-black/30 backdrop-blur-sm px-2 py-1">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activePlaylistItem}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.25 }}
+                      className="flex items-center gap-1.5"
+                    >
+                      <div className={`w-2 h-2 rounded-sm bg-gradient-to-br ${PLAYLIST_ITEMS[activePlaylistItem].gradient}`} />
+                      <span className="text-[7px] text-white/80 font-semibold">{PLAYLIST_ITEMS[activePlaylistItem].name}</span>
+                      <span className="ml-auto text-[6px] text-white/50">{PLAYLIST_ITEMS[activePlaylistItem].duration}</span>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+              {/* Monitor chin */}
+              <div className="flex justify-center pt-1">
+                <div className="w-5 h-0.5 rounded-full bg-[#2a2a2a]" />
+              </div>
+            </div>
+            {/* Stand */}
+            <div className="flex justify-center">
+              <div className="w-5 h-3 bg-[#1a1a1a] rounded-b-sm" />
+            </div>
+            <div className="flex justify-center -mt-0.5">
+              <div className="w-12 h-1 bg-[#1a1a1a] rounded-full" />
+            </div>
+          </div>
+
+          {/* Time label badge */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlot}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="mt-3 inline-flex items-center gap-1.5 bg-white rounded-full
+                         px-3 py-1 shadow-md border border-slate-100"
+            >
+              <Clock className="w-3 h-3 text-sky-500" />
+              <span className="text-[10px] font-semibold text-slate-700">{slot.label}</span>
+              <span className="text-[9px] text-slate-400">{slot.time}</span>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Apps & Integrations visual ─────────────────────────────────── */
+const MINI_APPS = [
+  { name: "Canva", icon: Palette, bg: "bg-teal-500", shadow: "shadow-teal-500/30" },
+  { name: "YouTube", icon: Youtube, bg: "bg-red-500", shadow: "shadow-red-500/30" },
+  { name: "Instagram", icon: Camera, bg: "bg-gradient-to-br from-pink-500 to-purple-600", shadow: "shadow-pink-500/30" },
+  { name: "Google Drive", icon: HardDrive, bg: "bg-green-500", shadow: "shadow-green-500/30" },
+  { name: "Weather", icon: Cloud, bg: "bg-amber-500", shadow: "shadow-amber-500/30" },
+  { name: "Reviews", icon: Star, bg: "bg-blue-500", shadow: "shadow-blue-500/30" },
+  { name: "News Ticker", icon: Newspaper, bg: "bg-sky-600", shadow: "shadow-sky-500/30" },
+];
+
+function AppsGridVisual() {
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      custom={0.1}
+      viewport={{ once: true }}
+      className="relative h-80 rounded-3xl bg-violet-50 overflow-hidden flex items-center justify-center"
+    >
+      {/* Subtle dot pattern */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.8) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+
+      <div className="relative px-6 py-4 w-full max-w-[380px]">
+        {/* Mini header */}
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-6 h-6 rounded-lg bg-violet-600 flex items-center justify-center">
+            <Puzzle className="w-3.5 h-3.5 text-white" />
+          </div>
+          <span className="text-[11px] font-bold text-slate-700">Built-in Apps</span>
+          <span className="ml-auto text-[9px] font-semibold text-violet-500 bg-violet-100 px-2 py-0.5 rounded-full">
+            All included
+          </span>
+        </div>
+
+        {/* App grid */}
+        <div className="grid grid-cols-4 gap-2.5">
+          {/* Canva featured — spans 2 cols */}
+          <div className="col-span-2 bg-white rounded-xl p-3 shadow-md border border-slate-100 flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl ${MINI_APPS[0].bg} flex items-center justify-center shadow-lg ${MINI_APPS[0].shadow} shrink-0`}>
+              <Palette className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-[11px] font-bold text-slate-800">Canva</p>
+              <p className="text-[8px] text-slate-400 leading-snug">Design & publish in one click</p>
+            </div>
+          </div>
+
+          {/* Remaining apps — single cells */}
+          {MINI_APPS.slice(1).map(({ name, icon: Icon, bg, shadow }) => (
+            <div
+              key={name}
+              className="bg-white rounded-xl p-2.5 shadow-sm border border-slate-100
+                         flex flex-col items-center gap-1.5 hover:shadow-md transition-shadow"
+            >
+              <div className={`w-8 h-8 rounded-lg ${bg} flex items-center justify-center shadow-md ${shadow}`}>
+                <Icon className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-[8px] font-semibold text-slate-600 text-center leading-tight">{name}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom badge */}
+        <div className="mt-3 flex justify-center">
+          <div className="inline-flex items-center gap-1.5 bg-white rounded-full px-3 py-1 shadow-sm border border-slate-100">
+            <CheckCircle2 className="w-3 h-3 text-green-500" />
+            <span className="text-[9px] font-semibold text-slate-600">No extra fees — activate any app instantly</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Teams & Permissions visual ─────────────────────────────────── */
+const TEAM_MEMBERS = [
+  { name: "Sarah Chen", role: "Admin", email: "sarah@company.com", color: "bg-blue-500", access: "Full access" },
+  { name: "James Miller", role: "Editor", email: "james@company.com", color: "bg-emerald-500", access: "Publish & edit" },
+  { name: "Alex Rivera", role: "Viewer", email: "alex@company.com", color: "bg-slate-400", access: "View only" },
+];
+
+const ROLE_BADGES = {
+  Admin: { bg: "bg-blue-100", text: "text-blue-700" },
+  Editor: { bg: "bg-emerald-100", text: "text-emerald-700" },
+  Viewer: { bg: "bg-slate-100", text: "text-slate-600" },
+} as const;
+
+function TeamsVisual() {
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      custom={0.1}
+      viewport={{ once: true }}
+      className="relative h-80 rounded-3xl bg-emerald-50 overflow-hidden flex items-center justify-center"
+    >
+      <div className="relative px-5 py-4 w-full max-w-[400px]">
+        {/* Team panel */}
+        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+          {/* Header */}
+          <div className="bg-slate-900 px-4 py-2.5 flex items-center gap-2">
+            <div className="w-5 h-5 bg-blue-500 rounded flex items-center justify-center shrink-0">
+              <Monitor className="w-3 h-3 text-white" />
+            </div>
+            <span className="text-white text-[10px] font-bold">Citadel</span>
+            <span className="text-slate-500 text-[10px]">/</span>
+            <span className="text-slate-300 text-[10px] font-medium">Team Members</span>
+            <div className="ml-auto flex items-center gap-1 bg-emerald-600 text-white text-[8px] font-semibold px-2 py-1 rounded">
+              <Plus className="w-2.5 h-2.5" />
+              Invite
+            </div>
+          </div>
+
+          {/* Role filter pills */}
+          <div className="px-4 py-2 border-b border-slate-100 flex items-center gap-1.5">
+            <span className="text-[8px] font-semibold text-slate-400 mr-1">Filter:</span>
+            {(["All", "Admin", "Editor", "Viewer"] as const).map((r, i) => (
+              <span
+                key={r}
+                className={`text-[8px] font-semibold px-2 py-0.5 rounded-full ${
+                  i === 0 ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"
+                }`}
+              >
+                {r}
+              </span>
+            ))}
+            <span className="ml-auto text-[8px] text-slate-400">3 members</span>
+          </div>
+
+          {/* Member list */}
+          <div className="divide-y divide-slate-50">
+            {TEAM_MEMBERS.map((member) => {
+              const badge = ROLE_BADGES[member.role as keyof typeof ROLE_BADGES];
+              return (
+                <div key={member.name} className="px-4 py-2.5 flex items-center gap-3">
+                  {/* Avatar */}
+                  <div className={`w-7 h-7 rounded-full ${member.color} flex items-center justify-center shrink-0`}>
+                    <span className="text-white text-[9px] font-bold">
+                      {member.name.split(" ").map(n => n[0]).join("")}
+                    </span>
+                  </div>
+                  {/* Info */}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-semibold text-slate-800 truncate">{member.name}</p>
+                    <p className="text-[8px] text-slate-400 truncate">{member.email}</p>
+                  </div>
+                  {/* Role badge */}
+                  <span className={`text-[8px] font-bold px-2 py-0.5 rounded-full shrink-0 ${badge.bg} ${badge.text}`}>
+                    {member.role}
+                  </span>
+                  {/* Access level */}
+                  <span className="text-[7px] text-slate-400 w-16 text-right shrink-0 hidden sm:block">
+                    {member.access}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Permissions summary footer */}
+          <div className="bg-slate-50 px-4 py-2 border-t border-slate-100 flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3 h-3 text-emerald-500" />
+              <span className="text-[8px] font-semibold text-slate-600">Role-based access</span>
+            </div>
+            <div className="w-px h-3 bg-slate-200" />
+            <div className="flex items-center gap-1.5">
+              <Lock className="w-3 h-3 text-amber-500" />
+              <span className="text-[8px] font-semibold text-slate-600">Zone permissions</span>
+            </div>
+            <div className="w-px h-3 bg-slate-200" />
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3 h-3 text-blue-500" />
+              <span className="text-[8px] font-semibold text-slate-600">Approvals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function FeatureSections() {
   return (
     <section className="py-8 bg-white">
@@ -845,6 +1238,12 @@ function FeatureSections() {
             {/* Visual side */}
             {eyebrow === "Content Creation" ? (
               <CanvaToScreen />
+            ) : eyebrow === "Scheduling & Playlists" ? (
+              <SchedulingVisual />
+            ) : eyebrow === "Apps & Integrations" ? (
+              <AppsGridVisual />
+            ) : eyebrow === "Teams & Permissions" ? (
+              <TeamsVisual />
             ) : (
               <motion.div
                 variants={fadeUp} initial="hidden" whileInView="show" custom={0.1}
