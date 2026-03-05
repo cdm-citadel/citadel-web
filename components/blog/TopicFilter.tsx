@@ -37,7 +37,7 @@ export default function TopicFilter({
       </Link>
 
       {/* Topics */}
-      {topics.map((topic) => (
+      {topics.filter(Boolean).map((topic) => (
         <Link
           key={topic}
           href={`/blog/topic/${topic}`}

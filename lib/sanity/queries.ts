@@ -47,9 +47,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 /* ── All unique topics across published posts ──────────────────── */
 export async function getAllTopics(): Promise<string[]> {
-  return query<string[]>(
+  const raw = await query<string[]>(
     `array::unique(*[_type == "post" && !(_id in path("drafts.**"))].topics[])`
   );
+  return raw.filter((t): t is string => typeof t === "string" && t.length > 0);
 }
 
 /* ── All unique industries across published posts ──────────────── */
