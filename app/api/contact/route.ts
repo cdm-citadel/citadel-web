@@ -12,16 +12,6 @@ import { NextRequest, NextResponse } from "next/server";
 const FRESHDESK_DOMAIN = process.env.FRESHDESK_DOMAIN ?? "";
 const FRESHDESK_API_KEY = process.env.FRESHDESK_API_KEY ?? "";
 
-// Map inquiry types to Freshdesk ticket types
-const INQUIRY_TYPE_MAP: Record<string, string> = {
-  "General Inquiry": "Question",
-  "Request a Demo": "Question",
-  "Sales & Pricing": "Question",
-  "Technical Support": "Problem",
-  "Partnership": "Question",
-  "Billing & Account": "Question",
-};
-
 export async function POST(req: NextRequest) {
   // Validate server config
   if (!FRESHDESK_DOMAIN || !FRESHDESK_API_KEY) {
@@ -53,7 +43,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  // Build Freshdesk ticket payload
+  // Build Freshdesk ticket payload — only required fields
   // https://developers.freshdesk.com/api/#create_ticket
   const ticketPayload = {
     name: `${firstName.trim()} ${lastName.trim()}`,
@@ -67,18 +57,16 @@ export async function POST(req: NextRequest) {
 <p>${message.trim().replace(/\n/g, "<br/>")}</p>`,
     status: 2, // Open
     priority: 1, // Low
-    type: INQUIRY_TYPE_MAP[inquiryType] ?? "Question",
-    source: 7, // "Chat" maps to web form in most Freshdesk configs; 1 = Email
-    tags: ["website-contact-form", inquiryType.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")],
-    custom_fields: {
-      cf_company: company.trim(),
-    },
+    source: 2, // Portal
+    tags: ["website-contact-form"],
   };
 
   // Determine the Freshdesk API URL
+  // Custom domain: "support.citadeldigitalsignage.com" → use as-is
+  // Subdomain: "citadelcenter" → append .freshdesk.com
   const baseUrl = FRESHDESK_DOMAIN.includes(".")
-    ? `https://${FRESHDESK_DOMAIN}` // custom domain like support.citadeldigitalsignage.com
-    : `https://${FRESHDESK_DOMAIN}.freshdesk.com`; // subdomain
+    ? `https://${FRESHDESK_DOMAIN}`
+    : `https://${FRESHDESK_DOMAIN}.freshdesk.com`;
 
   try {
     const res = await fetch(`${baseUrl}/api/v2/tickets`, {
@@ -94,7 +82,7 @@ export async function POST(req: NextRequest) {
       const errText = await res.text();
       console.error("Freshdesk API error:", res.status, errText);
       return NextResponse.json(
-        { error: "Failed to submit your message. Please try again." },
+        { error: `Freshdesk error: ${res.status} — ${errText}` },
         { status: 502 }
       );
     }
