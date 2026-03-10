@@ -527,15 +527,12 @@ function ContactForm() {
             <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
               <h3 className="text-base font-bold text-slate-900 mb-5">Why teams choose Citadel support</h3>
               <div className="space-y-4">
-                {TRUST_POINTS.map(({ icon: Icon, label, sub }) => (
-                  <div key={label} className="flex items-start gap-4">
+                {TRUST_POINTS.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-blue-600" />
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-800">{label}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{sub}</p>
-                    </div>
+                    <p className="text-sm font-semibold text-slate-800">{label}</p>
                   </div>
                 ))}
               </div>

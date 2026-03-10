@@ -47,7 +47,7 @@ const PLANS: Plan[] = [
     icon: Zap,
     name: "Business",
     monthly: 17,
-    annual: 14,
+    annual: 15,
     tagline: "Perfect for growing businesses",
     featured: false,
     highlights: [
@@ -67,7 +67,7 @@ const PLANS: Plan[] = [
     icon: Building2,
     name: "Enterprise",
     monthly: 27,
-    annual: 22,
+    annual: 23,
     tagline: "For large networks & agencies",
     featured: true,
     highlights: [
@@ -247,7 +247,7 @@ export default function PricingContent() {
             >
               Annual
               <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full">
-                Save 20%
+                Save 15%
               </span>
             </button>
           </div>

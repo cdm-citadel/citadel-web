@@ -18,6 +18,8 @@ const LOGOS = [
   { label: "Buy More",               icon: ShoppingBag },
   { label: "Bluth Company",          icon: Building2 },
   { label: "Oceanic Airlines",       icon: Plane },
+  { label: "Vandelay Industries",    icon: Building2 },
+  { label: "Wonka Chocolate Factory", icon: Building2 },
 ];
 
 /* We render the list twice to create a seamless loop */

@@ -16,14 +16,45 @@ import {
   Upload, FolderPlus, MoreVertical, Folder,
 } from "lucide-react";
 
+/* ── Cycling tool names for Content Management headline ────────── */
+const CREATION_TOOLS = ["Canva", "Adobe", "PowerPoint", "Google Slides", "Figma"];
+
+function ToolCycler() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % CREATION_TOOLS.length), 2500);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <span className="relative inline-flex overflow-hidden align-baseline h-[1.35em]">
+      {/* Invisible sizer matches current word so width adapts */}
+      <span className="invisible whitespace-nowrap">{CREATION_TOOLS[index]}</span>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={CREATION_TOOLS[index]}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-0 top-0 whitespace-nowrap text-blue-600"
+        >
+          {CREATION_TOOLS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 /* ── Tab data ──────────────────────────────────────────────────── */
 const TABS = [
   {
     id: "drag-drop",
     icon: MousePointerClick,
     label: "Content Management",
-    headline: "Create with Canva. Manage with ease.",
-    body: "Connect your Canva account to design brand-consistent content without a design team. Organise media into playlists using drag-and-drop, then publish to any screen in seconds.",
+    headline: "",
+    body: "Design content with the tools you already use — or start from scratch with our built-in editor. Organise media into playlists using drag-and-drop, then publish to any screen in seconds.",
     bullets: [
       { icon: ImagePlay,        text: "Canva integration for branded content" },
       { icon: MousePointerClick, text: "Drag & drop playlist management" },
@@ -777,7 +808,11 @@ export default function FeatureTabs() {
                 {/* Text content */}
                 <div className="flex flex-col justify-center py-4">
                   <h3 className="text-xl font-bold text-slate-900 mb-3 leading-snug">
-                    {activeTab.headline}
+                    {activeTab.id === "drag-drop" ? (
+                      <>Create with <ToolCycler />. Manage with ease.</>
+                    ) : (
+                      activeTab.headline
+                    )}
                   </h3>
                   <p className="text-slate-500 text-sm leading-relaxed mb-6">
                     {activeTab.body}

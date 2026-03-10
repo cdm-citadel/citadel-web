@@ -27,6 +27,34 @@ import {
 import IndustriesGrid from "@/components/IndustriesGrid";
 import HomeSectionNav from "@/components/HomeSectionNav";
 
+/* ─── Tool cycler (Content Creation headline) ──────────────────── */
+const CREATION_TOOLS = ["Canva", "Adobe", "PowerPoint", "Google Slides", "Figma"];
+
+function ToolCycler() {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % CREATION_TOOLS.length), 2500);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <span className="relative inline-flex overflow-hidden align-baseline h-[1.35em]">
+      <span className="invisible whitespace-nowrap">{CREATION_TOOLS[index]}</span>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={CREATION_TOOLS[index]}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-0 top-0 whitespace-nowrap text-blue-600"
+        >
+          {CREATION_TOOLS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 /* ─── Animation helpers ─────────────────────────────────────────── */
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -385,13 +413,13 @@ function CorePillars() {
 const FEATURE_SECTIONS = [
   {
     eyebrow: "Content Creation",
-    title: "Design in Canva. Go live in one click.",
+    title: "TOOL_CYCLER",
     description:
-      "Citadel connects directly to Canva — the world's most popular design tool. Create stunning slides, menus, promotions, and announcements in Canva, then push them live to any screen instantly. No exporting, no uploading, no hassle.",
+      "Design content with the tools you already use — Canva, Adobe, PowerPoint, Google Slides, and more. Create stunning slides, menus, promotions, and announcements, then push them live to any screen instantly. No exporting, no uploading, no hassle.",
     bullets: [
-      "Connect your Canva account in seconds",
-      "Push any Canva design live to your screens",
-      "Access thousands of Canva templates for any industry",
+      "Canva integration for branded content",
+      "Works with Adobe, PowerPoint, Google Slides & more",
+      "Push designs live to your screens in one click",
       "Portrait and landscape layouts supported",
     ],
     icon: Layout,
@@ -1145,7 +1173,11 @@ function FeatureSections() {
                 {eyebrow}
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-5">
-                {title}
+                {title === "TOOL_CYCLER" ? (
+                  <>Design in <ToolCycler />. Go live in one click.</>
+                ) : (
+                  title
+                )}
               </h2>
               <p className="text-slate-500 leading-relaxed mb-8">{description}</p>
               <ul className="space-y-3">
