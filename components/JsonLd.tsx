@@ -1,7 +1,8 @@
 /**
  * JsonLd – Structured data (JSON-LD) schemas for SEO.
  * Server component — intentionally no "use client".
- * Renders WebSite, Organization, SoftwareApplication, and FAQPage schemas.
+ * Renders WebSite, Organization, and SoftwareApplication schemas.
+ * FAQPage schema is NOT included here — it is added per-page to avoid duplicates.
  */
 
 const WEBSITE = {
@@ -56,7 +57,27 @@ const SOFTWARE_APP = {
   },
 };
 
-const FAQ_PAGE = {
+export default function JsonLd() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SOFTWARE_APP) }}
+      />
+    </>
+  );
+}
+
+/** FAQPage schema for the homepage only. Import and render in app/page.tsx. */
+export const HOME_FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
@@ -126,26 +147,3 @@ const FAQ_PAGE = {
     },
   ],
 };
-
-export default function JsonLd() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SOFTWARE_APP) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_PAGE) }}
-      />
-    </>
-  );
-}

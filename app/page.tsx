@@ -21,6 +21,7 @@ import Faq                 from "@/components/Faq";
 import FinalCTA            from "@/components/FinalCTA";
 import Footer              from "@/components/Footer";
 import HomeSectionNav      from "@/components/HomeSectionNav";
+import { HOME_FAQ_SCHEMA } from "@/components/JsonLd";
 
 /* Heavy below-fold sections: lazy-loaded JS chunks, still SSR-rendered */
 const FeatureTabs  = dynamic(() => import("@/components/FeatureTabs"));
@@ -31,6 +32,10 @@ const Apps         = dynamic(() => import("@/components/Apps"));
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_FAQ_SCHEMA) }}
+      />
       <Navbar />
       <HomeSectionNav />
       <main id="main-content">
