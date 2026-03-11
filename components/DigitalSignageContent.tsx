@@ -419,7 +419,7 @@ const FEATURE_SECTIONS = [
     bullets: [
       "Canva integration for branded content",
       "Works with Adobe, PowerPoint, Google Slides & more",
-      "Push designs live to your screens in one click",
+      "Push designs live to any screen in minutes",
       "Portrait and landscape layouts supported",
     ],
     icon: Layout,
@@ -1174,7 +1174,7 @@ function FeatureSections() {
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-5">
                 {title === "TOOL_CYCLER" ? (
-                  <>Design in <ToolCycler />. Go live in one click.</>
+                  <>Design in <ToolCycler />. Go live in minutes.</>
                 ) : (
                   title
                 )}
