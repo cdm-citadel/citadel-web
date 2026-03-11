@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /email-icons/
 Sitemap: https://citadeldigitalsignage.com/sitemap.xml
 
 # LLM context
